@@ -5,4 +5,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resource :users, only: :show
+
+  resource :games, only: %i[index new create show chatroom] do
+    resource :messages, only: %i[create]
+  end
 end
