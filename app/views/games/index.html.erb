@@ -1,8 +1,9 @@
 <h1>Bonjour</h1>
-<ol>
-  <% @games.each do |game| %>
-    <%= link_to game_path(game) do %>
-      <li>Nom de la partie: <%= game.name %> Mode de jeu: <%= game.mode %></li>
-    <% end %>
-  <% end %>
-</ol>
+
+<div class="container bg-white" data-controller="game-selection">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<%= console %>
