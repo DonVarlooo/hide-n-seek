@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     resources :messages, only: %i[create]
     resources :user_games, only: %i[create update]
   end
+  resources :pages, only: [:index]
 end

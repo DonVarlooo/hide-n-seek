@@ -6,11 +6,12 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.user = current_user
+    @game.save
   end
 
   private
 
   def game_params
-    params.require(:game).permit(:lat, :lng, :duration)
+    params.require(:game).permit(:lat, :lng, :duration, :radius)
   end
 end
