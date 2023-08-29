@@ -1,9 +1,25 @@
 <h1>Bonjour</h1>
-
-<div class="container bg-white" data-controller="game-selection">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
+<div data-controller="game-selection">
+  <div class="container bg-white" data-game-selection-target="items">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
 </div>
 
-<%= console %>
+
+  <div class="fixed-bottom mb-2 text-center">
+    <button data-action="click->game-selection#popUp">Create</button>
+    <div class="container px-5 d-none" data-game-selection-target="form">
+      <%= simple_form_for Game.new do |f| %>
+        <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
+        <%= f.hidden_field :lng, data: { game_selection_target: "longitude" } %>
+        <%= f.input :name, label: 'Nom de la partie' %>
+        <%= f.input :radius, hint: '(km)' %>
+        <%= f.input :duration, label: 'Durée de la partie' %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+<%# <%= f.hidden_field :lat, data: { new_target: "latitude" }, class: 'latInput' %>
+</div>
+

@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :photo
+
+  geocoded_by :latitude
+  geocoded_by :longitude
+  after_validation :geocode, if: :will_save_change_to_latitude?
+  after_validation :geocode, if: :will_save_change_to_longitude?
 end
