@@ -3,6 +3,10 @@ class GamesController < ApplicationController
     @games = Game.all
   end
 
+  def show
+    @game = Game.find(params[:id])
+  end
+
   def create
     @game = Game.new(game_params)
     @game.user = current_user

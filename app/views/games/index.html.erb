@@ -1,6 +1,8 @@
 <h1>Bonjour</h1>
-<ul>
+<ol>
   <% @games.each do |game| %>
-    <li><%= game. %></li>
+    <%= link_to game_path(game) do %>
+      <li>Nom de la partie: <%= game.name %> Mode de jeu: <%= game.mode %></li>
+    <% end %>
   <% end %>
-</ul>
+</ol>
