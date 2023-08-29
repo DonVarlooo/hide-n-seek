@@ -13,7 +13,7 @@
     <div>
       <% if user_signed_in? %>
         <div>
-          <%= button_to pages_path do %>
+          <%= link_to pages_path do %>
             <h1>Hide N Seek</h1>
             <h4>The world is your playground</h4>
             <h6>Let your inner child run free</h6>
@@ -21,7 +21,7 @@
         </div>
       <% else %>
         <div>
-            <%= button_to pages_path  do %>
+            <%= link_to pages_path  do %>
               <h1>Hide N Seek</h1>
               <h4>The world is your playground</h4>
               <h6>Let your inner child run free</h6>
