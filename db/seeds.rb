@@ -91,6 +91,7 @@ addresses = [
 ]
 
 duration = [15, 20, 30, 45, 60, 85, 90, 120]
+mode = ["1v1", "Multiplayer", "Royal Rumble", "Zombie"]
 
 addresses.each do |address|
   cord = Geocoder.search(address).first&.coordinates
@@ -99,7 +100,9 @@ addresses.each do |address|
   Game.create!(
     lat: cord[0],
     lng: cord[1],
-    duration: duration.sample
+    duration: duration.sample,
+    name: Faker::Name.first_name,
+    mode: mode.sample
   )
   puts "Nous venons de créer la partie numéro: #{Game.count}"
 end
