@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   after_validation :set_radius
   validates :duration, presence: true
+  reverse_geocoded_by :lat, :lng
+  before_save :geocode, if: :will_save_changes_to_lng?
 
   geocoded_by :lat
   geocoded_by :lng
