@@ -7,3 +7,35 @@
 <%= link_to "Connexion", new_user_session_path %>
 <%= link_to "Deconnexion", destroy_user_session_path %>
 <%= link_to "Sign_up", new_user_registration_path %>
+
+<button id="find-me">Show my location</button><br />
+<p id="status"></p>
+<a id="map-link" target="_blank"></a>
+
+
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiaHVnb2NoYWEiLCJhIjoiY2xsdjFuOXJlMWRoMjNrcHBvdzBsNjBuNSJ9.ef0VQFA4MJJ-8E9pVS4fEA';
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+style: 'mapbox://styles/mapbox/streets-v12', // style URL
+center: [-24, 42], // starting center in [lng, lat]
+zoom: 1 // starting zoom
+});
+
+// Add geolocate control to the map.
+map.addControl(
+new mapboxgl.GeolocateControl({
+positionOptions: {
+enableHighAccuracy: true
+},
+// When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+showUserHeading: true,
+})
+);
+
+
+</script>
