@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="game-selection"
 export default class extends Controller {
-  static targets = ["items"]
+  static targets = ["items", "latitude", "longitude", "form"]
 
   latitudeData = 0
   longitudeData = 0
@@ -43,8 +43,13 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(data => {
-        this.element.innerHTML = data.partial;
+        this.itemsTarget.innerHTML = data.partial;
       })
   }
 
+  popUp(event) {
+    event.preventDefault();
+    this.formTarget.classList.toggle("d-none")
+    event.currentTarget.classList.add("d-none")
+  }
 }
