@@ -10,23 +10,27 @@
           </ul>
         </div>
 
-    <div>
-      <% if user_signed_in? %>
-        <div>
-          <%= button_to pages_path do %>
+
+  <div>
+    <% if user_signed_in? %>
+      <div>
+        <%= link_to pages_path do %>
+          <h1>Hide N Seek</h1>
+          <h4>The world is your playground</h4>
+          <h6>Let your inner child run free</h6>
+        <% end %>
+      </div>
+    <% else %>
+      <div>
+          <%= link_to pages_path  do %>
             <h1>Hide N Seek</h1>
             <h4>The world is your playground</h4>
             <h6>Let your inner child run free</h6>
           <% end %>
         </div>
-      <% else %>
-        <div>
-            <%= button_to pages_path  do %>
-              <h1>Hide N Seek</h1>
-              <h4>The world is your playground</h4>
-              <h6>Let your inner child run free</h6>
-            <% end %>
-          </div>
-      <% end %>
     </div>
-</div>
+
+  <div data-controller="location">
+    <div data-location-target="startTracking">
+    </div>
+  </div>

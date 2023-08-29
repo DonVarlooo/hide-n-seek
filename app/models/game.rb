@@ -4,6 +4,10 @@ class Game < ApplicationRecord
   reverse_geocoded_by :lat, :lng
   before_save :geocode, if: :will_save_changes_to_lng?
 
+  geocoded_by :lat
+  geocoded_by :lng
+  after_validation :geocode, if: :will_save_change_to_lat?
+  after_validation :geocode, if: :will_save_change_to_lng?
   private
 
   def set_radius

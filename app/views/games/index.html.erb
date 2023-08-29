@@ -1,9 +1,15 @@
 <h1>Bonjour</h1>
 
+<ul>
+  <% @games.each do |game| %>
+    <li><%= game %></li>
+  <% end %>
+</ul>
+
+
 <div class="container bg-white" data-controller="game-selection">
   <div class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
 </div>
 
-<%= console %>
