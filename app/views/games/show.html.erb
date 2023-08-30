@@ -1,17 +1,9 @@
-<div class="bg-light m-3 text-center rounded" >
-  <h2 >Battle Area</h2>
-</div>
-<%# Emplacement de la map area de la game %>
+<% if @game.pending? %>
+  <%= render "show_pending", game: @game %>
+<% elsif @game.ongoing? %>
 
-<div class="">
-  <div data-controller="location"
-        data-location-markers-value="<%= @markers.to_json %>"
-                data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    <div data-location-target="startTracking">
-      <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
-    </div>
-  </div>
-</div>
+<% elsif @game.finished? %>
+
 
 <h2 class="bg-light m-3 text-center rounded">Settings</h2>
 <h4>Game duration : <%= @game.duration %></h4>
@@ -30,4 +22,5 @@ La photo doit être cliquable pour qu'on puisse la voir en entier %>
   <button>Let's go</button>
   <button>Nope, not in the mood</button>
 </div>
+
 
