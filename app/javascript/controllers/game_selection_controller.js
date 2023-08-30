@@ -19,6 +19,8 @@ export default class extends Controller {
 
     this.latitudeData = crd.latitude
     this.longitudeData = crd.longitude
+    this.latitudeTarget.value = crd.latitude
+    this.longitudeTarget.value = crd.longitude
 
     console.log("Your current position is:");
     console.log(`Latitude : ${this.latitudeData}`);
@@ -49,4 +51,5 @@ export default class extends Controller {
     this.formTarget.classList.toggle("d-none")
     event.currentTarget.classList.add("d-none")
   }
+
 }
