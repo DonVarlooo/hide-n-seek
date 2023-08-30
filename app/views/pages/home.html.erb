@@ -1,17 +1,30 @@
 <div class="background">
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Connecte toi
+      menu
     </button>
     <ul class="dropdown-menu">
-      <li> <%=link "Connexion", to: new_user_session_path class: "dropdown-item"  %> </li>
-      <li><a class="dropdown-item" href="/users/sign_out">Deconnexion</a></li>
-      <li><a class="dropdown-item" href=" /users/sign_up">Créer un compte</a></li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete } %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Connexion", new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to "Créer un compte", new_user_registration_path %>
+        </li>
+      <% end %>
     </ul>
   </div>
 
+
   <div>
     <% if user_signed_in? %>
+      <div class="">
+        <%= current_user.qrcode.html_safe %>
+      </div>
       <div>
         <%= link_to pages_path do %>
           <h1>Hide N Seek</h1>
