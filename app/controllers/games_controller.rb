@@ -32,13 +32,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:lat, :lng, :duration, :radius)
+    params.require(:game).permit(:lat, :lng, :duration, :radius, :name, :mode)
   end
 end
-
-# 1 quand j'arrive sur la page d'index des games, j'affiche un loader à l'emplacemen des games
-# 2 je crée un controller stimulus qui va
-  # 1 au connect demander la geoloc de lutilisateur navigator.GetCurrentPos caca
-  # 2 une fois que la position a été recupérée, je vais fetch le games index, en passant dans l'url, des params (lat lng)
-  #  et dans laction index du games controller, je respond_to format.json/text pour charger la partial de la liste des games
-  #  et pouet pouet
