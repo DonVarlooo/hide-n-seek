@@ -4,7 +4,7 @@
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-</div>
+  </div>
 
 
   <div class="fixed-bottom mb-2 text-center">
@@ -13,13 +13,12 @@
       <%= simple_form_for Game.new do |f| %>
         <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
         <%= f.hidden_field :lng, data: { game_selection_target: "longitude" } %>
+        <%= f.input :duration, collection: Game::DURATION, prompt: "Selectionner la durée", label: "durée"%>
+        <%= f.input :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
         <%= f.input :name, label: 'Nom de la partie' %>
-        <%= f.input :radius, hint: '(km)' %>
-        <%= f.input :duration, label: 'Durée de la partie' %>
+        <%# <%= f.input :photo, as: :file %>
         <%= f.submit %>
       <% end %>
     </div>
   </div>
-<%# <%= f.hidden_field :lat, data: { new_target: "latitude" }, class: 'latInput' %>
 </div>
-

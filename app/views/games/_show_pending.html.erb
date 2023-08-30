@@ -1,0 +1,56 @@
+
+
+
+<div class="bg-light m-3 text-center rounded" >
+  <h2 >Battle Area</h2>
+</div>
+<%# Emplacement de la map area de la game %>
+
+<div class="">
+  <div data-controller="location"
+        data-location-markers-value="<%= @markers.to_json %>"
+                data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div data-location-target="startTracking">
+      <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
+    </div>
+  </div>
+</div>
+
+<h2 class="bg-light m-3 text-center rounded">Settings</h2>
+<h4>Game duration : <%= @game.duration %></h4>
+
+<h4>Players :
+  <% @game.user_games.each do |player| %>
+    <%= player.user.user_name %>
+  <% end %>
+</h4>
+
+<%# Div dans laquelle on met les deux utilisateurs et leur photo
+La photo doit être cliquable pour qu'on puisse la voir en entier %>
+
+<div>
+ <% if current_user == game.user %>
+  <div>
+    <div></div>
+    <div></div>
+  </div>
+  <% else %>
+  <div>
+    <div>empty photo</div>
+    <div></div>
+  </div>
+
+  <% end %>
+
+</div>
+
+<%# Boutton pour pouvoir accepter ou refuser la game %>
+
+<div class="fixed-bottom text-center mb-3 rounded">
+  <% if current_user == game.user %>
+    <button>Let's go</button>
+    <button>Nope, not in the mood</button>
+  <% else %>
+    <button>Upload your photo</button>
+  <% end %>
+</div>

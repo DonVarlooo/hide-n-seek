@@ -5,9 +5,23 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :photo
+  has_many :games
 
-  geocoded_by :latitude
-  geocoded_by :longitude
-  after_validation :geocode, if: :will_save_change_to_latitude?
-  after_validation :geocode, if: :will_save_change_to_longitude?
+
+  # geocoded_by :lat
+  # geocoded_by :lng
+  # after_validation :geocode, if: :will_save_change_to_lat?
+  # after_validation :geocode, if: :will_save_change_to_lng?
+
+  def qrcode
+    qrcode = RQRCode::QRCode.new(id.to_s)
+
+    qrcode.as_svg(
+      color: "000",
+      shape_rendering: "crispEdges",
+      module_size: 11,
+      standalone: true,
+      use_path: true
+    )
+  end
 end
