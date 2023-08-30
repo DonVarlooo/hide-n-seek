@@ -6,6 +6,7 @@ class Game < ApplicationRecord
   enum :status, { pending: 0, ongoing: 1, finished: 2 }
   belongs_to :user
   has_many :users, through: :user_game
+  has_many :user_games
 
   private
 
