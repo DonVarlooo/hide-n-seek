@@ -36,7 +36,15 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
+    @game.user = current_user
+
+    @user_game = UserGame.new
+    @user_game.game = @game
+    @user_game.user = current_user
+
+    @user_game.save
     @game.save
+    
     redirect_to game_path(@game)
   end
 
