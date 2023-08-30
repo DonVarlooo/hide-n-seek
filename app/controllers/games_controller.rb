@@ -16,6 +16,22 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @user_game = UserGame.new
+    @user_game.game_id = @game
+
+    # dans la vue:
+    # si le current user = @game.user, render la vue owner avec status pending
+    # sinon afficher la vue user qui join, dans cette vue, on voit l'adversaire
+    # et on doit prendre un selfie avant de valider.
+
+    # Quand la photo est upload, le status de la partie change et l'owner peut
+    # lancer le début de la partie
+
+    # dans le controller:
+    # il faut créer une instance de @game_users
+    # le game owner est un de ses users et celui qui rejoint également
+    # il faudra stocker leur selfie dans le @game_users et la récupérer dans la db
+
   end
 
   def create

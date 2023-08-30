@@ -4,7 +4,7 @@
       Connecte toi
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/users/sign_in">Connexion</a></li>
+      <li> <%=link "Connexion", to: new_user_session_path class: "dropdown-item"  %> </li>
       <li><a class="dropdown-item" href="/users/sign_out">Deconnexion</a></li>
       <li><a class="dropdown-item" href=" /users/sign_up">Créer un compte</a></li>
     </ul>
