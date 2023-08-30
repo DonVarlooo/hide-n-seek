@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import QRCode from 'qrcode'
+// import QRCode from 'qrcode'
 
 // Connects to data-controller="user-qrcode"
 export default class extends Controller {
