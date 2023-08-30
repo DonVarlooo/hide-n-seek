@@ -8,6 +8,7 @@ class Game < ApplicationRecord
   # geocoded_by :lng
   # after_validation :geocode, if: :will_save_change_to_lat?
   # after_validation :geocode, if: :will_save_change_to_lng?
+
   private
 
   def set_radius
