@@ -16,8 +16,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @user_game = UserGame.new
-    @user_game.game_id = @game
+    @user_game = UserGame.where(game_id: params[:id]).first
 
     # dans la vue:
     # si le current user = @game.user, render la vue owner avec status pending
@@ -49,6 +48,16 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
+  end
+
+  def join
+    @game = Game.find(params[:id])
+    @user_game = UserGame.new
+    @user_game.game = @game
+    @user_game.user = current_user
+    @user_game.save!
+
+    redirect_to game_path(@game)
   end
 
   private

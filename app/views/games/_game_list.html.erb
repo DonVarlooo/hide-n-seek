@@ -2,7 +2,7 @@
     <% @games.each do |game| %>
     <div class="d-flex">
       <li>
-        <%= link_to game_path(game) do %>
+        <%= link_to joingames_path(game) do %>
           <%= game.id %>
         <% end %>
           <%= game.name %>
