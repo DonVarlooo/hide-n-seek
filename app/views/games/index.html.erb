@@ -16,7 +16,7 @@
         <%= f.input :duration, collection: Game::DURATION, prompt: "Selectionner la durée", label: "durée"%>
         <%= f.input :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
         <%= f.input :name, label: 'Nom de la partie' %>
-        <%# <%= f.input :photo, as: :file %>
+        <%= f.input :photo, as: :file %>
         <%= f.submit %>
       <% end %>
     </div>
