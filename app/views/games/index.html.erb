@@ -4,13 +4,13 @@
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-</div>
+  </div>
 
 
   <div class="fixed-bottom mb-2 text-center">
     <button data-action="click->game-selection#popUp">Create</button>
     <div class="container px-5 d-none" data-game-selection-target="form">
-      <%= simple_form_for Game.new do |f| %>
+      <%= simple_form_for @game do |f| %>
         <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
         <%= f.hidden_field :lng, data: { game_selection_target: "longitude" } %>
         <%= f.input :name, label: 'Nom de la partie' %>
@@ -20,6 +20,4 @@
       <% end %>
     </div>
   </div>
-<%# <%= f.hidden_field :lat, data: { new_target: "latitude" }, class: 'latInput' %>
 </div>
-
