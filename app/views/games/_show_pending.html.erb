@@ -17,22 +17,20 @@
 </div>
 
 <h2 class="bg-light m-3 text-center rounded">Settings</h2>
-<h4>Game duration : <%= @game.duration %></h4>
-
-<h4>Players :
-  <% @game.user_games.each do |player| %>
-    <%= player.user.user_name %>
-  <% end %>
-</h4>
 
 <%# Div dans laquelle on met les deux utilisateurs et leur photo
 La photo doit être cliquable pour qu'on puisse la voir en entier %>
-
+<h4>Game duration : <%= @game.duration %></h4>
 <div>
  <% if current_user == game.user %>
   <div>
-    <div></div>
-    <div></div>
+    <h2>Players : </h2>
+      <% @game.user_games.each do |ug| %>
+        <div><%= ug.user.user_name %></h4></div>
+        <div><%= cl_image_tag ug.photo.key, height: 100, width: 200, crop: :fill %></div>
+      <% end %>
+
+
   </div>
   <% else %>
   <div>

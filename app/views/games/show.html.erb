@@ -1,7 +1,5 @@
 <% if @game.pending? %>
   <%= render "show_pending", game: @game %>
-  <%= console %>
-  <% @user_game %>
 <% elsif @game.ongoing? %>
   <%= render "show_ongoing", game: @game %>
 <% elsif @game.finished? %>
