@@ -23,25 +23,28 @@
 La photo doit être cliquable pour qu'on puisse la voir en entier %>
 
 <div>
+ <% if current_user == game.user %>
   <div>
     <div></div>
+    <div></div>
+  </div>
+  <% else %>
+  <div>
+    <div>empty photo</div>
     <div></div>
   </div>
 
-  <div>
-    <div></div>
-    <div></div>
-  </div>
+  <% end %>
+
 </div>
 
 <%# Boutton pour pouvoir accepter ou refuser la game %>
 
 <div class="fixed-bottom text-center mb-3 rounded">
   <% if current_user == game.user %>
-    je suis le owner de ce pending game
     <button>Let's go</button>
     <button>Nope, not in the mood</button>
   <% else %>
-    je suis l'opponent de ce pending game
+    <button>Upload your photo</button>
   <% end %>
 </div>

@@ -1,26 +1,7 @@
 <% if @game.pending? %>
   <%= render "show_pending", game: @game %>
 <% elsif @game.ongoing? %>
-
+  <%= render "show_ongoing", game: @game %>
 <% elsif @game.finished? %>
-
-
-<h2 class="bg-light m-3 text-center rounded">Settings</h2>
-<h4>Game duration : <%= @game.duration %></h4>
-
-<%# Div dans laquelle on met les deux utilisateurs et leur photo
-La photo doit être cliquable pour qu'on puisse la voir en entier %>
-
-<div>
-
-
-</div>
-
-<%# Boutton pour pouvoir accepter ou refuser la game %>
-
-<div class="fixed-bottom text-center mb-3 rounded">
-  <button>Let's go</button>
-  <button>Nope, not in the mood</button>
-</div>
-
-
+  <%= render "show_finished", game: @game %>
+<% end %>
