@@ -37,7 +37,7 @@ class GamesController < ApplicationController
     @game.user = current_user
     @game.save!
 
-    @user_game = UserGame.new
+    @user_game = UserGame.new(photo: params.require(:game).require(:photo))
     @user_game.game = @game
     @user_game.user = current_user
     @user_game.save!
