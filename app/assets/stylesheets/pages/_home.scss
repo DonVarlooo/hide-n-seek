@@ -1,1 +1,38 @@
-// Specific CSS for your home-page
+.container-home {
+  h1 {
+  font-family: Mali;
+  text-align: center;
+  color: #F1F7ED;
+  }
+  h3 {
+  font-family: Mali;
+  text-align: center;
+  color: #F1F7ED;
+  }
+  h5 {
+  font-family: Mali;
+  text-align: center;
+  color: #F1F7ED;
+  }
+}
+
+.container-elements {
+  margin-top: 200px;
+}
+
+.logo-home {
+  position: center;
+  margin-bottom: -8px;
+}
+
+.card-title {
+  background-color: #7CA982;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 2px solid;
+  border-color: #243E36;
+}

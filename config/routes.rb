@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     resources :user_games, only: %i[create update]
   end
   resources :pages, only: [:index]
+  get "/games/join/:id/", to: "games#join", as: "joingames"
 end

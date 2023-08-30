@@ -19,7 +19,11 @@
 <h2 class="bg-light m-3 text-center rounded">Settings</h2>
 <h4>Game duration : <%= @game.duration %></h4>
 
-<h4>Participant : <%= @user_game.game_id %></h4>
+<h4>Players :
+  <% @game.user_games.each do |player| %>
+    <%= player.user.user_name %>
+  <% end %>
+</h4>
 
 <%# Div dans laquelle on met les deux utilisateurs et leur photo
 La photo doit être cliquable pour qu'on puisse la voir en entier %>
