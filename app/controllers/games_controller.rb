@@ -11,6 +11,7 @@ class GamesController < ApplicationController
     else
       @games = Game.all
     end
+    @game = Game.new
   end
 
   def show

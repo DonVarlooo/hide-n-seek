@@ -4,9 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["items", "latitude", "longitude", "form"]
 
-  latitudeData = 0
-  longitudeData = 0
-
   connect() {
     const options = {
       enableHighAccuracy: true,
