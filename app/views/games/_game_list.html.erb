@@ -1,5 +1,12 @@
   <ol>
     <% @games.each do |game| %>
-      <li><%= game.id %></li>
+    <div>
+      <li>
+        <%= link_to game_path(game) do %>
+          <%= game.id %>
+        <% end %>
+        <h1>Hello</h1>
+      </li>
+    </div>
     <% end %>
   </ol>
