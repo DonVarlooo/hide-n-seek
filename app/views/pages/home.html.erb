@@ -1,37 +1,37 @@
 <div class="background">
   <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Connecte toi
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/users/sign_in">Connexion</a></li>
-            <li><a class="dropdown-item" href="/users/sign_out">Deconnexion</a></li>
-            <li><a class="dropdown-item" href=" /users/sign_up">Créer un compte</a></li>
-          </ul>
-        </div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Connecte toi
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/users/sign_in">Connexion</a></li>
+      <li><a class="dropdown-item" href="/users/sign_out">Deconnexion</a></li>
+      <li><a class="dropdown-item" href=" /users/sign_up">Créer un compte</a></li>
+    </ul>
+  </div>
 
 
-    <div>
-      <% if user_signed_in? %>
-        <div>
-          <%= link_to pages_path do %>
-            <h1>Hide N Seek</h1>
-            <h4>The world is your playground</h4>
-            <h6>Let your inner child run free</h6>
-          <% end %>
-        </div>
-      <% else %>
-        <div>
-            <%= link_to pages_path  do %>
-              <h1>Hide N Seek</h1>
-              <h4>The world is your playground</h4>
-              <h6>Let your inner child run free</h6>
-            <% end %>
-          </div>
+  <div>
+    <% if user_signed_in? %>
+      <div>
+        <%= link_to pages_path do %>
+          <h1>Hide N Seek</h1>
+          <h4>The world is your playground</h4>
+          <h6>Let your inner child run free</h6>
+        <% end %>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to pages_path  do %>
+          <h1>Hide N Seek</h1>
+          <h4>The world is your playground</h4>
+          <h6>Let your inner child run free</h6>
+        <% end %>
+      </div>
       <% end %>
-    </div>
-
+  </div>
   <div data-controller="location">
     <div data-location-target="startTracking">
     </div>
   </div>
+</div>
