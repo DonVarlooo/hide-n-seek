@@ -1,8 +1,7 @@
 <% if @game.pending? %>
   <%= render "show_pending", game: @game %>
 <% elsif @game.ongoing? %>
-
+  <%= render "show_ongoing", game: @game %>
 <% elsif @game.finished? %>
-
+  <%= render "show_finished", game: @game %>
 <% end %>
-<button>Launch Game</button>
