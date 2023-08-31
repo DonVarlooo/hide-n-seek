@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
+import circle from "@turf/circle";
 
 export default class extends Controller {
   static targets = ["startTracking", "map"]
@@ -24,6 +25,9 @@ export default class extends Controller {
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
+      this.latitude = crd.latitude
+      this.longitude = crd.longitude
+
       this.markersValue = [{lng: crd.longitude, lat: crd.latitude}]
       this.#buildMap()
     }
@@ -47,6 +51,32 @@ export default class extends Controller {
     })
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
+    var center = [this.latitude, this.longitude];
+    var radius = 5;
+    var options = {steps: 10, units: 'kilometers'};
+    var circleCoords = turf.circle(center, radius, options);
+    // const circleGeojson = circle(center, radius, options);
+
+    this.map.addLayer({
+      "id": "circle",
+      "type": "fill",
+      "source": {
+          "type": "geojson",
+          "data": circleCoords,
+          "lineMetrics": true,
+      },
+      "paint": {
+        "fill-color": "#088",
+        "fill-opacity": 0.4,
+        "fill-outline-color": "yellow"
+      },
+      "layout": {
+
+      }
+    });
+
+
   }
 
   #addMarkersToMap() {
