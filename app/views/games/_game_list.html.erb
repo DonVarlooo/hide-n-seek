@@ -1,11 +1,11 @@
   <ol>
     <% @games.each do |game| %>
-    <div>
+    <div class="d-flex">
       <li>
-        <%= link_to game_path(game) do %>
+        <%= link_to joingames_path(game) do %>
           <%= game.id %>
         <% end %>
-        <h1>Hello</h1>
+          <%= game.name %>
       </li>
     </div>
     <% end %>

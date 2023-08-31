@@ -1,7 +1,7 @@
-<div class="background">
+<div class="container-home">
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      menu
+    <button class="btn-connect btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Connecte toi
     </button>
     <ul class="dropdown-menu">
       <% if user_signed_in? %>
@@ -19,32 +19,31 @@
     </ul>
   </div>
 
-
-  <div>
-    <% if user_signed_in? %>
-      <div class="">
-        <%= current_user.qrcode.html_safe %>
-      </div>
-      <div>
-        <%= link_to pages_path do %>
-          <h1>Hide N Seek</h1>
-          <h4>The world is your playground</h4>
-          <h6>Let your inner child run free</h6>
-        <% end %>
-      </div>
-    <% else %>
-      <div>
-        <%= link_to pages_path  do %>
-          <h1>Hide N Seek</h1>
-          <h4>The world is your playground</h4>
-          <h6>Let your inner child run free</h6>
-        <% end %>
-      </div>
-
+  <div class="container-elements">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "test-logo-home.png", height: 80, class: "logo-home"%>
+    </div>
+    <div class="card-title">
+      <% if user_signed_in? %>
+        <div>
+          <%= link_to pages_path, class: "text-decoration-none" do%>
+            <h1 class="fw-bold">Hide N'Seek</h1>
+            <h3>The world is your playground</h4>
+            <h5>Let your inner child run free</h6>
+          <% end %>
+        </div>
+      <% else %>
+        <div>
+            <%= link_to pages_path, class: "text-decoration-none" do %>
+              <h1 class="fw-bold">Hide N'Seek</h1>
+              <h3>The world is your playground</h4>
+              <h5>Let your inner child run free</h6>
+            <% end %>
+          </div>
       <% end %>
+    </div>
   </div>
   <div data-controller="location">
     <div data-location-target="startTracking">
-    </div>
   </div>
 </div>

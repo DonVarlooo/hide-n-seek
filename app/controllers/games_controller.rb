@@ -16,8 +16,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @user_game = UserGame.new
-    @user_game.game_id = @game
+    @user_game = UserGame.where(game_id: params[:id]).first
 
     # dans la vue:
     # si le current user = @game.user, render la vue owner avec status pending
@@ -31,12 +30,18 @@ class GamesController < ApplicationController
     # il faut créer une instance de @game_users
     # le game owner est un de ses users et celui qui rejoint également
     # il faudra stocker leur selfie dans le @game_users et la récupérer dans la db
-
   end
 
   def create
     @game = Game.new(game_params)
-    @game.save
+    @game.user = current_user
+    @game.save!
+
+    @user_game = UserGame.new(photo: params.require(:game).require(:photo))
+    @user_game.game = @game
+    @user_game.user = current_user
+    @user_game.save!
+
     redirect_to game_path(@game)
   end
 
@@ -45,9 +50,19 @@ class GamesController < ApplicationController
     @game.destroy
   end
 
+  def join
+    @game = Game.find(params[:id])
+    @user_game = UserGame.new
+    @user_game.game = @game
+    @user_game.user = current_user
+    @user_game.save!
+
+    redirect_to game_path(@game)
+  end
+
   private
 
   def game_params
-    params.require(:game).permit(:lat, :lng, :duration, :radius, :name, :mode)
+    params.require(:game).permit(:lat, :lng, :duration, :name, :mode)
   end
 end
