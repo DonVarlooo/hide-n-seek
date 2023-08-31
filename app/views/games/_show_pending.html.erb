@@ -41,6 +41,8 @@ La photo doit être cliquable pour qu'on puisse la voir en entier %>
 # Si opponent.photo.attached ? false alors on affiche la photo du createur (user_game) et un "?" en face
 # Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
 
-<% if current_user == @user_game.user %>
-  <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"} %>
+<% if !@opponent_user_game.nil? %>
+  <% if current_user == @user_game.user && @opponent_user_game.photo.attached? && @user_game.photo.attached?%>
+    <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"} %>
+  <% end %>
 <% end %>
