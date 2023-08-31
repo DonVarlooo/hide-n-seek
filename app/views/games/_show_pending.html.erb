@@ -22,11 +22,11 @@ La photo doit être cliquable pour qu'on puisse la voir en entier %>
 <h4>Game duration : <%= game.duration %></h4>
 
 <%# On affiche la photo du createur %>
-<%= cl_image_tag @user_game.photo.key, height: 100, width: 200, crop: :fill %>
+<%= cl_image_tag @creator_user_game.photo.key, height: 100, width: 200, crop: :fill %>
 <%# # Si opponent existe et photo.attached? afficher la photo %>
-<% if @opponent_user_game && @opponent_user_game.photo.attached? %>
+<% if @challenger_user_game && @challenger_user_game.photo.attached? %>
   <ul>
-    <li><%= cl_image_tag @opponent_user_game.photo.key, height: 100, width: 200, crop: :fill %></li>
+    <li><%= cl_image_tag @challenger_user_game.photo.key, height: 100, width: 200, crop: :fill %></li>
   </ul>
 # Sinon Upload la photo
 <% else %>
@@ -44,8 +44,8 @@ La photo doit être cliquable pour qu'on puisse la voir en entier %>
 # Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
 
 
-<% if !@opponent_user_game.nil? %>
-  <% if current_user == @user_game.user && @opponent_user_game.photo.attached? && @user_game.photo.attached?%>
+<% if !@challenger_user_game.nil? %>
+  <% if current_user == @creator_user_game.user && @challenger_user_game.photo.attached? && @creator_user_game.photo.attached?%>
     <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"} %>
   <% end %>
 <% end %>
