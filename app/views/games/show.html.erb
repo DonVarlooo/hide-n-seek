@@ -1,10 +1,8 @@
-
-<div data-controller="location"
-      data-location-markers-value="<%= @markers.to_json %>"
-              data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  <div data-location-target="startTracking">
-    <div id="map-home" class="" style="height: 300px" data-location-target="map">
-    </div>
-  </div>
-</div>
+<% if @game.pending? %>
+  <%= render "show_pending", game: @game %>
+<% elsif @game.ongoing? %>
+  <%= render "show_ongoing", game: @game %>
+<% elsif @game.finished? %>
+  <%= render "show_finished", game: @game %>
+<% end %>
 

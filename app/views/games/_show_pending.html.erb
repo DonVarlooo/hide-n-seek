@@ -1,0 +1,46 @@
+<div class="bg-light m-3 text-center rounded" >
+  <h2 >Battle Area</h2>
+</div>
+<%# Emplacement de la map area de la game %>
+
+<div class="">
+  <div data-controller="location"
+        data-location-markers-value="<%= @markers.to_json %>"
+                data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div data-location-target="startTracking">
+      <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
+    </div>
+  </div>
+</div>
+
+<h2 class="bg-light m-3 text-center rounded">Settings</h2>
+
+<%# Div dans laquelle on met les deux utilisateurs et leur photo
+La photo doit être cliquable pour qu'on puisse la voir en entier %>
+<h4>Game duration : <%= game.duration %></h4>
+<div>
+
+<%# On affiche la photo du createur %>
+<%= cl_image_tag @user_game.photo.key, height: 100, width: 200, crop: :fill %>
+<%# # Si opponent existe et photo.attached? afficher la photo %>
+<% if @opponent_user_game && @opponent_user_game.photo.attached? %>
+  <ul>
+    <li><%= cl_image_tag @opponent_user_game.photo.key, height: 100, width: 200, crop: :fill %></li>
+  </ul>
+# Sinon Upload la photo
+<% else %>
+  <%= simple_form_for current_user.find_user_game(game) do |f| %>
+    <%= f.input :photo, label: false %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+<%# # Si je suis le createur du jeu et que l'opponent a sa photo.attached? alors je peux cliquer sur le bouton
+
+
+# Si opponent nil alors on affiche la photo du createur (user_game) et un "?" en face
+# Si opponent.photo.attached ? false alors on affiche la photo du createur (user_game) et un "?" en face
+# Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
+
+<% if current_user == @user_game.user %>
+  <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"} %>
+<% end %>

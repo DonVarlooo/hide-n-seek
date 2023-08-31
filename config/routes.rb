@@ -8,8 +8,16 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   resources :games, only: %i[index new create show] do
+    member do
+      patch :join
+      patch :start
+    end
+
     resources :messages, only: %i[create]
-    resources :user_games, only: %i[create update]
+    resources :user_games, only: %i[create]
   end
+
+  resources :user_games, only: :update
+
   resources :pages, only: [:index]
 end

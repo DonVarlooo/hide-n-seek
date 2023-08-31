@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
+import circle from "@turf/circle";
 
 export default class extends Controller {
   static targets = ["startTracking", "map"]
@@ -10,6 +11,7 @@ export default class extends Controller {
 
 
   connect() {
+    this.markers = []
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -23,6 +25,9 @@ export default class extends Controller {
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
+      this.latitude = crd.latitude
+      this.longitude = crd.longitude
+
       this.markersValue = [{lng: crd.longitude, lat: crd.latitude}]
       this.#buildMap()
     }
@@ -32,6 +37,9 @@ export default class extends Controller {
     }
 
     console.log(navigator.geolocation.getCurrentPosition(success, error, options));
+    navigator.geolocation.watchPosition((data) => {
+      this.animateMarker(data.coords.latitude, data.coords.longitude)
+    })
   }
 
   #buildMap() {
@@ -39,17 +47,46 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.mapTarget,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/hugochaa/cllz02ns400n701pfa46nfs93"
     })
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
+    this.map.on('load', () => {
+      var center = [this.longitude, this.latitude];
+      var radius = 0.200;
+      var options = {steps: 100, units: 'kilometers'};
+      // var circleCoords = turf.circle(center, radius, options);
+      const circleGeojson = circle(center, radius, options);
+
+      console.log(circleGeojson)
+
+      this.map.addLayer({
+        "id": "circle",
+        "type": "fill",
+        "source": {
+          "type": "geojson",
+          "data": circleGeojson,
+          "lineMetrics": true,
+        },
+        "paint": {
+          "fill-color": "#C2A83E",
+          "fill-opacity": 0.5,
+          "fill-outline-color": "#C2A83E",
+        },
+        "layout": {
+
+        }
+      });
+    });
   }
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      var marker = new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(this.map)
+      this.markers.push(marker)
     })
   }
 
@@ -57,5 +94,14 @@ export default class extends Controller {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+  }
+
+  animateMarker(lat, lon) {
+    console.log("haha")
+    const marker = this.markers[0]
+    marker.setLngLat([
+      lon, lat
+    ]);
+    marker.addTo(this.map);
   }
 }
