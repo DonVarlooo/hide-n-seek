@@ -1,6 +1,12 @@
 .container-select {
   background-color: #7CA982;
   border-radius: 10px;
+  height: 200px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 2px solid;
+  border-color: #243E36;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .btn-create {
@@ -13,10 +19,42 @@
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-bottom: 20px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   border: 1px solid;
   border-color: #F1F7ED;
+}
+
+.btn-create-game {
+  text-decoration: none;
+  text-align: center;
+  color:  #7CA982;
+  border-radius: 10px;;
+  font-weight: 500;
+  font-size: 23px;
+  background-color: #243E36;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 1px solid;
+  border-color: #C2A83E;
+}
+
+.container-create {
+  background-color: #C2A83E;
+  font-weight: 600;
+  font-size: 20px;
+  opacity: 0.95;
+  color: #243E36;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid;
+  border-color: #243E36;
 }

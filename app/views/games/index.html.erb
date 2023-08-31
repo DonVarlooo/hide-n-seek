@@ -1,5 +1,8 @@
 <h1>Bonjour</h1>
 <div data-controller="game-selection">
+  <div class="d-flex justify-content-center">
+      <%= image_tag "test-logo-home.png", height: 80, class: "logo-home"%>
+  </div>
   <div class="container-select" data-game-selection-target="items">
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
@@ -7,17 +10,17 @@
   </div>
 
 
-  <div class="fixed-bottom mb-2 text-center">
+  <div class="fixed-bottom text-center">
     <button class="btn-create" data-action="click->game-selection#popUp">Create</button>
-    <div class="container px-5 d-none" data-game-selection-target="form">
+    <div class="container-create px-5 d-none" data-game-selection-target="form">
       <%= simple_form_for Game.new do |f| %>
         <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
         <%= f.hidden_field :lng, data: { game_selection_target: "longitude" } %>
-        <%= f.input :duration, collection: Game::DURATION, prompt: "Selectionner la durée", label: "durée"%>
-        <%= f.input :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
-        <%= f.input :name, label: 'Nom de la partie' %>
+        <%= f.input :duration, collection: Game::DURATION, prompt: "Choose game duration", label: "Duration"%>
+        <% f.input :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
+        <%= f.input :name, label: 'Name of the game' %>
         <%= f.input :photo, as: :file %>
-        <%= f.submit %>
+        <%= f.submit class: 'btn-create-game'%>
       <% end %>
     </div>
   </div>
