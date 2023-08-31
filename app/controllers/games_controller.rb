@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   def index
     if params[:lng] && params[:lat]
-      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 1)
+      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 30)
       respond_to do |format|
         format.json {
           partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
@@ -16,7 +16,8 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @user_game = UserGame.where(game_id: params[:id]).first
+    @user_game = @game.user_games.first # Createur du jeu
+    @opponent_user_game = @game.user_games.second # Joueur qui rejoint le jeu
 
     # dans la vue:
     # si le current user = @game.user, render la vue owner avec status pending
@@ -35,23 +36,13 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.user = current_user
-<<<<<<< HEAD
-=======
     @game.save!
->>>>>>> 33aa3cbfefa24cc25ad7b3e79f06f8c411a0b297
 
     @user_game = UserGame.new(photo: params.require(:game).require(:photo))
     @user_game.game = @game
     @user_game.user = current_user
-<<<<<<< HEAD
-
-    @user_game.save
-    @game.save
-    
-=======
     @user_game.save!
 
->>>>>>> 33aa3cbfefa24cc25ad7b3e79f06f8c411a0b297
     redirect_to game_path(@game)
   end
 
@@ -68,6 +59,11 @@ class GamesController < ApplicationController
     @user_game.save!
 
     redirect_to game_path(@game)
+  end
+
+  def start_game
+    @game = Game.find(params[:id])
+    @game.update(status: :ongoing)
   end
 
   private

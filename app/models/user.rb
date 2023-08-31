@@ -18,4 +18,8 @@ class User < ApplicationRecord
       use_path: true
     )
   end
+
+  def find_user_game(game)
+    UserGame.find_by(game: game, user: self)
+  end
 end
