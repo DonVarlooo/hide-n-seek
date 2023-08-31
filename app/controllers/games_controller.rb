@@ -1,13 +1,14 @@
 class GamesController < ApplicationController
   def index
     if params[:lng] && params[:lat]
-      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 30)
+      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 1)
       respond_to do |format|
         format.json {
           partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
           render json: { partial: partial}
         }
       end
+
     else
       @games = Game.all
     end
