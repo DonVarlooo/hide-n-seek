@@ -1,0 +1,13 @@
+
+  <div class="navbar">
+    <div class="container-fluid">
+      <%= link_to "#", class: "navbar-brand" do %>
+        <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://asuracomics.com/wp-content/uploads/2021/03/Group_1.png" />
+      <% end %>
+      <h1><%= current_user.name %></h1>
+      <%= link_to root_path, class: "text-decoration-none" do %>
+        <i class="fa-solid fa-power-off fa-xl" style="color: #243e36;"></i>
+      <% end %>
+    </div>
+  </div>
+
