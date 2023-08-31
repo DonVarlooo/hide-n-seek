@@ -1,6 +1,3 @@
-
-
-
 <div class="bg-light m-3 text-center rounded" >
   <h2 >Battle Area</h2>
 </div>
@@ -20,35 +17,30 @@
 
 <%# Div dans laquelle on met les deux utilisateurs et leur photo
 La photo doit être cliquable pour qu'on puisse la voir en entier %>
-<h4>Game duration : <%= @game.duration %></h4>
+<h4>Game duration : <%= game.duration %></h4>
 <div>
- <% if current_user == game.user %>
-  <div>
-    <h2>Players : </h2>
-      <% @game.user_games.each do |ug| %>
-        <div><%= ug.user.user_name %></h4></div>
-        <div><%= cl_image_tag ug.photo.key, height: 100, width: 200, crop: :fill %></div>
-      <% end %>
 
-
-  </div>
-  <% else %>
-  <div>
-    <div>empty photo</div>
-    <div></div>
-  </div>
-
+<%# On affiche la photo du createur %>
+<%= cl_image_tag @user_game.photo.key, height: 100, width: 200, crop: :fill %>
+<%# # Si opponent existe et photo.attached? afficher la photo %>
+<% if @opponent_user_game && @opponent_user_game.photo.attached? %>
+  <ul>
+    <li><%= cl_image_tag @opponent_user_game.photo.key, height: 100, width: 200, crop: :fill %></li>
+  </ul>
+# Sinon Upload la photo
+<% else %>
+  <%= simple_form_for current_user.find_user_game(game) do |f| %>
+    <%= f.input :photo, label: false %>
+    <%= f.submit %>
   <% end %>
+<% end %>
+<%# # Si je suis le createur du jeu et que l'opponent a sa photo.attached? alors je peux cliquer sur le bouton
 
-</div>
 
-<%# Boutton pour pouvoir accepter ou refuser la game %>
+# Si opponent nil alors on affiche la photo du createur (user_game) et un "?" en face
+# Si opponent.photo.attached ? false alors on affiche la photo du createur (user_game) et un "?" en face
+# Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
 
-<div class="fixed-bottom text-center mb-3 rounded">
-  <% if current_user == game.user %>
-    <button>Let's go</button>
-    <button>Nope, not in the mood</button>
-  <% else %>
-    <button>Upload your photo</button>
-  <% end %>
-</div>
+<% if current_user == @user_game.user %>
+  <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"} %>
+<% end %>
