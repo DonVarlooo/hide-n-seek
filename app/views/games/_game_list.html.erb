@@ -1,11 +1,14 @@
-<ol>
-  <% @games.each do |game| %>
-  <li>
-    <div class="d-flex">
-      <%= link_to join_game_path(game), data: {turbo_method: "PATCH"} do %>
-        <%= game.id %>
-      <% end %>
-    </div>
-  </li>
-  <% end %>
-</ol>
+<div class="">
+  <ol>
+    <% @games.each do |game| %>
+    <li>
+      <div class="d-flex">
+        <%= link_to join_game_path(game), data: {turbo_method: "PATCH"} do %>
+          <%= game.id %>
+        <% end %>
+          <%= game.name %>
+      </div>
+    </li>
+    <% end %>
+  </ol>
+</div>
