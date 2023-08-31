@@ -45,6 +45,7 @@ export default class extends Controller {
       .then(data => {
         this.itemsTarget.innerHTML = data.partial;
       })
+    console.log("Bonjour");
   }
 
   popUp(event) {
