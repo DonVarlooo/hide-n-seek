@@ -47,36 +47,38 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.mapTarget,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/hugochaa/cllz02ns400n701pfa46nfs93"
     })
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
 
-    var center = [this.latitude, this.longitude];
-    var radius = 5;
-    var options = {steps: 10, units: 'kilometers'};
-    var circleCoords = turf.circle(center, radius, options);
-    // const circleGeojson = circle(center, radius, options);
+    this.map.on('load', () => {
+      var center = [this.longitude, this.latitude];
+      var radius = 0.200;
+      var options = {steps: 100, units: 'kilometers'};
+      // var circleCoords = turf.circle(center, radius, options);
+      const circleGeojson = circle(center, radius, options);
 
-    this.map.addLayer({
-      "id": "circle",
-      "type": "fill",
-      "source": {
+      console.log(circleGeojson)
+
+      this.map.addLayer({
+        "id": "circle",
+        "type": "fill",
+        "source": {
           "type": "geojson",
-          "data": circleCoords,
+          "data": circleGeojson,
           "lineMetrics": true,
-      },
-      "paint": {
-        "fill-color": "#088",
-        "fill-opacity": 0.4,
-        "fill-outline-color": "yellow"
-      },
-      "layout": {
+        },
+        "paint": {
+          "fill-color": "#C2A83E",
+          "fill-opacity": 0.5,
+          "fill-outline-color": "#C2A83E",
+        },
+        "layout": {
 
-      }
+        }
+      });
     });
-
-
   }
 
   #addMarkersToMap() {
