@@ -71,6 +71,42 @@ class GamesController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def scan
+    @game = Game.find(params[:id])
+    @current_user_game = @game.user_games.find_by(user: current_user)
+    @opponent_user_game = @game.user_games.where.not(user: current_user).first
+    @opponent = @opponent_user_game.user
+
+
+    respond_to do |format|
+      if @opponent.id == params[:opponent_id].to_i
+        @current_user_game.update(win: true)
+        @game.finished!
+
+        format.json do
+          partial = render_to_string(
+            partial: 'games/show_finished',
+            locals: {
+              opponent_user_game: @opponent_user_game,
+              current_user_game: @current_user_game
+            },
+            formats: :html
+          )
+          render json: {
+            success: true,
+            partial:
+          }
+        end
+      else
+        format.json do
+          render json: {
+            success: false
+          }
+        end
+      end
+    end
+  end
+
   private
 
   def game_params

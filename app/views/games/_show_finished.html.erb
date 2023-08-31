@@ -1,0 +1,34 @@
+<div>
+  <% if current_user_game.win %>
+    <div>Victory</div>
+    <%= cl_image_tag current_user_game.photo.key, height: 100, width: 200, crop: :fill %>
+  <% else %>
+    <div>Boloss va, t'es nul(le)</div>
+    <%= cl_image_tag opponent_user_game.photo.key, height: 100, width: 200, crop: :fill  %>
+  <% end %>
+</div>
+<div>Game Statistics</div>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <div><%= cl_image_tag current_user_game.photo.key, height: 100, width: 200, crop: :fill %></div>
+      <div>Game Duration:</div>
+      <div>Win streak:</div>
+    </div>
+    <div class="col-5">
+      <div><%= cl_image_tag opponent_user_game.photo.key, height: 100, width: 200, crop: :fill  %></div>
+      <div>Game Duration:</div>
+      <div>Win streak:</div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <button>Rematch</button>
+    </div>
+    <div class="col-5">
+      <button>Quit</button>
+    </div>
+  </div>
+</div>

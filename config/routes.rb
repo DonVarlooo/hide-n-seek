@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       patch :join
       patch :start
+      patch :scan
     end
 
     resources :messages, only: %i[create]
