@@ -1,3 +1,15 @@
-<div>
-  <%= link_to " Mode Solo", games_path %>
+<div class="container-game">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <%= link_to "Solo Mode", games_path, class: "btn-mode" %>
+      </div>
+      <div class="col-10">
+        <%= link_to "Multi-players", "#", class: "btn-mode" %>
+      </div>
+      <div class="col-10">
+        <%= link_to "Event", "#", class: "btn-mode" %>
+      </div>
+    </div>
+  </div>
 </div>
