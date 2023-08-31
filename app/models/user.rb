@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_many :games
-
+  has_many :user_games
 
   # geocoded_by :lat
   # geocoded_by :lng
@@ -23,5 +23,9 @@ class User < ApplicationRecord
       standalone: true,
       use_path: true
     )
+  end
+
+  def find_user_game(game)
+    UserGame.find_by(game: game, user: self)
   end
 end
