@@ -1,4 +1,4 @@
-<div>
+<div id="show-html">
   <div>Battle Area</div>
   <div class="">
     <div data-controller="location"
@@ -16,6 +16,22 @@
   <div>
     <%= cl_image_tag @opponent_user_game.photo.key, height: 250, width: 500, crop: :fill %>
   </div>
+
+
+
+  <div data-controller="qrcode"
+       data-qrcode-scan-url-value="<%= scan_game_path(@game) %>">
+    <button data-action="click->qrcode#startScanning">Scanner l'autre boloss</button>
+    <button data-action="click->qrcode#stopScanning">Arrêter de scanner l'autre boloss</button>
+    <video data-qrcode-target="video"></video>
+  </div>
+
+
+
+  <div class="bg-white p-5">
+    <%= @opponent_user_game.user.qrcode.html_safe %>
+  </div>
+
 
    <div><%= link_to games_path, class: "text-decoration-none" do %>
       <button class="btn-return">Quit</button>
