@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="game-selection"
 export default class extends Controller {
-  static targets = ["items", "latitude", "longitude", "form"]
+  static targets = ["items", "latitude", "longitude", "form", "return"]
+
 
   connect() {
     const options = {
@@ -44,11 +45,13 @@ export default class extends Controller {
       .then(data => {
         this.itemsTarget.innerHTML = data.partial;
       })
+    console.log("Bonjour");
   }
 
   popUp(event) {
     event.preventDefault();
     this.formTarget.classList.toggle("d-none")
+    this.returnTarget.classList.add("d-none")
     event.currentTarget.classList.add("d-none")
   }
 
