@@ -1,23 +1,20 @@
 .container-home {
   h1 {
-  font-family: Mali;
-  text-align: center;
   color: #F1F7ED;
+  font-weight: 700;
   }
   h3 {
-  font-family: Mali;
-  text-align: center;
   color: #F1F7ED;
+  font-weight: 400;
   }
-  h5 {
-  font-family: Mali;
-  text-align: center;
-  color: #F1F7ED;
+  h4 {
+   color: #F1F7ED;
+  font-weight: 400
   }
 }
 
 .container-elements {
-  margin-top: 200px;
+  margin-top: 180px;
 }
 
 .logo-home {
@@ -26,6 +23,8 @@
 }
 
 .card-title {
+  text-decoration: none;
+  text-align: center;
   background-color: #7CA982;
   border-radius: 10px;
   padding-top: 20px;
