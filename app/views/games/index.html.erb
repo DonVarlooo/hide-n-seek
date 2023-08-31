@@ -1,6 +1,6 @@
 <h1>Bonjour</h1>
 <div data-controller="game-selection">
-  <div class="container bg-white" data-game-selection-target="items">
+  <div class="container-select" data-game-selection-target="items">
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -8,7 +8,7 @@
 
 
   <div class="fixed-bottom mb-2 text-center">
-    <button data-action="click->game-selection#popUp">Create</button>
+    <button class="btn-create" data-action="click->game-selection#popUp">Create</button>
     <div class="container px-5 d-none" data-game-selection-target="form">
       <%= simple_form_for Game.new do |f| %>
         <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
@@ -22,4 +22,3 @@
   </div>
 <%# <%= f.hidden_field :lat, data: { new_target: "latitude" }, class: 'latInput' %>
 </div>
-
