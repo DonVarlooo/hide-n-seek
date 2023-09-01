@@ -1,4 +1,8 @@
+puts 'Destroy all'
+UserGame.destroy_all
 Game.destroy_all
+User.destroy_all
+puts 'Done'
 
 addresses = [
   "1 Allée Adrienne-Lecouvreur ,Paris",
@@ -90,6 +94,11 @@ addresses = [
   "1 Arcades des Champs-Élysées ,Paris"
 ]
 
+User.create(name: 'Bapt', user_name: 'Babou', email: 'bapt@gmail.com', password: 'azerty')
+User.create(name: 'Jer', user_name: 'Jerome', email: 'jerome@gmail.com', password: 'jerome')
+User.create(name: 'Adrien', user_name: 'Adri', email: 'adrien@gmail.com', password: 'adrien')
+User.create(name: 'Hugo', user_name: 'Mr Hide', email: 'hugo@gmail.com', password: 'azerty')
+
 duration = [15, 20, 30, 45, 60, 85, 90, 120]
 mode = ["1v1", "Multiplayer", "Royal Rumble", "Zombie"]
 
@@ -102,8 +111,9 @@ addresses.each do |address|
     lng: cord[1],
     duration: duration.sample,
     name: "#{Faker::Name.first_name}War",
-    mode: mode.sample
+    mode: mode.sample,
+    user: User.all.sample
   )
   puts "Nous venons de créer la partie numéro: #{Game.count}"
 end
-puts "seed completed, merci Paul"
+puts "seed completed, merci Thibault le boss de la log"
