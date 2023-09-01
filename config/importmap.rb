@@ -13,6 +13,4 @@ pin "@turf/circle", to: "https://ga.jspm.io/npm:@turf/circle@6.5.0/dist/es/index
 pin "@turf/destination", to: "https://ga.jspm.io/npm:@turf/destination@6.5.0/dist/es/index.js"
 pin "@turf/helpers", to: "https://ga.jspm.io/npm:@turf/helpers@6.5.0/dist/es/index.js"
 pin "@turf/invariant", to: "https://ga.jspm.io/npm:@turf/invariant@6.5.0/dist/es/index.js"
-pin "qrcode", to: "https://ga.jspm.io/npm:qrcode@1.5.3/lib/browser.js"
-pin "dijkstrajs", to: "https://ga.jspm.io/npm:dijkstrajs@1.0.3/dijkstra.js"
-pin "encode-utf8", to: "https://ga.jspm.io/npm:encode-utf8@1.0.3/index.js"
+pin "qr-scanner", to: "https://ga.jspm.io/npm:qr-scanner@1.4.2/qr-scanner.min.js"

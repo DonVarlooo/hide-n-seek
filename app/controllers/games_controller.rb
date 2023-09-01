@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   def index
     if params[:lng] && params[:lat]
-      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 5)
+      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 2)
       respond_to do |format|
         format.json {
           partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
@@ -69,6 +69,42 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.update(status: :ongoing)
     redirect_to game_path(@game)
+  end
+
+  def scan
+    @game = Game.find(params[:id])
+    @current_user_game = @game.user_games.find_by(user: current_user)
+    @opponent_user_game = @game.user_games.where.not(user: current_user).first
+    @opponent = @opponent_user_game.user
+
+
+    respond_to do |format|
+      if @opponent.id == params[:opponent_id].to_i
+        @current_user_game.update(win: true)
+        @game.finished!
+
+        format.json do
+          partial = render_to_string(
+            partial: 'games/show_finished',
+            locals: {
+              opponent_user_game: @opponent_user_game,
+              current_user_game: @current_user_game
+            },
+            formats: :html
+          )
+          render json: {
+            success: true,
+            partial:
+          }
+        end
+      else
+        format.json do
+          render json: {
+            success: false
+          }
+        end
+      end
+    end
   end
 
   private
