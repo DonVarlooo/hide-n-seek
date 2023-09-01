@@ -4,9 +4,8 @@
     <li>
       <div class="d-flex">
         <%= link_to join_game_path(game), data: {turbo_method: "PATCH"} do %>
-          <%= game.id %>
-        <% end %>
           <%= game.name %>
+        <% end %>
       </div>
     </li>
     <% end %>
