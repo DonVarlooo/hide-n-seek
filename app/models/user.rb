@@ -6,12 +6,6 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_many :games
-  has_many :user_games
-
-  # geocoded_by :lat
-  # geocoded_by :lng
-  # after_validation :geocode, if: :will_save_change_to_lat?
-  # after_validation :geocode, if: :will_save_change_to_lng?
 
   def qrcode
     qrcode = RQRCode::QRCode.new(id.to_s)
