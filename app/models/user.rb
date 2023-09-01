@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_many :games
+  has_many :user_games
 
   def qrcode
     qrcode = RQRCode::QRCode.new(id.to_s)

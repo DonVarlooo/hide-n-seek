@@ -12,9 +12,11 @@
     </div>
   </div>
 
+
   <div class="container-ongoing">
-    <p>duration: Count down en cours</p>
-    <a>Target Name: <%= @opponent_user_game.user.user_name %></a>
+    <div data-controller="timer" data-timer-duration-in-seconds-value="<%= @remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
+    <div>Target Name: <%= @opponent_user_game.user.user_name %></div>
+
 
     <div>
       <%= cl_image_tag @opponent_user_game.photo.key, height: 250, width: 500, crop: :fill %>
