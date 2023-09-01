@@ -1,6 +1,6 @@
 <div class="">
   <ol>
-    <% @games.each do |game| %>
+    <% @games.sort_by { |obj| -obj.id }.each do |game| %>
     <li>
       <div class="d-flex">
         <%= link_to join_game_path(game), data: {turbo_method: "PATCH"} do %>
