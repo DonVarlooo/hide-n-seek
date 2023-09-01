@@ -102,7 +102,7 @@ User.create(name: 'Hugo', user_name: 'Mr Hide', email: 'hugo@gmail.com', passwor
 duration = [15, 20, 30, 45, 60, 85, 90, 120]
 mode = ["1v1", "Multiplayer", "Royal Rumble", "Zombie"]
 
-addresses.each do |address|
+addresses.first(4).each do |address|
   cord = Geocoder.search(address).first&.coordinates
   next unless cord
 
