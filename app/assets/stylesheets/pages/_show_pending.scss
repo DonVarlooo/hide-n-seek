@@ -1,0 +1,74 @@
+.Area {
+  background-color: #C2A83E;
+  font-weight: 600;
+  font-size: 30px;
+  opacity: 0.95;
+  text-align: center;
+  margin-top: 10px;
+
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+.container-settings {
+  background-color: #C2A83E;
+  opacity: 0.95;
+  text-align: center;
+  height: 320px;
+
+  p {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #7CA982;
+  }
+
+  h4 {
+  font-weight: 400;
+  font-size: 20px;
+  }
+}
+
+.picture-form {
+  margin-top: 10px;
+}
+
+.btn-return-show {
+  text-decoration: none;
+  text-align: center;
+  color: #243E36;
+  font-weight: 500;
+  font-size: 28px;
+  background-color: #C2A83E;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 1px solid;
+  border-color: #F1F7ED;
+}
+
+.btn-update-user-name {
+  text-decoration: none;
+  text-align: center;
+  color:  #243E36;
+  border-radius: 10px;;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #7CA982;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-bottom: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 1px solid;
+  border-color: #F1F7ED;
+}
+
+.container-return {
+  text-align: center;
+  margin-top: 13px;
+}
