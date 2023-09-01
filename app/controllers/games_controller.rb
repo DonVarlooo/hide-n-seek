@@ -53,6 +53,7 @@ class GamesController < ApplicationController
     @user_game.user = current_user
     @user_game.save!
 
+
     redirect_to game_path(@game)
   end
 
