@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div>duration: Count down en cours</div>
+  <div data-controller="timer" data-timer-duration-in-seconds-value="<%= @remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
   <div>Target Name: <%= @opponent_user_game.user.user_name %></div>
 
   <div>

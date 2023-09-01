@@ -17,6 +17,12 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+
+    if @game.ongoing?
+      expected_end_time = @game.started_at + @game.duration.minutes
+      @remaining_time_in_seconds = expected_end_time - Time.current
+    end
+
     @creator_user_game = @game.user_games.first # Createur du jeu
     @challenger_user_game = @game.user_games.second # Joueur qui rejoint le jeu
 
@@ -67,7 +73,7 @@ class GamesController < ApplicationController
 
   def start
     @game = Game.find(params[:id])
-    @game.update(status: :ongoing)
+    @game.update(status: :ongoing, started_at: Time.current)
     redirect_to game_path(@game)
   end
 
@@ -81,7 +87,7 @@ class GamesController < ApplicationController
     respond_to do |format|
       if @opponent.id == params[:opponent_id].to_i
         @current_user_game.update(win: true)
-        @game.finished!
+        @game.update(status: :finished, ended_at: Time.current)
 
         format.json do
           partial = render_to_string(
