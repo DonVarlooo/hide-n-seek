@@ -101,7 +101,7 @@ addresses.each do |address|
     lat: cord[0],
     lng: cord[1],
     duration: duration.sample,
-    name: Faker::Name.first_name,
+    name: "#{Faker::Name.first_name}War",
     mode: mode.sample
   )
   puts "Nous venons de créer la partie numéro: #{Game.count}"
