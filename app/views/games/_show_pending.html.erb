@@ -1,8 +1,8 @@
 
 <div class="Area" >
   <p>Battle Area</p>
-<%# Emplacement de la map area de la game %>
-  <div class="map-show">
+  <%# Emplacement de la map area de la game %>
+  <div>
     <div data-controller="location"
           data-location-markers-value="<%= @markers.to_json %>"
                   data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
