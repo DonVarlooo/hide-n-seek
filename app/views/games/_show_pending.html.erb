@@ -21,7 +21,7 @@
   <div class="d-flex flex-wrap">
     <%# On affiche la photo du createur %>
     <div class='container-avatar-players'>
-    <% if creator_user_game.photo.attached? %>
+    <% if @creator_user_game.photo.attached? %>
       <%= cl_image_tag creator_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
     <% end %>
     <%# # Si opponent existe et photo.attached? afficher la photo %>
@@ -30,7 +30,7 @@
   <%# # Sinon Upload la photo %>
     </div>
     <% else %>
-        <%= simple_form_for current_user.find_user_game(game) do |f| %>
+        <%= simple_form_for user.find_user_game(game) do |f| %>
           <%= f.input :photo, label: false %>
           <%= f.submit class: 'btn-update-user-name' %>
         <% end %>
@@ -44,7 +44,7 @@
   # Si opponent.photo.attached ? false alors on affiche la photo du createur (user_game) et un "?" en face
   # Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
   <% if !challenger_user_game.nil? %>
-    <% if current_user == creator_user_game.user && challenger_user_game.photo.attached? && creator_user_game.photo.attached?%>
+    <% if user == creator_user_game.user && challenger_user_game.photo.attached? && creator_user_game.photo.attached?%>
       <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show'%>
     <% end %>
   <% end %>
