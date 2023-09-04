@@ -4,11 +4,9 @@
       <%= link_to "#", class: "navbar-brand" do %>
         <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://asuracomics.com/wp-content/uploads/2021/03/Group_1.png" />
       <% end %>
-      <% if user_signed_in? %>
-        <h1><%= current_user.name %></h1>
-      <% end %>
-      <%= link_to root_path, class: "text-decoration-none" do %>
-        <i class="fa-solid fa-power-off fa-xl" style="color: #243e36;"></i>
+      <p>Hide N'Seek</p>
+      <%= link_to root_path, class: "text-decoration-none me-1" do %>
+        <i class="fa-solid fa-power-off fa-xl" style="color: #7CA982;"></i>
       <% end %>
     </div>
   </div>
