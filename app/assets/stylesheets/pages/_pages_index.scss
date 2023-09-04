@@ -1,9 +1,12 @@
 .container-game {
-  margin-top: 200px;
   a {
     display: block;
     margin: 1rem 0;
   }
+}
+
+.logo-pages-index {
+  margin-bottom: -10px;
 }
 
 .btn-mode {
@@ -22,5 +25,7 @@
 }
 
 .logo-pages-index {
-  margin-bottom: -23px;
+  margin-bottom: -25px;
+  margin-top: 130px;
+  z-index: 1;
 }
