@@ -53,7 +53,6 @@ class GamesController < ApplicationController
     @user_game.user = current_user
     @user_game.save!
 
-
     redirect_to game_path(@game)
   end
 
@@ -84,7 +83,6 @@ class GamesController < ApplicationController
     @opponent_user_game = @game.user_games.where.not(user: current_user).first
     @opponent = @opponent_user_game.user
 
-
     respond_to do |format|
       if @opponent.id == params[:opponent_id].to_i
         @current_user_game.update(win: true)
@@ -93,9 +91,8 @@ class GamesController < ApplicationController
         format.json do
           partial = render_to_string(
             partial: 'games/show_finished',
-            locals: {
-              opponent_user_game: @opponent_user_game,
-              current_user_game:  @current_user_game
+            locals: {opponent_user_game: @opponent_user_game,
+                     current_user_game:  @current_user_game
             },
             formats: :html
           )
@@ -112,6 +109,30 @@ class GamesController < ApplicationController
         end
       end
     end
+  end
+
+  def rematch
+    @game = Game.find(params[:id])
+    @usergames = @game.user_games
+    # Comment on garde les photos dans les users_games
+    @new_game = Game.new(duration: @game.duration,
+                         name: "#{@game.name} - rematch",
+                         lat: @game.lat,
+                         lng: @game.lng,
+                         mode: @game.mode)
+    @new_game.save!
+    @current_user.update(game: @new_game)
+    @opponent_user.update(game: @new_game)
+    # raise
+    redirect_to game_path(@new_game)
+
+    # 1 button link to qui redirige vers la fonction rematch
+    # 2 Creer des nouveaux usergame (pour préserver l'histo) tout en gardant les photos !
+    # 3 faire un raise
+    # 4 Dans l'url mettre une postion fake (lat et lng) et s'assurer que le rematch fonctionne
+    # 5 Créer un nouveau controller stimumus "Rematch Controller" avec un data-action qui écoute le click sur le boutton stimumlus
+    # 6 Au click recuperer les données de la position du user.
+    # 7 Fetcher l'url vers l'action rematch du controller game (au link_to)
   end
 
   private
