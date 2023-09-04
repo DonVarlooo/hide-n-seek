@@ -1,6 +1,13 @@
 .alert {
   position: fixed;
   bottom: 16px;
-  right: 16px;
-  z-index: 1000;
+  text-align: center;
+  background-color: #7CA982;
+  color: #243E36;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 2px solid;
+  border-color: #243E36;
+  text-justify: center;
+  border-radius: 10px;
+  margin-right: 16px;
 }
