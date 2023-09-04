@@ -1,60 +1,69 @@
 .container-sign-up {
-  background-color: #C2A83E;
+  background-color: #cfc143;
   font-weight: 600;
   font-size: 20px;
-  opacity: 0.95;
   color: #243E36;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #243E36;
   text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 40px;
+
   h2 {
     color: #F1F7ED;
     font-weight: 500;
     font-size: 35px;
   }
+
+.form-inputs-signup {
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 10px;
 }
 
-.btn-sign-up {
-  text-decoration: none;
-  text-align: center;
-  color:  #7CA982;
-  border-radius: 10px;;
-  font-weight: 500;
-  font-size: 20px;
-  background-color: #243E36;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 25px;
-  padding-right: 25px;
-  margin-bottom: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
-  border-color: #C2A83E;
+  .btn-sign-up {
+    text-decoration: none;
+    text-align: center;
+    color:  #F1F7ED;
+    border-radius: 10px;;
+    font-weight: 500;
+    font-size: 25px;
+    background-color: #243E36;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border: 2px solid;
+    border-color: #7CA982;
+  }
 }
+
 
 .container-log-in-2 {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .btn-log-in-2 {
   text-decoration: none;
   text-align: center;
-  color: #F1F7ED;;
+  color:  #F1F7ED;
   border-radius: 10px;;
   font-weight: 500;
-  font-size: 30px;
-  background-color: #7CA982;
-  padding-top: 5px;
+  font-size: 28px;
+  background-color: #243E36;
+  padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
-  border-color: #243E36;;
+  border: 2px solid;
+  border-color: #7CA982;
 }

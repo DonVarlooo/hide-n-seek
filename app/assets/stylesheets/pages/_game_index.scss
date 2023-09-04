@@ -1,7 +1,7 @@
 .container-select {
   background-color: #7CA982;
   border-radius: 10px;
-  height: 370px;
+  height: 425px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   border: 2px solid;
   border-color: #243E36;
@@ -15,15 +15,15 @@
   color: #243E36;
   font-weight: 500;
   font-size: 28px;
-  background-color: #C2A83E;
+  background-color: #cfc143;
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 35px;
+  padding-right: 35px;
   margin-bottom: 20px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
+  border: 2px solid;
   border-color: #F1F7ED;
 }
 
@@ -31,43 +31,44 @@
   text-decoration: none;
   text-align: center;
   color:  #7CA982;
-  border-radius: 10px;;
+  border-radius: 10px;
   font-weight: 500;
   font-size: 23px;
   background-color: #243E36;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   border: 1px solid;
-  border-color: #C2A83E;
+  border-color: #cfc143;
 }
 
 .container-create {
-  background-color: #C2A83E;
+  background-color: #cfc143;
   font-weight: 600;
   font-size: 20px;
-  opacity: 0.95;
   color: #243E36;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #243E36;
 }
 
 .games-list{
-  color: white;
+  color: #243E36;
   font-size: 30px;
+  margin-left: 30px;
+  font-weight: 600;
 }
 
 .logo-index{
   position: center;
   margin-bottom: -8px;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .deco-list{
@@ -79,5 +80,21 @@
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 40px;
+  font-size: 30px;
+  font-weight: 650;
+}
+
+.test-list {
+  text-align: center;
+  border: 2px solid;
+  border-color: #cfc143;
+  border-radius: 10px;
+  background-color: #F1F7ED;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  color:  #7CA982;
+  font-weight: 550;
+  font-size: 18px;
 }

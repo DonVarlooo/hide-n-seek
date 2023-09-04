@@ -14,24 +14,42 @@
 }
 
 .container-elements {
-  margin-top: 180px;
+  margin-top: 130px;
 }
 
 .logo-home {
   position: center;
-  margin-bottom: -8px;
+  margin-bottom: -9px;
 }
 
 .card-title {
   text-decoration: none;
   text-align: center;
-  background-color: #7CA982;
+  background-color: #243E36;
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   margin-left: 16px;
   margin-right: 16px;
+  border: 3px solid;
+  border-color: #7CA982;
+}
+
+.btn-click-to-play {
+  text-decoration: none;
+  text-align: center;
+  color:  #243E36;
+  border-radius: 10px;;
+  font-weight: 700;
+  font-size: 25px;
+  background-color: #cfc143;
+  margin-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 45px;
+  padding-right: 45px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
   border: 2px solid;
-  border-color: #243E36;
+  border-color: #F1F7ED;
 }

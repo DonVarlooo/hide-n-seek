@@ -2,7 +2,7 @@
   <h2>Log in</h2>
   <div data-controller="user-qrcode">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
+      <div class="form-inputs-login">
         <%= f.input :email,
                     required: false,
                     autofocus: true,
@@ -18,7 +18,8 @@
         <%= f.button :submit, "Log in", class: 'btn-log-in' %>
       </div>
     <% end %>
-
-    <%= render "devise/shared/links" %>
+    <div class="container-btn-log d-flex ">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

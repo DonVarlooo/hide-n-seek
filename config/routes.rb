@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       patch :join
       patch :start
       patch :scan
+      get :rematch
     end
 
     resources :messages, only: %i[create]

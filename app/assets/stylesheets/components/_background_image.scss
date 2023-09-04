@@ -1,7 +1,7 @@
 body {
   background-image: url("ville-isometrie.jpg");
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  backdrop-filter: blur(2px);
+  height: 100vh;
 }

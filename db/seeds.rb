@@ -99,7 +99,7 @@ User.create(name: 'Jer', user_name: 'Jerome', email: 'jerome@gmail.com', passwor
 User.create(name: 'Adrien', user_name: 'Adri', email: 'adrien@gmail.com', password: 'adrien')
 User.create(name: 'Hugo', user_name: 'Mr Hide', email: 'hugo@gmail.com', password: 'azerty')
 
-duration = [15, 20, 30, 45, 60, 85, 90, 120]
+duration = [15, 30, 45, 60, 90, 120]
 mode = ["1v1", "Multiplayer", "Royal Rumble", "Zombie"]
 
 addresses.first(4).each do |address|
@@ -117,3 +117,11 @@ addresses.first(4).each do |address|
   puts "Nous venons de créer la partie numéro: #{Game.count}"
 end
 puts "seed completed, merci Thibault le boss de la log"
+
+# radius = 15*duration
+duration_v2 = { 15 => "225",
+                30 => "450",
+                45 => "675",
+                60 => "900",
+                90 => "1350",
+                120 => "1800" }

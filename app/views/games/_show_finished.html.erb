@@ -2,11 +2,11 @@
   <% if current_user_game.win %>
     <h4 class="text-center">Victory</h4>
     <div class="container rounded-circle justify-content-center">
-      <%= cl_image_tag current_user_game.photo.key, crop: :fill %>
+      <%= cl_image_tag current_user_game.photo.key, height: 300, width: 400, crop: :fill %>
     </div>
   <% else %>
     <div>Boloss va, c'est ton adversaire qui gagne</div>
-    <%= cl_image_tag opponent_user_game.photo.key, crop: :fill  %>
+    <%= cl_image_tag opponent_user_game.photo.key, height: 300, width: 400, crop: :fill  %>
   <% end %>
 </div>
 <h4 class="text-center">Game Statistics</h4>
@@ -14,22 +14,26 @@
   <div class="row">
     <div class="col-5">
       <div class="img">
-        <div><%= cl_image_tag current_user_game.photo.key, crop: :fill %></div>
+        <div><%= cl_image_tag current_user_game.photo.key, height: 300, width: 400, crop: :fill %></div>
       </div>
       <div>Game Duration:</div>
       <div>Win streak:</div>
     </div>
     <div class="col-5">
-      <div><%= cl_image_tag opponent_user_game.photo.key, crop: :fill  %></div>
+      <div><%= cl_image_tag opponent_user_game.photo.key, height: 300, width: 400, crop: :fill  %></div>
       <div>Game Duration:</div>
       <div>Win streak:</div>
     </div>
   </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-5">
-      <button>Rematch</button>
+  <div class="row" data-controller="rematch">
+    <div class="col-5" >
+      <%= simple_form_for :rematch, url: rematch_game_path(game), method: :get, html: { data: { rematch_target: 'form' } } do |f| %>
+        <%= f.hidden :latitude, input_html: { data: { rematch_target: 'latitude' } } %>
+        <%= f.hidden :longitude, input_html: { data: { rematch_target: 'longitude' } } %>
+        <%= f.submit "Rematch", data: { action: 'click->rematch#addCoords' } %>
+      <% end %>
     </div>
     <div class="col-5">
       <button>Quit</button>
