@@ -4,7 +4,7 @@
   <%# Emplacement de la map area de la game %>
   <div>
     <div data-controller="location"
-          data-location-markers-value="<%= @markers.to_json %>"
+          data-location-markers-value="<%= markers.to_json %>"
                   data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       <div data-location-target="startTracking">
         <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
@@ -21,12 +21,12 @@
   <div class="d-flex flex-wrap">
     <%# On affiche la photo du createur %>
     <div class='container-avatar-players'>
-    <% if @creator_user_game.photo.attached? %>
-      <%= cl_image_tag @creator_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
+    <% if creator_user_game.photo.attached? %>
+      <%= cl_image_tag creator_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
     <% end %>
     <%# # Si opponent existe et photo.attached? afficher la photo %>
-    <% if @challenger_user_game && @challenger_user_game.photo.attached? %>
-        <%= cl_image_tag @challenger_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
+    <% if challenger_user_game && challenger_user_game.photo.attached? %>
+        <%= cl_image_tag challenger_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
   <%# # Sinon Upload la photo %>
     </div>
     <% else %>
@@ -43,8 +43,8 @@
   # Si opponent nil alors on affiche la photo du createur (user_game) et un "?" en face
   # Si opponent.photo.attached ? false alors on affiche la photo du createur (user_game) et un "?" en face
   # Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
-  <% if !@challenger_user_game.nil? %>
-    <% if current_user == @creator_user_game.user && @challenger_user_game.photo.attached? && @creator_user_game.photo.attached?%>
+  <% if !challenger_user_game.nil? %>
+    <% if current_user == creator_user_game.user && challenger_user_game.photo.attached? && creator_user_game.photo.attached?%>
       <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show'%>
     <% end %>
   <% end %>

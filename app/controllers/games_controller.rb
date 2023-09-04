@@ -29,6 +29,7 @@ class GamesController < ApplicationController
     @current_user_game = @game.user_games.find_by(user: current_user) # Createur du jeu
     @opponent_user_game = @game.user_games.where.not(user: current_user).first # Createur du jeu
 
+    @user_game = UserGame.find(game: @game)
     # dans la vue:
     # si le current user = @game.user, render la vue owner avec status pending
     # sinon afficher la vue user qui join, dans cette vue, on voit l'adversaire
