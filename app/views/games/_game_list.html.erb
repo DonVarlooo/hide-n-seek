@@ -1,14 +1,15 @@
 <div class="">
   <h3 class="title-game">Games list:</h3>
-  <ol class="deco-list">
+  <ol class="deco-lists list-unstyled">
     <% @games.sort_by { |obj| -obj.id }.each do |game| %>
-    <li>
-      <div class="d-flex">
-        <%= link_to join_game_path(game), data: {turbo_method: "PATCH"}, class: "text-decoration-none games-list" do  %>
+      <li data-game-selection-target="btn"
+          data-latitude="<%= game.lat %>"
+          data-longitude="<%= game.lng %>"
+          data-duration="<%= game.duration %>">
+        <%= link_to join_game_path(game), data: {turbo_method: "PATCH"}, class: "text-decoration-none games-list d-flex" do  %>
           <%= game.name %>
         <% end %>
-      </div>
-    </li>
+      </li>
     <% end %>
   </ol>
 </div>
