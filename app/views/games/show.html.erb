@@ -1,7 +1,15 @@
-<% if @game.pending? %>
-  <%= render "show_pending", game: @game, challenger_user_game: @challenger_user_game, creator_user_game: @creator_user_game %>
-<% elsif @game.ongoing? %>
-  <%= render "show_ongoing", game: @game %>
-<% elsif @game.finished? %>
-  <%= render "show_finished", game: @game, opponent_user_game: @opponent_user_game, current_user_game:  @current_user_game %>
-<% end %>
+
+<div
+    data-controller="user-game-subscription"
+    data-user-game-subscription-user-game-id-value="<%= @current_user_game.id %>"
+    data-user-game-subscription-target="game"
+  >
+  <% if @game.pending? %>
+    <%= render "show_pending", user: current_user, game: @game, challenger_user_game: @challenger_user_game, creator_user_game: @creator_user_game, markers: @markers %>
+  <% elsif @game.ongoing? %>
+    <%= render "show_ongoing", user: current_user, game: @game, opponent_user_game: @opponent_user_game, markers: @markers, remaining_time_in_seconds: @remaining_time_in_seconds %>
+  <% elsif @game.finished? %>
+    <%= render "show_finished", user: current_user, game: @game, opponent_user_game: @opponent_user_game, current_user_game:  @current_user_game %>
+  <% end %>
+</div>
+

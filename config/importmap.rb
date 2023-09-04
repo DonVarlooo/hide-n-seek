@@ -14,4 +14,6 @@ pin "@turf/destination", to: "https://ga.jspm.io/npm:@turf/destination@6.5.0/dis
 pin "@turf/helpers", to: "https://ga.jspm.io/npm:@turf/helpers@6.5.0/dist/es/index.js"
 pin "@turf/invariant", to: "https://ga.jspm.io/npm:@turf/invariant@6.5.0/dist/es/index.js"
 pin "qr-scanner", to: "https://ga.jspm.io/npm:qr-scanner@1.4.2/qr-scanner.min.js"
+pin "@rails/actioncable", to: "https://cdn.jsdelivr.net/npm/@rails/actioncable@7.0.7-2/app/assets/javascripts/actioncable.esm.js"
 pin "haversine-distance", to: "https://ga.jspm.io/npm:haversine-distance@1.2.1/index.js"
+

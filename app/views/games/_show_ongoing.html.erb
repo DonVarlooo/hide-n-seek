@@ -3,7 +3,7 @@
     <p>Battle Area</p>
     <div>
       <div data-controller="location"
-            data-location-markers-value="<%= @markers.to_json %>"
+            data-location-markers-value="<%= markers.to_json %>"
                     data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         <div data-location-target="startTracking">
           <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
@@ -14,12 +14,12 @@
 
 
   <div class="container-ongoing">
-    <div data-controller="timer" data-timer-duration-in-seconds-value="<%= @remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
-    <div>Target Name: <%= @opponent_user_game.user.user_name %></div>
+    <div data-controller="timer" data-timer-duration-in-seconds-value="<%= remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
+    <div>Target Name: <%= opponent_user_game.user.user_name %></div>
 
 
     <div>
-      <%= cl_image_tag @opponent_user_game.photo.key, height: 250, width: 500, crop: :fill %>
+      <%= cl_image_tag opponent_user_game.photo.key, height: 250, width: 500, crop: :fill %>
     </div>
 
     <div>
@@ -27,16 +27,18 @@
     </div>
 
     <div data-controller="qrcode"
+
         data-qrcode-scan-url-value="<%= scan_game_path(@game) %>">
       <button data-action="click->qrcode#startScanning">Scan</button>
       <button data-action="click->qrcode#stopScanning">Quit scan</button>
+
       <video data-qrcode-target="video"></video>
     </div>
 
 
 
     <div class="bg-white p-5">
-      <%= @opponent_user_game.user.qrcode.html_safe %>
+      <%= opponent_user_game.user.qrcode.html_safe %>
     </div>
   </div>
 
