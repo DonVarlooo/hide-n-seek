@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
+import haversine from 'haversine-distance'
 
 // Connects to data-controller="game-selection"
 export default class extends Controller {
-  static targets = ["items", "latitude", "longitude", "form", "return"]
+  static targets = ["items", "latitude", "longitude", "form", "return", "btn"]
 
 
   connect() {
@@ -11,7 +12,6 @@ export default class extends Controller {
       timeout: 5000,
       maximumAge: 0,
     };
-
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
   }
 
@@ -23,9 +23,6 @@ export default class extends Controller {
     this.latitudeTarget.value = crd.latitude
     this.longitudeTarget.value = crd.longitude
 
-    console.log("Your current position is:");
-    console.log(`Latitude : ${this.latitudeData}`);
-    console.log(`Longitude: ${this.longitudeData}`);
     this.addCoord()
   }
 
@@ -34,7 +31,7 @@ export default class extends Controller {
   }
 
   addCoord() {
-    const url = `/games?lat=${this.latitudeData}&lng=${this.longitudeData}`
+    const url = `/games?lat=${this.latitudeData}&lng=${this.longitudeData}`;
     fetch(url, {
       method: 'GET',
       headers: {
@@ -43,9 +40,11 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(data => {
+        // console.log(data.partial);
+
         this.itemsTarget.innerHTML = data.partial;
+        this.spaceBetween();
       })
-    console.log("Bonjour");
   }
 
   popUp(event) {
@@ -55,4 +54,13 @@ export default class extends Controller {
     event.currentTarget.classList.add("d-none")
   }
 
+  spaceBetween() {
+    this.btnTargets.forEach((btn) => {
+      const positionGame = {lat: parseFloat(btn.dataset.latitude), lng: parseFloat(btn.dataset.longitude)};
+      const position = {lat: this.latitudeData, lng: this.longitudeData};
+      const distance = Math.round(haversine(position, positionGame) / 1000);
+
+      btn.insertAdjacentHTML('beforeend', `dure ${btn.dataset.duration}min (${distance}km)`);
+    })
+  }
 }
