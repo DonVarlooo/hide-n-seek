@@ -112,27 +112,37 @@ class GamesController < ApplicationController
   end
 
   def rematch
-    @game = Game.find(params[:id])
-    @usergames = @game.user_games
+    @current_game = Game.find(params[:id])
+    @current_user_game = @current_game.user_games.find_by(user: current_user)
+    @opponent_user_game = @current_game.user_games.where.not(user: current_user).first
     # Comment on garde les photos dans les users_games
-    @new_game = Game.new(duration: @game.duration,
-                         name: "#{@game.name} - rematch",
-                         lat: @game.lat,
-                         lng: @game.lng,
-                         mode: @game.mode)
-    @new_game.save!
-    @current_user.update(game: @new_game)
-    @opponent_user.update(game: @new_game)
-    # raise
-    redirect_to game_path(@new_game)
+    @game = Game.new(duration: @current_game.duration,
+                         name: "#{@current_game.name} - rematch",
+                         lat: 2,
+                         lng: 2,
+                         mode: @current_game.mode,
+                         user_id: @current_user_game.user.id)
+    @game.save!
+    @new_current_user_game = UserGame.create(
+      user_id: @current_user_game.user.id,
+      game_id: @game.id,
+      win: false
+    )
+    # Vérifiez si la photo existe dans @current_user_game avant de l'attribuer
+    @new_current_user_game.photo.attach(@current_user_game.photo.blob) if @current_user_game.photo.attached?
+    @new_current_user_game.save
 
-    # 1 button link to qui redirige vers la fonction rematch
-    # 2 Creer des nouveaux usergame (pour préserver l'histo) tout en gardant les photos !
-    # 3 faire un raise
-    # 4 Dans l'url mettre une postion fake (lat et lng) et s'assurer que le rematch fonctionne
-    # 5 Créer un nouveau controller stimumus "Rematch Controller" avec un data-action qui écoute le click sur le boutton stimumlus
-    # 6 Au click recuperer les données de la position du user.
-    # 7 Fetcher l'url vers l'action rematch du controller game (au link_to)
+    @new_opponent_user_game = UserGame.create(
+      user_id: @opponent_user_game.user.id,
+      game_id: @game.id,
+      win: false
+    )
+    @new_opponent_user_game.photo.attach(@opponent_user_game.photo.blob) if @opponent_user_game.photo.attached?
+    @new_opponent_user_game.save
+    @creator_user_game = @new_current_user_game
+    @challenger_user_game = @new_opponent_user_game
+
+    render 'games/show', formats: [:html]
   end
 
   private
