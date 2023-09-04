@@ -1,5 +1,5 @@
 <% if @game.pending? %>
-  <%= render "show_pending", game: @game %>
+  <%= render "show_pending", game: @game, challenger_user_game: @challenger_user_game, creator_user_game: @creator_user_game %>
 <% elsif @game.ongoing? %>
   <%= render "show_ongoing", game: @game %>
 <% elsif @game.finished? %>

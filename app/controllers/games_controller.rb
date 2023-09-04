@@ -53,7 +53,6 @@ class GamesController < ApplicationController
     @user_game.user = current_user
     @user_game.save!
 
-
     redirect_to game_path(@game)
   end
 
@@ -84,7 +83,6 @@ class GamesController < ApplicationController
     @opponent_user_game = @game.user_games.where.not(user: current_user).first
     @opponent = @opponent_user_game.user
 
-
     respond_to do |format|
       if @opponent.id == params[:opponent_id].to_i
         @current_user_game.update(win: true)
@@ -93,9 +91,8 @@ class GamesController < ApplicationController
         format.json do
           partial = render_to_string(
             partial: 'games/show_finished',
-            locals: {
-              opponent_user_game: @opponent_user_game,
-              current_user_game:  @current_user_game
+            locals: {opponent_user_game: @opponent_user_game,
+                     current_user_game:  @current_user_game
             },
             formats: :html
           )
@@ -112,6 +109,40 @@ class GamesController < ApplicationController
         end
       end
     end
+  end
+
+  def rematch
+    @current_game = Game.find(params[:id])
+    @current_user_game = @current_game.user_games.find_by(user: current_user)
+    @opponent_user_game = @current_game.user_games.where.not(user: current_user).first
+    # Comment on garde les photos dans les users_games
+    @game = Game.new(duration: @current_game.duration,
+                         name: "#{@current_game.name} - rematch",
+                         lat: 2,
+                         lng: 2,
+                         mode: @current_game.mode,
+                         user_id: @current_user_game.user.id)
+    @game.save!
+    @new_current_user_game = UserGame.create(
+      user_id: @current_user_game.user.id,
+      game_id: @game.id,
+      win: false
+    )
+    # Vérifiez si la photo existe dans @current_user_game avant de l'attribuer
+    @new_current_user_game.photo.attach(@current_user_game.photo.blob) if @current_user_game.photo.attached?
+    @new_current_user_game.save
+
+    @new_opponent_user_game = UserGame.create(
+      user_id: @opponent_user_game.user.id,
+      game_id: @game.id,
+      win: false
+    )
+    @new_opponent_user_game.photo.attach(@opponent_user_game.photo.blob) if @opponent_user_game.photo.attached?
+    @new_opponent_user_game.save
+    @creator_user_game = @new_current_user_game
+    @challenger_user_game = @new_opponent_user_game
+
+    render 'games/show', formats: [:html]
   end
 
   private
