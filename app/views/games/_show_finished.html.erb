@@ -1,22 +1,26 @@
 <div>
-  <% if @current_user_game.win %>
-    <div>Victory</div>
-    <%= cl_image_tag @current_user_game.photo.key, height: 100, width: 200, crop: :fill %>
+  <% if current_user_game.win %>
+    <h4 class="text-center">Victory</h4>
+    <div class="container rounded-circle justify-content-center">
+      <%= cl_image_tag current_user_game.photo.key, crop: :fill %>
+    </div>
   <% else %>
     <div>Boloss va, c'est ton adversaire qui gagne</div>
-    <%= cl_image_tag @opponent_user_game.photo.key, height: 100, width: 200, crop: :fill  %>
+    <%= cl_image_tag opponent_user_game.photo.key, crop: :fill  %>
   <% end %>
 </div>
-<div>Game Statistics</div>
+<h4 class="text-center">Game Statistics</h4>
 <div class="container">
   <div class="row">
     <div class="col-5">
-      <div><%= cl_image_tag @current_user_game.photo.key, height: 100, width: 200, crop: :fill %></div>
+      <div class="img">
+        <div><%= cl_image_tag current_user_game.photo.key, crop: :fill %></div>
+      </div>
       <div>Game Duration:</div>
       <div>Win streak:</div>
     </div>
     <div class="col-5">
-      <div><%= cl_image_tag @opponent_user_game.photo.key, height: 100, width: 200, crop: :fill  %></div>
+      <div><%= cl_image_tag opponent_user_game.photo.key, crop: :fill  %></div>
       <div>Game Duration:</div>
       <div>Win streak:</div>
     </div>
