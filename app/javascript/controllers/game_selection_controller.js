@@ -60,7 +60,7 @@ export default class extends Controller {
       const position = {lat: this.latitudeData, lng: this.longitudeData};
       const distance = Math.round(haversine(position, positionGame) / 1000);
 
-      btn.insertAdjacentHTML('beforeend', `dure ${btn.dataset.duration}min (${distance}km)`);
+      btn.insertAdjacentHTML('beforeend', `duration ${btn.dataset.duration}min (${distance}km)`);
     })
   }
 }
