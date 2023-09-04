@@ -1,6 +1,6 @@
 class UserGameChannel < ApplicationCable::Channel
   def subscribed
-    user_game = UserGame.find(params[:id])
+    user_game = UserGame.find_by(game: game, user: self)
     stream_for user_game
   end
 
