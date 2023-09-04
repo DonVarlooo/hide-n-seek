@@ -53,6 +53,7 @@ class GamesController < ApplicationController
     @user_game.user = current_user
     @user_game.save!
 
+
     redirect_to game_path(@game)
   end
 
@@ -94,7 +95,7 @@ class GamesController < ApplicationController
             partial: 'games/show_finished',
             locals: {
               opponent_user_game: @opponent_user_game,
-              current_user_game: @current_user_game
+              current_user_game:  @current_user_game
             },
             formats: :html
           )

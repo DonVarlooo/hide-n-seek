@@ -3,6 +3,5 @@
 <% elsif @game.ongoing? %>
   <%= render "show_ongoing", game: @game %>
 <% elsif @game.finished? %>
-  <%= render "show_finished", game: @game %>
+  <%= render "show_finished", game: @game, opponent_user_game: @opponent_user_game, current_user_game:  @current_user_game %>
 <% end %>
-
