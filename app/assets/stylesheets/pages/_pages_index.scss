@@ -1,5 +1,5 @@
 .container-game {
-  margin-top: 250px;
+  margin-top: 200px;
   a {
     display: block;
     margin: 1rem 0;
@@ -12,11 +12,15 @@
   color: #F1F7ED;
   font-weight: 500;
   font-size: 28px;
-  background-color: #7CA982;
+  background-color: #243E36;
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
-  border-color: #243E36;
+  border: 2px solid;
+  border-color: #7CA982;
+}
+
+.logo-pages-index {
+  margin-bottom: -23px;
 }

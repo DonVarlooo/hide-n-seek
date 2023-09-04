@@ -1,0 +1,78 @@
+.container-forgot-passeword {
+  background-color:#C2A83E;
+  font-weight: 600;
+  font-size: 20px;
+  color:#243E36;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid;
+  border-color:#243E36;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 180px;
+
+  h2 {
+    color:#F1F7ED;
+    font-weight: 500;
+    font-size: 28px;
+
+  }
+}
+
+.btn-send-me {
+  text-decoration: none;
+  text-align: center;
+  color:  #243E36;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #7CA982;
+  border-color:#F1F7ED;
+  border: 2px solid;
+}
+
+.container-btn-forgot-passeword {
+  justify-content: space-around;
+  margin-left: 5px;
+  margin-top: 20px;
+
+  .btn-log-in-2 {
+    text-decoration: none;
+    text-align: center;
+    color: #F1F7ED;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 25px;
+    background-color: #243E36;
+    margin-top: 20px;
+    margin-bottom: 9px;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border: 2px solid;
+    border-color: #7CA982;
+  }
+
+  .btn-log {
+    text-decoration: none;
+    text-align: center;
+    color: #F1F7ED;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 25px;
+    background-color: #243E36;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 11px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border: 2px solid;
+    border-color: #7CA982;
+  }
+}
