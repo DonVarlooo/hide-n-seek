@@ -1,34 +1,5 @@
 class GamesController < ApplicationController
   def index
-
-    # TODO: ME RETIRER !!!!
-     @games = [Game.last]
-     lat = 48.856614
-     lng = 2.3522219
-
-    respond_to do |format|
-      format.json {
-        partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
-        render json: { partial: partial}
-      }
-      format.html
-    end
-    return
-    #  @games = [Game.last]
-    #  lat = 48.856614
-    #  lng = 2.3522219
-
-    # respond_to do |format|
-    #   format.json {
-    #     partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
-    #     render json: { partial: partial}
-    #   }
-    #   format.html
-    # end
-
-    # return
-    # TODO: END ME RETIRER
-
     if params[:lat] && params[:lng]
       lat = params[:lat].to_f
       lng = params[:lng].to_f
