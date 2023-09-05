@@ -19,7 +19,6 @@
 
 .container-settings {
   background-color: #cfc143;
-  opacity: 0.95;
   text-align: center;
   height: 320px;
   border: 1px solid;
@@ -69,9 +68,9 @@
   text-decoration: none;
   text-align: center;
   color:  #243E36;
-  border-radius: 10px;;
+  border-radius: 10px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   background-color: #7CA982;
   padding-top: 5px;
   padding-bottom: 10px;
@@ -93,10 +92,15 @@
   width: 150px;
   object-fit: cover;
   object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px;
+
 }
 
 .container-avatar-players {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  margin-top: 20px;
 }
