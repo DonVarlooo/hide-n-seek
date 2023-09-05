@@ -21,7 +21,7 @@ export default class extends Controller {
   }
 
   error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    console.warn(`ERROR REMATCH(${err.code}): ${err.message}`);
   }
 
   addCoords(event) {

@@ -2,17 +2,19 @@ class GamesController < ApplicationController
   def index
 
     # TODO: ME RETIRER !!!!
-    #  @games = [Game.last]
+     @games = [Game.last]
+     lat = 48.856614
+     lng = 2.3522219
 
-    # respond_to do |format|
-    #   format.json {
-    #     partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
-    #     render json: { partial: partial}
-    #   }
-    #   format.html
-    # end
+    respond_to do |format|
+      format.json {
+        partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+        render json: { partial: partial}
+      }
+      format.html
+    end
 
-    # return
+    return
     # TODO: END ME RETIRER
 
     if params[:lat] && params[:lng]
@@ -221,6 +223,42 @@ class GamesController < ApplicationController
     # render 'games/show', formats: [:html]
     # raise
     redirect_to game_path(@game)
+
+    # html_creator = render_to_string(
+    #   partial: "games/show_pending",
+    #   locals: {
+    #     user: @new_current_user_game.user,
+    #     game: @game,
+    #     creator_user_game: @new_current_user_game,
+    #     challenger_user_game: @new_opponent_user_game,
+    #     markers: []
+    #   },
+    # )
+
+    # html_opponent = render_to_string(
+    #   partial: "games/show_pending",
+    #   locals: {
+    #     user: @new_opponent_user_game.user,
+    #     game: @game,
+    #     creator_user_game: @new_opponent_user_game,
+    #     challenger_user_game: @new_current_user_game,
+    #     markers: []
+    #   },
+
+    # )
+
+    # UserGameChannel.broadcast_to(
+    #   @new_current_user_game,
+    #   html_creator
+    # )
+
+    # UserGameChannel.broadcast_to(
+    #   @new_opponent_user_game,
+    #   html_opponent
+    # )
+
+
+
   end
 
   private

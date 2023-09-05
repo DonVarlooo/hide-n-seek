@@ -5,7 +5,6 @@ import haversine from 'haversine-distance'
 export default class extends Controller {
   static targets = ["items", "latitude", "longitude", "form", "return", "btn"]
 
-
   connect() {
     const options = {
       enableHighAccuracy: true,
@@ -17,6 +16,7 @@ export default class extends Controller {
 
   success(pos) {
     const crd = pos.coords;
+    console.log("coords", crd)
 
     this.latitudeData = crd.latitude
     this.longitudeData = crd.longitude
