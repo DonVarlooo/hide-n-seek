@@ -1,7 +1,6 @@
 <div class="Area" >
   <p>Battle Area</p>
   <%# Emplacement de la map area de la game %>
-  <div>
     <div
       data-controller="location"
       data-location-markers-value="<%= markers.to_json %>"
@@ -14,15 +13,14 @@
         <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
       </div>
     </div>
-  </div>
 </div>
 
 <div class="container-settings" data-controller="rematch" data-rematch-target="items">
   <p>Settings</p>
   <%# Div dans laquelle on met les deux utilisateurs et leur photo
   La photo doit être cliquable pour qu'on puisse la voir en entier %>
-  <h4>Game duration: <%= game.duration %>'</h4>
-  <div class="d-flex flex-wrap">
+  <h4>Game duration: <%= game.duration %>min</h4>
+  <div class="d-flex">
     <%# On affiche la photo du createur %>
     <div class="container-avatar-players">
       <% if creator_user_game.photo.attached? %>
@@ -32,13 +30,13 @@
       <% if challenger_user_game && challenger_user_game.photo.attached? %>
           <%= cl_image_tag challenger_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
     <%# # Sinon Upload la photo %>
-      </div>
     <% else %>
         <%= simple_form_for user.find_user_game(game) do |f| %>
-          <%= f.input :photo, label: false %>
+          <%= f.input :photo, as: :file, label: render("upload_photo_label"), input_html: { class: "d-none " } %>
           <%= f.submit class: 'btn-update-user-name' %>
         <% end %>
     <% end %>
+    </div>
   </div>
 </div>
 

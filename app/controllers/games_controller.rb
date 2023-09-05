@@ -13,6 +13,7 @@ class GamesController < ApplicationController
       }
       format.html
     end
+    return
     #  @games = [Game.last]
     #  lat = 48.856614
     #  lng = 2.3522219
