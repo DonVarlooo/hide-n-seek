@@ -8,3 +8,4 @@ export default class extends Controller {
     this.togglableElementChatTarget.classList.toggle("d-none");
   }
 }
+

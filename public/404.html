@@ -4,64 +4,146 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
+$nunito-font: 'Nunito', sans-serif;
+
+// mixins
+@mixin breakpoint($point) {
+    @if $point==mobile {
+        @media (max-width: 480px) and (min-width: 320px) {
+            @content ;
+        }
+    }
+}
+
+// keyrames
+@keyframes floating {
+    from { transform: translateY(0px); }
+    65%  { transform: translateY(15px); }
+    to   { transform: translateY(-0px); }
+}
+
+html {
+  height: 100%;
+}
+
+body{
+  background-image: url('https://assets.codepen.io/1538474/star.svg'),linear-gradient(to bottom, #05007A, #4D007D);
+  height: 100%;
+  margin: 0;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.mars{
+  left:0;
+  right:0;
+  bottom:0;
+  position:absolute;
+  height: 27vmin;
+  background: url('https://assets.codepen.io/1538474/mars.svg') no-repeat bottom center;
+  background-size: cover;
+}
+
+.logo-404{
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 16vmin;
+  width: 30vmin;
+
+  @include breakpoint(mobile){
+    top: 45vmin;
+  }
+}
+
+.meteor{
+  position: absolute;
+  right: 2vmin;
+  top: 16vmin;
+}
+
+.title{
+  color: white;
+  font-family: $nunito-font;
+  font-weight: 600;
+  text-align: center;
+  font-size: 5vmin;
+  margin-top: 31vmin;
+
+  @include breakpoint(mobile){
+    margin-top: 65vmin;
+  }
+}
+
+.subtitle{
+  color: white;
+  font-family: $nunito-font;
+  font-weight: 400;
+  text-align: center;
+  font-size: 3.5vmin;
+  margin-top: -1vmin;
+  margin-bottom: 9vmin;
+}
+
+.btn-back{
+  border: 1px solid white;
+  color: white;
+  height: 5vmin;
+  padding: 12px;
+  font-family: $nunito-font;
+  text-decoration: none;
+  border-radius: 5px;
+
+  &:hover{
+    background: white;
+    color: #4D007D;
   }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
+  @include breakpoint(mobile){
+    font-size: 3.5vmin;
   }
+}
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+.astronaut{
+  position: absolute;
+  top: 18vmin;
+  left: 10vmin;
+  height: 30vmin;
+  animation: floating 3s infinite ease-in-out;
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
+  @include breakpoint(mobile){
+    top: 2vmin;
   }
+}
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+.spaceship{
+  position: absolute;
+  bottom: 15vmin;
+  right: 24vmin;
+
+  @include breakpoint(mobile){
+    width: 45vmin;
+    bottom: 18vmin;
   }
+}
   </style>
 </head>
 
 <body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+  <div class="mars"></div>
+<img src="https://assets.codepen.io/1538474/404.svg" class="logo-404" />
+<img src="https://assets.codepen.io/1538474/meteor.svg" class="meteor" />
+<p class="title">Oh no!!</p>
+<p class="subtitle">
+  It seems like you hid too far away <br /> or you just suck.
+</p>
+<div align="center">
+  <a class="btn-back" href="#">Back to previous page</a>
+</div>
+<img src="https://assets.codepen.io/1538474/astronaut.svg" class="astronaut" />
+<img src="https://assets.codepen.io/1538474/spaceship.svg" class="spaceship" />
 </body>
 </html>
