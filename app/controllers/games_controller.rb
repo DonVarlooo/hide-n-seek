@@ -13,6 +13,19 @@ class GamesController < ApplicationController
       }
       format.html
     end
+    #  @games = [Game.last]
+    #  lat = 48.856614
+    #  lng = 2.3522219
+
+    # respond_to do |format|
+    #   format.json {
+    #     partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+    #     render json: { partial: partial}
+    #   }
+    #   format.html
+    # end
+
+    # return
     # TODO: END ME RETIRER
 
     if params[:lat] && params[:lng]
@@ -103,7 +116,7 @@ class GamesController < ApplicationController
 
     UserGameChannel.broadcast_to(
       @creator_user_game,
-      html
+      {html: html}
     )
     # redirect for challenger user
     redirect_to game_path(@game)
@@ -138,12 +151,12 @@ class GamesController < ApplicationController
 
       UserGameChannel.broadcast_to(
         @current_user_game,
-        html1
+        {html: html1}
       )
 
       UserGameChannel.broadcast_to(
         @opponent_user_game,
-        html2
+        {html: html2}
       )
 
     head :ok
@@ -220,41 +233,13 @@ class GamesController < ApplicationController
 
     # render 'games/show', formats: [:html]
     # raise
+    UserGameChannel.broadcast_to(
+      @opponent_user_game,
+      {url: game_path(@game)}
+    )
+
+
     redirect_to game_path(@game)
-
-    # html_creator = render_to_string(
-    #   partial: "games/show_pending",
-    #   locals: {
-    #     user: @new_current_user_game.user,
-    #     game: @game,
-    #     creator_user_game: @new_current_user_game,
-    #     challenger_user_game: @new_opponent_user_game,
-    #     markers: []
-    #   },
-    # )
-
-    # html_opponent = render_to_string(
-    #   partial: "games/show_pending",
-    #   locals: {
-    #     user: @new_opponent_user_game.user,
-    #     game: @game,
-    #     creator_user_game: @new_opponent_user_game,
-    #     challenger_user_game: @new_current_user_game,
-    #     markers: []
-    #   },
-
-    # )
-
-    # UserGameChannel.broadcast_to(
-    #   @new_current_user_game,
-    #   html_creator
-    # )
-
-    # UserGameChannel.broadcast_to(
-    #   @new_opponent_user_game,
-    #   html_opponent
-    # )
-
 
 
   end
@@ -278,7 +263,7 @@ class GamesController < ApplicationController
 
     UserGameChannel.broadcast_to(
       @opponent_user_game,
-      html
+      {html: html}
     )
   end
 end

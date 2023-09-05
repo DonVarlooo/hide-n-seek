@@ -11,12 +11,19 @@ export default class extends Controller {
       { channel: "UserGameChannel", id: this.userGameIdValue },
       { received: data => this.#updatePage(data) }
     )
-    console.log(`Subscribed to the chatroom with the id ${this.userGameIdValue}.`);
   }
 
   #updatePage(data) {
-    console.log(data)
-    this.gameTarget.innerHTML = data
+    if (data.url) {
+        window.location.href = data.url
+      // window.alert('Challenged again by the other boloss, 10s to redirectiooin')
+      // setTimeout(() => {
+      // }, 10000);
+    } else if (data.html) {
+      this.gameTarget.innerHTML = data.html
+    } else {
+      console.warn('cable UserGameChannel didnt receive any data')
+    }
   }
 }
 
@@ -25,9 +32,3 @@ export default class extends Controller {
 // { "event": "game_started", "html": "<div..." }
 // { "event": "game_finished", "html": "<div..." }
 // { "event": "rematch", "url": "/games/XXX" }
-
-// if (data.event == "rematch") {
-//   window.location = data.url
-// } else {
-//   this.gameTarget.innerHTML = data.html
-// }

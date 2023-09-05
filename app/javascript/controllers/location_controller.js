@@ -15,7 +15,6 @@ export default class extends Controller {
 
   connect() {
     this.markers = []
-
     this.#buildMap()
   }
 
@@ -35,6 +34,7 @@ export default class extends Controller {
 
       navigator.geolocation.watchPosition((data) => {
         this.animateMarker(data.coords.latitude, data.coords.longitude)
+        this.#saveCoordinatesToLocalStorage(data.coords.latitude, data.coords.longitude)
       })
     });
   }
@@ -95,41 +95,42 @@ export default class extends Controller {
 
   #getUserPosition() {
     const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
+      enableHighAccuracy: true
     };
 
+    this.#setMarkerFromLocalStorage()
     navigator.geolocation.getCurrentPosition(this.#success.bind(this), this.#error.bind(this), options)
   }
 
   #success(pos) {
     const crd = pos.coords;
 
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    this.latitude = crd.latitude
-    this.longitude = crd.longitude
+    this.#handleGetUserPosition(crd.latitude, crd.longitude)
+  }
 
-    this.markersValue = [{lng: crd.longitude, lat: crd.latitude}]
+  #error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+    console.trace()
+    this.#getUserPosition()
+    const coords = JSON.parse(localStorage.getItem('coords'))
+    this.#handleGetUserPosition(coords.lat, coords.lon)
+  }
+
+  #handleGetUserPosition(latitude, longitude) {
+    this.#saveCoordinatesToLocalStorage(latitude, longitude)
+
+    this.latitude = latitude
+    this.longitude = longitude
+
+
+    this.markersValue = [{lng: longitude, lat: latitude}]
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
   }
 
-  #error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-
-    this.#getUserPosition()
-  }
-
   animateMarker(lat, lon) {
-    console.log("haha", lat, lon)
-
     const marker = this.markers[0]
-
     if (marker === undefined) {
       this.markersValue = [{lng: lon, lat: lat}]
 
@@ -143,5 +144,20 @@ export default class extends Controller {
 
       marker.addTo(this.map);
     }
+  }
+
+  #saveCoordinatesToLocalStorage(lat, lon) {
+    const coords = {
+      lat: lat,
+      lon: lon
+    }
+    localStorage.setItem('coords', JSON.stringify(coords))
+  }
+
+  #setMarkerFromLocalStorage() {
+    const coords = JSON.parse(localStorage.getItem('coords'))
+    this.markersValue = [{lng: coords.lon, lat: coords.lat}]
+    this.#addMarkersToMap()
+    this.#fitMapToMarkers()
   }
 }
