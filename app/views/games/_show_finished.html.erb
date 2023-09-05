@@ -1,56 +1,43 @@
-<div>
+<div class="container" >
+
+  <%# 1 le current user gagne Victoire et l'opponent perd%>
   <% if current_user_game.win %>
-    <h4 class="text-center">Victory</h4>
-    <div class="container rounded-circle justify-content-center">
-      <%= cl_image_tag current_user_game.photo.key, height: 300, width: 400, crop: :fill %>
-    </div>
-  <% else %>
-    <div>Boloss va, c'est ton adversaire qui gagne</div>
-    <%= cl_image_tag opponent_user_game.photo.key, height: 300, width: 400, crop: :fill  %>
-  <% end %>
-</div>
-<h4 class="text-center">Game Statistics</h4>
-<div class="container">
-  <div class="row">
-    <div class="col-5">
-      <div class="img">
-        <div><%= cl_image_tag current_user_game.photo.key, height: 300, width: 400, crop: :fill %></div>
-      </div>
-      <div>Game Duration:</div>
-      <div>Win streak:</div>
-    </div>
-    <div class="col-5">
-      <div><%= cl_image_tag opponent_user_game.photo.key, height: 300, width: 400, crop: :fill  %></div>
-      <%# On s'en balec des stats du mec en face %>
-      <div>Game Duration:</div>
-      <div>Win streak:</div>
-    </div>
+  <div id="trophee" class="visible text-center mt-5 position-relative" data-controller="confettis">
+    <i class="fas fa-trophy position-absolute" style="color: #edc602; font-size: 12rem"></i>
+    <canvas data-confettis-target="items" class="confettis"></canvas>
   </div>
-</div>
-<div class="container">
-  <div class="row" data-controller="rematch">
-    <div class="col-5" >
+
+  <%# 2 le current user perd et l'opponent gagne %>
+  <% elsif !current_user_game.win %>
+    <div id="trophee" class="visible text-center mt-5">
+      <i class="fa-solid fa-skull" style="font-size: 12rem"></i>
+    </div>
+  <% end %>
+
+  <%# Statistiques de la game et de l'utilisateur %>
+  <div class="text-center mt-5 btn-mode">
+    <h2><strong>Statistiques</strong></h2>
+    <h4>Game Duration:</h4>
+    <%= ((Time.current - game.started_at) / 60).round(0) %>min
+    <h4>Win streak :</h4>
+    <%= current_user.winstreak %>
+    <h4>Tête à tête:</h4>
+    <%= current_user.face_to_face(opponent_user_game) %>
+  </div>
+
+  <div class="row fixed-bottom d-flex mb-5" data-controller="rematch">
+  <div class="col-1"></div>
+    <div class="col-5">
       <%= simple_form_for :rematch, url: rematch_game_path, method: :get, html: { data: { rematch_target: 'form' } } do |f| %>
         <%= f.hidden_field :latitude, data: { rematch_target: 'latitude' } %>
         <%= f.hidden_field :longitude, data: { rematch_target: 'longitude' } %>
-        <%= f.submit "Rematch", data: { action: 'click->rematch#addCoords' } %>
+        <%= f.submit "Rematch", class: "btn-return", data: { action: 'click->rematch#addCoords' } %>
       <% end %>
     </div>
-    <div class="col-5">
-      <button>Quit</button>
+    <div class="col-1"></div>
+    <div class="col-4">
+      <%= button_to "QUIT", pages_path, class: "btn-return", method: :get%>
     </div>
+    <div class="col-1"></div>
   </div>
 </div>
-
-<div>Game Duration:</div>
-<%= ((Time.current - game.started_at) / 60).round(0) %>min
-<div>Win streak :</div>
-<% current_streak = 0 %>
-<% current_user.user_games.each do |game| %>
-  <% if game.win %>
-    <% current_streak += 1 %>
-  <% else %>
-    <% current_streak = 0 %>
-  <% end %>
-<% end %>
-<%= current_streak %>
