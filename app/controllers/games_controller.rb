@@ -15,15 +15,18 @@ class GamesController < ApplicationController
     # return
     # TODO: END ME RETIRER
 
-    if params[:lng] && params[:lat]
+    if params[:lat] && params[:lng]
+      lat = params[:lat].to_f
+      lng = params[:lng].to_f
 
-      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 500).where(status: :pending).first(4)
+      @games = Game.near([lat, lng], 500).where(status: :pending).first(4)
 
       respond_to do |format|
         format.json {
-          partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
-          render json: { partial: partial}
+          partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+          render json: { partial: partial }
         }
+        format.html
       end
 
     else
@@ -70,10 +73,21 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find(params[:id])
+
     @user_game = UserGame.new
     @user_game.game = @game
     @user_game.user = current_user
     @user_game.save!
+
+    creator_lat = @game.lat
+    creator_lng = @game.lng
+
+    opponent_lat = params[:user_lat].to_f
+    opponent_lng = params[:user_lng].to_f
+
+    center_lat, center_lng = Geocoder::Calculations.geographic_center([[creator_lat, creator_lng], [opponent_lat, opponent_lng]])
+
+    @game.update!(lat: center_lat, lng: center_lng)
 
     # prepare broadcasting to creator user
     @creator_user_game = @game.user_games.first # Createur du jeu
