@@ -1,53 +1,73 @@
+
 <div id="show-html">
   <div class="Area">
     <p>Battle Area</p>
-    <div>
-    <div
+  <div
       data-controller="location"
       data-location-markers-value="<%= markers.to_json %>"
       data-location-area-center-lat-value="<%= game.lat %>"
       data-location-area-center-lng-value="<%= game.lng %>"
-      data-location-area-radius-value="<%= game.duration %>"
-      data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    >
-        <div data-location-target="startTracking">
-          <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
+      data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <div data-location-target="startTracking">
+    <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
+  </div>
+  </div>
+  </div>
+  <div class="container container-ongoing">
+    <div data-controller="timer" data-timer-duration-in-seconds-value="<%= remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
+    <div>Target Name: <%= opponent_user_game.user.user_name %></div>
+    <div>
+      <%= cl_image_tag opponent_user_game.photo.key, height: 180, width: 300, crop: :fill, focus: :face, class: "photo-player-show" %>
+    </div>
+  </div>
+</div>
+
+
+<div class="container container-btn-show">
+
+  <div class="row ms-3">
+
+    <div class="col-6">
+      <div>
+        <%= link_to games_path, class: "text-decoration-none" do %>
+          <button class="btn-scan-quit">Quit</button>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div data-controller="toggle-chat">
+        <button class="btn-scan-quit" data-action="click->toggle-chat#DisplayChat"><i class="fa-regular fa-comment" style="color: #7ca982;"></i></button>
+        <div data-toggle-chat-target="togglableElementChat" class="d-none">
+          <%= render "chat" %>
         </div>
       </div>
     </div>
-  </div>
 
-
-  <div class="container-ongoing">
-    <div data-controller="timer" data-timer-duration-in-seconds-value="<%= remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
-    <div>Target Name: <%= opponent_user_game.user.user_name %></div>
-
-
-    <div>
-      <%= cl_image_tag opponent_user_game.photo.key, height: 250, width: 500, crop: :fill %>
-    </div>
-
-    <div>
-      <button><i class="fa-regular fa-comment" style="color: #7ca982;"></i></button>
-    </div>
-
-    <div data-controller="qrcode"
-
-        data-qrcode-scan-url-value="<%= scan_game_path(@game) %>">
-      <button data-action="click->qrcode#startScanning">Scan</button>
-      <button data-action="click->qrcode#stopScanning">Quit scan</button>
-
-      <video data-qrcode-target="video"></video>
-    </div>
-
-
-
-    <div class="bg-white p-5">
-      <%= opponent_user_game.user.qrcode.html_safe %>
+    <div class="col-12">
+      <div data-controller="qrcode"
+          data-qrcode-scan-url-value="<%= scan_game_path(@game) %>"
+          class="">
+        <button data-action="click->qrcode#startScanning" data-qrcode-target="start" class="btn-show">Scan</button>
+        <button data-action="click->qrcode#stopScanning" data-qrcode-target="stop" class="btn-show d-none">Quit scan</button>
+        <video data-qrcode-target="video"></video>
+      </div>
     </div>
   </div>
-
-  <div><%= link_to games_path, class: "text-decoration-none" do %>
-    <button class="btn-return">Quit</button>
-  <% end %></div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <%# <div class="bg-white p-5"> %>
+      <%#= opponent_user_game.user.qrcode.html_safe %>
+    <%# </div> %>
+  <%# </div> %>
