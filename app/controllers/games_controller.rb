@@ -13,8 +13,6 @@ class GamesController < ApplicationController
       }
       format.html
     end
-
-    return
     # TODO: END ME RETIRER
 
     if params[:lat] && params[:lng]
