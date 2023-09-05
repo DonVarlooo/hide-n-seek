@@ -2,9 +2,14 @@
   <p>Battle Area</p>
   <%# Emplacement de la map area de la game %>
   <div>
-    <div data-controller="location"
-          data-location-markers-value="<%= markers.to_json %>"
-                  data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div
+      data-controller="location"
+      data-location-markers-value="<%= markers.to_json %>"
+      data-location-area-center-lat-value="<%= game.lat %>"
+      data-location-area-center-lng-value="<%= game.lng %>"
+      data-location-area-radius-value="<%= game.duration %>"
+      data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    >
       <div data-location-target="startTracking">
         <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
       </div>
@@ -12,23 +17,22 @@
   </div>
 </div>
 
-<div class="container-settings" data-controller = "rematch", data-rematch-target ="items">
+<div class="container-settings" data-controller="rematch" data-rematch-target="items">
   <p>Settings</p>
   <%# Div dans laquelle on met les deux utilisateurs et leur photo
   La photo doit être cliquable pour qu'on puisse la voir en entier %>
   <h4>Game duration: <%= game.duration %>'</h4>
   <div class="d-flex flex-wrap">
     <%# On affiche la photo du createur %>
-    <div class='container-avatar-players'>
-
-    <% if creator_user_game.photo.attached? %>
-      <%= cl_image_tag creator_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
-    <% end %>
-    <%# # Si opponent existe et photo.attached? afficher la photo %>
-    <% if challenger_user_game && challenger_user_game.photo.attached? %>
-        <%= cl_image_tag challenger_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
-  <%# # Sinon Upload la photo %>
-    </div>
+    <div class="container-avatar-players">
+      <% if creator_user_game.photo.attached? %>
+        <%= cl_image_tag creator_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
+      <% end %>
+      <%# # Si opponent existe et photo.attached? afficher la photo %>
+      <% if challenger_user_game && challenger_user_game.photo.attached? %>
+          <%= cl_image_tag challenger_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
+    <%# # Sinon Upload la photo %>
+      </div>
     <% else %>
         <%= simple_form_for user.find_user_game(game) do |f| %>
           <%= f.input :photo, label: false %>

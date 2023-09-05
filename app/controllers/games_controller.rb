@@ -2,28 +2,33 @@ class GamesController < ApplicationController
   def index
 
     # TODO: ME RETIRER !!!!
-    # @games = [Game.last]
+     @games = [Game.last]
+     lat = 48.856614
+     lng = 2.3522219
 
-    # respond_to do |format|
-    #   format.json {
-    #     partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
-    #     render json: { partial: partial}
-    #   }
-    #   format.html
-    # end
+    respond_to do |format|
+      format.json {
+        partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+        render json: { partial: partial}
+      }
+      format.html
+    end
 
-    # return
+    return
     # TODO: END ME RETIRER
 
-    if params[:lng] && params[:lat]
+    if params[:lat] && params[:lng]
+      lat = params[:lat].to_f
+      lng = params[:lng].to_f
 
-      @games = Game.near([params[:lat].to_f, params[:lng].to_f], 500).where(status: :pending).first(4)
+      @games = Game.near([lat, lng], 500).where(status: :pending).first(4)
 
       respond_to do |format|
         format.json {
-          partial = render_to_string(partial: 'games/game_list', locals: { games: @games }, formats: :html)
-          render json: { partial: partial}
+          partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+          render json: { partial: partial }
         }
+        format.html
       end
 
     else
@@ -46,8 +51,6 @@ class GamesController < ApplicationController
 
     @current_user_game = @game.user_games.find_by(user: current_user) # Current user
     @opponent_user_game = @game.user_games.where.not(user: current_user).first # Son opposant
-
-
   end
 
   def create
@@ -70,10 +73,21 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find(params[:id])
+
     @user_game = UserGame.new
     @user_game.game = @game
     @user_game.user = current_user
     @user_game.save!
+
+    creator_lat = @game.lat
+    creator_lng = @game.lng
+
+    opponent_lat = params[:user_lat].to_f
+    opponent_lng = params[:user_lng].to_f
+
+    center_lat, center_lng = Geocoder::Calculations.geographic_center([[creator_lat, creator_lng], [opponent_lat, opponent_lng]])
+
+    @game.update!(lat: center_lat, lng: center_lng)
 
     # prepare broadcasting to creator user
     @creator_user_game = @game.user_games.first # Createur du jeu
@@ -147,28 +161,19 @@ class GamesController < ApplicationController
       if @opponent.id == params[:opponent_id].to_i
         @current_user_game.update(win: true)
         @game.update(status: :finished, ended_at: Time.current)
-        # @loser = @game.user_games.find_by(win: false).user
-        # html = render_to_string(
-        #   partial: 'games/show_finished',
-        #   locals: {
-        #     game: @game,
-        #     opponent_user_game: @current_user_game,
-        #     current_user_game:  @loser
-        #   }
-        # )
 
-        # UserGameChannel.broadcast_to(
-        #   @loser,
-        #   html
-        # )
+
         format.json do
           partial = render_to_string(
             partial: 'games/show_finished',
-            locals: {opponent_user_game: @opponent_user_game,
-                     current_user_game:  @current_user_game
+            locals: {
+              opponent_user_game: @opponent_user_game,
+              current_user_game:  @current_user_game,
+              game: @game
             },
             formats: :html
           )
+          broadcast_loser
           render json: {
             success: true,
             partial:
@@ -218,11 +223,64 @@ class GamesController < ApplicationController
     # render 'games/show', formats: [:html]
     # raise
     redirect_to game_path(@game)
+
+    # html_creator = render_to_string(
+    #   partial: "games/show_pending",
+    #   locals: {
+    #     user: @new_current_user_game.user,
+    #     game: @game,
+    #     creator_user_game: @new_current_user_game,
+    #     challenger_user_game: @new_opponent_user_game,
+    #     markers: []
+    #   },
+    # )
+
+    # html_opponent = render_to_string(
+    #   partial: "games/show_pending",
+    #   locals: {
+    #     user: @new_opponent_user_game.user,
+    #     game: @game,
+    #     creator_user_game: @new_opponent_user_game,
+    #     challenger_user_game: @new_current_user_game,
+    #     markers: []
+    #   },
+
+    # )
+
+    # UserGameChannel.broadcast_to(
+    #   @new_current_user_game,
+    #   html_creator
+    # )
+
+    # UserGameChannel.broadcast_to(
+    #   @new_opponent_user_game,
+    #   html_opponent
+    # )
+
+
+
   end
 
   private
 
   def game_params
     params.require(:game).permit(:lat, :lng, :duration, :name, :mode)
+  end
+
+  def broadcast_loser
+    html = render_to_string(
+      partial: 'games/show_finished',
+      locals: {
+        game: @game,
+        opponent_user_game: @current_user_game,
+        current_user_game:  @opponent_user_game
+      },
+      formats: [:html]
+    )
+
+    UserGameChannel.broadcast_to(
+      @opponent_user_game,
+      html
+    )
   end
 end

@@ -19,3 +19,15 @@ export default class extends Controller {
     this.gameTarget.innerHTML = data
   }
 }
+
+// data
+// { "event": "opponent_joined", "html": "<div..." }
+// { "event": "game_started", "html": "<div..." }
+// { "event": "game_finished", "html": "<div..." }
+// { "event": "rematch", "url": "/games/XXX" }
+
+// if (data.event == "rematch") {
+//   window.location = data.url
+// } else {
+//   this.gameTarget.innerHTML = data.html
+// }
