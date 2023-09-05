@@ -36,12 +36,12 @@ class UserGamesController < ApplicationController
 
     UserGameChannel.broadcast_to(
       @creator_user_game,
-      html_creator
+      {html: html_creator}
     )
 
     UserGameChannel.broadcast_to(
       @user_game,
-      html_opponent
+      {html: html_opponent}
     )
 
     head :ok
