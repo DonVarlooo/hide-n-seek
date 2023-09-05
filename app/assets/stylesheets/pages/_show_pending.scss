@@ -104,3 +104,10 @@
   width: 100%;
   margin-top: 20px;
 }
+
+.border-dotted {
+  border-style: dotted !important; /* You can adjust the color and width as needed */
+  margin-left: 16px;
+  margin-right: 16px;
+  border-radius: 10px;
+}
