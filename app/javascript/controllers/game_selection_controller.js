@@ -7,16 +7,13 @@ export default class extends Controller {
 
   connect() {
     const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
+      enableHighAccuracy: true
     };
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
   }
 
   success(pos) {
     const crd = pos.coords;
-    console.log("coords", crd)
 
     this.latitudeData = crd.latitude
     this.longitudeData = crd.longitude
@@ -27,7 +24,8 @@ export default class extends Controller {
   }
 
   error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    console.error(`ERROR(${err.code}): ${err.message}`);
+    console.trace()
   }
 
   addCoord() {
