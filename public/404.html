@@ -4,25 +4,6 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
-$nunito-font: 'Nunito', sans-serif;
-
-// mixins
-@mixin breakpoint($point) {
-    @if $point==mobile {
-        @media (max-width: 480px) and (min-width: 320px) {
-            @content ;
-        }
-    }
-}
-
-// keyrames
-@keyframes floating {
-    from { transform: translateY(0px); }
-    65%  { transform: translateY(15px); }
-    to   { transform: translateY(-0px); }
-}
-
 html {
   height: 100%;
 }
@@ -53,10 +34,6 @@ body{
   right: 0;
   top: 16vmin;
   width: 30vmin;
-
-  @include breakpoint(mobile){
-    top: 45vmin;
-  }
 }
 
 .meteor{
@@ -72,10 +49,6 @@ body{
   text-align: center;
   font-size: 5vmin;
   margin-top: 31vmin;
-
-  @include breakpoint(mobile){
-    margin-top: 65vmin;
-  }
 }
 
 .subtitle{
@@ -101,10 +74,6 @@ body{
     background: white;
     color: #4D007D;
   }
-
-  @include breakpoint(mobile){
-    font-size: 3.5vmin;
-  }
 }
 
 .astronaut{
@@ -114,9 +83,6 @@ body{
   height: 30vmin;
   animation: floating 3s infinite ease-in-out;
 
-  @include breakpoint(mobile){
-    top: 2vmin;
-  }
 }
 
 .spaceship{
@@ -124,10 +90,6 @@ body{
   bottom: 15vmin;
   right: 24vmin;
 
-  @include breakpoint(mobile){
-    width: 45vmin;
-    bottom: 18vmin;
-  }
 }
   </style>
 </head>
@@ -141,7 +103,7 @@ body{
   It seems like you hid too far away <br /> or you just suck.
 </p>
 <div align="center">
-  <a class="btn-back" href="#">Back to previous page</a>
+  <a class="btn-back" href="/">Back home</a>
 </div>
 <img src="https://assets.codepen.io/1538474/astronaut.svg" class="astronaut" />
 <img src="https://assets.codepen.io/1538474/spaceship.svg" class="spaceship" />
