@@ -20,7 +20,21 @@
         <% f.hidden_field :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
         <%= f.input :name, label: 'Name of the war' %>
         <%= f.input :duration, collection: Game::DURATION, prompt: "Choose game duration", label: "Duration"%>
-        <%= f.input :photo, as: :file, label: render("upload_photo_label"), input_html: { class: "d-none " } %>
+        <%= f.input :photo,
+                    as: :file,
+                    label: render("upload_photo_label"),
+                    wrapper_html: {
+                      data: {
+                        controller: 'preview-photo'
+                      }
+                    },
+                    input_html: {
+                      class: "d-none",
+                      data: {
+                        preview_photo_target: :input,
+                        action:"change->preview-photo#displayPreview"
+                      }
+                    } %>
         <%= f.submit class: 'btn-create-game'%>
       <% end %>
     </div>
