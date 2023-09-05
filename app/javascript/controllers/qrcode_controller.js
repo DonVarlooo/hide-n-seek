@@ -44,9 +44,9 @@ export default class extends Controller {
     fetch(url, options)
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        console.log("Processing results of scan", data)
         if (data.success) {
-          this.element.closest('#show-html').outerHTML = data.partial
+          this.element.closest('#show-game').outerHTML = data.partial
         } else {
           alert('boloss va')
         }

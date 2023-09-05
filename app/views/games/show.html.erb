@@ -1,5 +1,6 @@
 
-<div
+<div id="show-game"
+    <%# Ne pas virer l'Id show game %>
     data-controller="user-game-subscription"
     data-user-game-subscription-user-game-id-value="<%= @current_user_game.id %>"
     data-user-game-subscription-target="game"
@@ -12,4 +13,3 @@
     <%= render "show_finished", user: current_user, game: @game, opponent_user_game: @opponent_user_game, current_user_game:  @current_user_game %>
   <% end %>
 </div>
-
