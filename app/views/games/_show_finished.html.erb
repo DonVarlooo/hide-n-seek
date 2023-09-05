@@ -30,8 +30,8 @@
   <div class="row" data-controller="rematch">
     <div class="col-5" >
       <%= simple_form_for :rematch, url: rematch_game_path(game), method: :get, html: { data: { rematch_target: 'form' } } do |f| %>
-        <%= f.hidden :latitude, input_html: { data: { rematch_target: 'latitude' } } %>
-        <%= f.hidden :longitude, input_html: { data: { rematch_target: 'longitude' } } %>
+        <%= f.hidden_field :latitude, input_html: { data: { rematch_target: 'latitude' } } %>
+        <%= f.hidden_field :longitude, input_html: { data: { rematch_target: 'longitude' } } %>
         <%= f.submit "Rematch", data: { action: 'click->rematch#addCoords' } %>
       <% end %>
     </div>

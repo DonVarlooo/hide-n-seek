@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   def index
 
     # TODO: ME RETIRER !!!!
-    # @games = [Game.last]
+    #  @games = [Game.last]
 
     # respond_to do |format|
     #   format.json {
@@ -46,8 +46,6 @@ class GamesController < ApplicationController
 
     @current_user_game = @game.user_games.find_by(user: current_user) # Current user
     @opponent_user_game = @game.user_games.where.not(user: current_user).first # Son opposant
-
-
   end
 
   def create
@@ -147,28 +145,19 @@ class GamesController < ApplicationController
       if @opponent.id == params[:opponent_id].to_i
         @current_user_game.update(win: true)
         @game.update(status: :finished, ended_at: Time.current)
-        # @loser = @game.user_games.find_by(win: false).user
-        # html = render_to_string(
-        #   partial: 'games/show_finished',
-        #   locals: {
-        #     game: @game,
-        #     opponent_user_game: @current_user_game,
-        #     current_user_game:  @loser
-        #   }
-        # )
 
-        # UserGameChannel.broadcast_to(
-        #   @loser,
-        #   html
-        # )
+
         format.json do
           partial = render_to_string(
             partial: 'games/show_finished',
-            locals: {opponent_user_game: @opponent_user_game,
-                     current_user_game:  @current_user_game
+            locals: {
+              opponent_user_game: @opponent_user_game,
+              current_user_game:  @current_user_game,
+              game: @game
             },
             formats: :html
           )
+          broadcast_loser
           render json: {
             success: true,
             partial:
@@ -222,5 +211,22 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:lat, :lng, :duration, :name, :mode)
+  end
+
+  def broadcast_loser
+    html = render_to_string(
+      partial: 'games/show_finished',
+      locals: {
+        game: @game,
+        opponent_user_game: @current_user_game,
+        current_user_game:  @opponent_user_game
+      },
+      formats: [:html]
+    )
+
+    UserGameChannel.broadcast_to(
+      @opponent_user_game,
+      html
+    )
   end
 end
