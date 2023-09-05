@@ -6,7 +6,9 @@ export default class extends Controller {
   static targets = ["startTracking", "map"]
   static values = {
     apiKey: String,
-    markers: Array
+    markers: Array,
+    areaCenterLat: Number,
+    areaCenterLng: Number
   }
 
 
@@ -53,7 +55,7 @@ export default class extends Controller {
     this.#fitMapToMarkers()
 
     this.map.on('load', () => {
-      var center = [this.longitude, this.latitude];
+      var center = [this.areaCenterLngValue, this.areaCenterLatValue];
       var radius = 0.200;
       var options = {steps: 100, units: 'kilometers'};
       // var circleCoords = turf.circle(center, radius, options);
@@ -92,7 +94,10 @@ export default class extends Controller {
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
+
+    bounds.extend([this.areaCenterLngValue, this.areaCenterLatValue])
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 
@@ -105,3 +110,8 @@ export default class extends Controller {
     marker.addTo(this.map);
   }
 }
+
+
+// Def geocode_center
+//   Geocoder::Calculations.geographic_center([[lng user1, lat user1], [lng user2, lat user2]])
+// end
