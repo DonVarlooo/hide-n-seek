@@ -179,11 +179,11 @@ class GamesController < ApplicationController
     @opponent_user_game = @current_game.user_games.where.not(user: current_user).first
     # Comment on garde les photos dans les users_games
     @game = Game.new(duration: @current_game.duration,
-                         name: "#{@current_game.name} - rematch",
-                         lat: 2,
-                         lng: 2,
-                         mode: @current_game.mode,
-                         user_id: @current_user_game.user.id)
+                     name: "#{@current_game.name} - rematch",
+                     lat: params[:rematch][:latitude].to_f,
+                     lng: params[:rematch][:longitude].to_f,
+                     mode: @current_game.mode,
+                     user_id: @current_user_game.user.id)
     @game.save!
     @new_current_user_game = UserGame.create(
       user_id: @current_user_game.user.id,
@@ -204,7 +204,9 @@ class GamesController < ApplicationController
     @creator_user_game = @new_current_user_game
     @challenger_user_game = @new_opponent_user_game
 
-    render 'games/show', formats: [:html]
+    # render 'games/show', formats: [:html]
+    # raise
+    redirect_to game_path(@game)
   end
 
   private
