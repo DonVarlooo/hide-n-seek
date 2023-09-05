@@ -8,7 +8,8 @@ export default class extends Controller {
     apiKey: String,
     markers: Array,
     areaCenterLat: Number,
-    areaCenterLng: Number
+    areaCenterLng: Number,
+    areaRadius: Number
   }
 
 
@@ -56,7 +57,8 @@ export default class extends Controller {
 
     this.map.on('load', () => {
       var center = [this.areaCenterLngValue, this.areaCenterLatValue];
-      var radius = 0.200;
+      var radius = this.areaRadiusValue * 0.025;
+      console.log("radius :", radius)
       var options = {steps: 100, units: 'kilometers'};
       // var circleCoords = turf.circle(center, radius, options);
       const circleGeojson = circle(center, radius, options);
