@@ -29,7 +29,7 @@
         <div class="col-6">
           <% if challenger_user_game && challenger_user_game.photo.attached? %>
             <%= cl_image_tag challenger_user_game.photo.key, crop: :thumb, class: 'avatar-players shape2', gravity: :face %>
-          <% elsif user == challenger_user_game.user && !challenger_user_game.photo.attached? %>
+          <% elsif challenger_user_game && user == challenger_user_game.user && !challenger_user_game.photo.attached? %>
             <%= f.input :photo,
                         as: :file,
                         label: render("games/upload_photo_label_2"),
