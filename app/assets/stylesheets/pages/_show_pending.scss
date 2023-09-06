@@ -4,16 +4,16 @@
   font-size: 30px;
   text-align: center;
   margin-top: 8px;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #243E36;
   border-radius: 10px;
   margin-left: 16px;
   margin-right: 16px;
   overflow: hidden;
 
-
   p {
     margin-bottom: 0px;
+    color: #243E36;
   }
 }
 
@@ -29,6 +29,7 @@
   margin-top: 8px;
 
   p {
+  color: #243E36;
   font-weight: 600;
   font-size: 30px;
   background-color: #7CA982;
@@ -47,7 +48,6 @@
     border-color: #F1F7ED;
     border-radius: 10px;
     height: 100px;
-
 
     .fa-camera {
       margin-top: 5px;
@@ -84,7 +84,7 @@
   padding-right: 15px;
   margin-bottom: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
+  border: 2px solid;
   border-color: #F1F7ED;
 }
 
@@ -102,7 +102,7 @@
   padding-left: 10px;
   margin-bottom: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
+  border: 2px solid;
   border-color: #F1F7ED;
 }
 
@@ -116,7 +116,7 @@
   width: 150px;
   object-fit: cover;
   object-position: center;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #F1F7ED;
   border-radius: 10px;
 

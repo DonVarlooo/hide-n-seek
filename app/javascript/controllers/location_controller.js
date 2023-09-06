@@ -96,7 +96,7 @@ export default class extends Controller {
 
   #getUserPosition() {
     const options = {
-      enableHighAccuracy: true
+      enableHighAccuracy: false
     };
 
     this.#setMarkerFromLocalStorage()
