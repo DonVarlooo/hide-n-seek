@@ -17,18 +17,16 @@ export default class extends Controller {
 
     this.latitudeData = crd.latitude
     this.longitudeData = crd.longitude
+
+    // Mise a jour form
     this.latitudeTarget.value = crd.latitude
     this.longitudeTarget.value = crd.longitude
+
+    // Enable submit submit button
+    this.btnSubmitTarget.disabled = false
+
     console.log(pos.coords)
     this.addCoord()
-  }
-
-  enableBtn() {
-    if (this.latitudeTarget.value === '' && this.longitudeData.value === '') {
-      this.btnSubmitTarget.disabled = true
-    } else {
-      this.btnSubmitTarget.disabled = false
-    }
   }
 
   error(err) {

@@ -15,8 +15,8 @@
     <% end %>
     <div class="container-create px-5 d-none" data-game-selection-target="form">
       <%= simple_form_for Game.new do |f| %>
-        <%= f.hidden_field :lat, data: { game_selection_target: "latitude", action: 'change->game-selection#enableBtn' } %>
-        <%= f.hidden_field :lng, data: { game_selection_target: "longitude", action: 'change->game-selection#enableBtn' } %>
+        <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
+        <%= f.hidden_field :lng, data: { game_selection_target: "longitude" } %>
         <%# f.hidden_field :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
         <%= f.input :name, label: 'Name of the war' %>
         <%= f.input :duration, collection: Game::DURATION, prompt: "Choose game duration", label: "Duration"%>
@@ -40,5 +40,3 @@
     </div>
   </div>
 </div>
-
-<%= console %>

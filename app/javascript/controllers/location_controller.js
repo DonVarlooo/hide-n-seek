@@ -29,8 +29,8 @@ export default class extends Controller {
     })
 
     this.map.on('load', () => {
-      this.#getUserPosition()
       this.#addGameAreaTomap()
+      this.#getUserPosition()
 
       navigator.geolocation.watchPosition((data) => {
         this.animateMarker(data.coords.latitude, data.coords.longitude)
@@ -41,6 +41,7 @@ export default class extends Controller {
 
   #addGameAreaTomap() {
     const center  = [this.areaCenterLngValue, this.areaCenterLatValue];
+    console.log(center)
     const radius  = this.areaRadiusValue * 0.025;
     const options = {steps: 100, units: 'kilometers'};
 
@@ -106,8 +107,6 @@ export default class extends Controller {
     const crd = pos.coords;
 
     this.#handleGetUserPosition(crd.latitude, crd.longitude)
-    console.log(position.latitude)
-    console.log(position.longitude)
   }
 
   #error(err) {
@@ -158,6 +157,8 @@ export default class extends Controller {
 
   #setMarkerFromLocalStorage() {
     const coords = JSON.parse(localStorage.getItem('coords'))
+    if (coords === null) { return }
+
     this.markersValue = [{lng: coords.lon, lat: coords.lat}]
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
