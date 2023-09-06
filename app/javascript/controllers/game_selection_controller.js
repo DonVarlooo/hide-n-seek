@@ -3,7 +3,7 @@ import haversine from 'haversine-distance'
 
 // Connects to data-controller="game-selection"
 export default class extends Controller {
-  static targets = ["items", "latitude", "longitude", "form", "return", "btn"]
+  static targets = ["items", "latitude", "longitude", "form", "return", "btn", 'btnSubmit']
 
   connect() {
     const options = {
@@ -19,8 +19,16 @@ export default class extends Controller {
     this.longitudeData = crd.longitude
     this.latitudeTarget.value = crd.latitude
     this.longitudeTarget.value = crd.longitude
-
+    console.log(pos.coords)
     this.addCoord()
+  }
+
+  enableBtn() {
+    if (this.latitudeTarget.value === '' && this.longitudeData.value === '') {
+      this.btnSubmitTarget.disabled = true
+    } else {
+      this.btnSubmitTarget.disabled = false
+    }
   }
 
   error(err) {
