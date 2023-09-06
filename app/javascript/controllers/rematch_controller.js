@@ -4,10 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["items", "latitude", "longitude", "form"]
 
-
   connect() {
     const options = {
-      enableHighAccuracy: true
+      enableHighAccuracy: false
     };
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
   }
