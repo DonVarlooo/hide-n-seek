@@ -1,24 +1,4 @@
 <div class="container-home">
-  <div class="dropdown">
-    <button class="btn-connect btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Connecte toi
-    </button>
-    <ul class="dropdown-menu">
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete } %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Connexion", new_user_session_path %>
-        </li>
-        <li>
-          <%= link_to "Créer un compte", new_user_registration_path %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
   <div class="container-elements">
     <div class="d-flex justify-content-center">
       <%= image_tag "logo-home.png", height: 80, class: "logo-home"%>

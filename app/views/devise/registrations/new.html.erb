@@ -15,6 +15,21 @@
       <%= f.input :user_name,
           required: false,
           input_html: { autocomplete: "username" } %>
+      <%= f.input :photo,
+                    as: :file,
+                    label: render("games/upload_photo_label"),
+                    wrapper_html: {
+                      data: {
+                        controller: 'preview-photo'
+                      }
+                    },
+                    input_html: {
+                      class: "d-none",
+                      data: {
+                        preview_photo_target: :input,
+                        action:"change->preview-photo#displayPreview"
+                      }
+                    } %>
       <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -22,6 +37,7 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+
     </div>
 
     <div class="form-actions">
