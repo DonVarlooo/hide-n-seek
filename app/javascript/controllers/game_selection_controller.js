@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     const options = {
-      enableHighAccuracy: true
+      enableHighAccuracy: false
     };
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
   }
