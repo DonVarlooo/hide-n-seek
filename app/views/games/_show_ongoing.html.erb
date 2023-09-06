@@ -1,77 +1,58 @@
 
-<div id="show-html">
-  <div class="Area">
-    <p>Battle Area</p>
-  <div
-      data-controller="location"
-      data-location-markers-value="<%= markers.to_json %>"
-      data-location-area-center-lat-value="<%= game.lat %>"
-      data-location-area-center-lng-value="<%= game.lng %>"
-      data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  <div data-location-target="startTracking">
-    <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
-  </div>
-  </div>
-  </div>
-  <div class="container container-ongoing">
-    <div data-controller="timer" data-timer-duration-in-seconds-value="<%= remaining_time_in_seconds %>">Time remaining: <span data-timer-target="counter"></span></div>
-    <div>Target Name: <%= opponent_user_game.user.user_name %></div>
-    <div>
-      <%= cl_image_tag opponent_user_game.photo.key, height: 180, width: 300, crop: :fill, focus: :face, class: "photo-player-show" %>
-    </div>
-  </div>
-</div>
-
-
-<div class="container container-btn-show">
-
-  <div class="row ms-3">
-
-    <div class="col-6">
-      <div>
-        <%= link_to games_path, class: "text-decoration-none" do %>
-          <button class="btn-scan-quit">Quit</button>
-        <% end %>
+<div
+  data-controller="location"
+  data-location-markers-value="<%= markers.to_json %>"
+  data-location-area-center-lat-value="<%= game.lat %>"
+  data-location-area-center-lng-value="<%= game.lng %>"
+  data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+  class="bg-image">
+  <div data-controller="toggle-chat">
+    <div class="d-flex justify-content-between chat">
+      <h1 class="bg-info border-0 ms-2 mt-2 p-3 rounded-3">Battle Area</h1>
+      <button data-action="click->toggle-chat#DisplayChat"
+              class="bg-info border-0 me-2 mt-2 p-3 rounded-3 rounded-lg">
+      <i class="fa-regular fa-comment fa-2xl" style="color: #243e2d;"></i>
+      </button>
+      <div data-toggle-chat-target="togglableElementChat" class="d-none">
+      <%= render "chat" %>
       </div>
-    </div>
-
-    <div class="col-6">
-      <div data-controller="toggle-chat">
-        <button class="btn-scan-quit" data-action="click->toggle-chat#DisplayChat"><i class="fa-regular fa-comment" style="color: #7ca982;"></i></button>
-        <div data-toggle-chat-target="togglableElementChat" class="d-none">
-          <%= render "chat" %>
+      <div class="bg-info bottom-0 p-2 position-fixed rounded-top-3 w-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-9">
+              <div data-controller="timer"
+                   data-timer-duration-in-seconds-value="<%= remaining_time_in_seconds %>">
+                    <h6>Time remaining: <span data-timer-target="counter"></span></h6>
+              </div>
+            </div>
+            <div class="Qrcode"  data-controller="qrcode" data-qrcode-scan-url-value="<%= scan_game_path(@game) %>" data-qrcode-target='divSaMere'>
+              <div class="Qrcode-enfant">
+                <button data-action="click->qrcode#startScanning"
+                        data-qrcode-target="start"
+                        class="bg-info border-1 me-2 mt-2 p-3 rounded-3 rounded-lg btn-start-qrcode">
+                  <i class="fa-solid fa-qrcode fa-2xl" style="color: #243e36;"></i>
+                </button>
+                <button data-action="click->qrcode#stopScanning"
+                        data-qrcode-target="stop"
+                        class="btn-show d-none btn-qrcode-stop">
+                  <i class="fa-solid fa-xmark fa-xl" style="color: #f1f7ed;"></i>
+                </button>
+                <video class="d-none video-style" data-qrcode-target="video"></video>
+              </div>
+            </div>
+            <div class="col-4">
+              <%= cl_image_tag opponent_user_game.photo.key, height: 100, width: 100, crop: :fill, gravity: :face, class: "photo-player-show rounded-circle" %>
+            </div>
+            <div class="col-8 pt-5">
+              <h3><%= opponent_user_game.user.user_name %></h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="col-12">
-      <div data-controller="qrcode"
-          data-qrcode-scan-url-value="<%= scan_game_path(@game) %>"
-          class="">
-        <button data-action="click->qrcode#startScanning" data-qrcode-target="start" class="btn-show">Scan</button>
-        <button data-action="click->qrcode#stopScanning" data-qrcode-target="stop" class="btn-show d-none">Quit scan</button>
-        <video data-qrcode-target="video"></video>
-      </div>
-    </div>
   </div>
+  <div data-location-target="startTracking">
+   <div id="map-home" class="" style="height: 90vh" data-location-target="map"></div>
+  </div>
+
 </div>
-
-
-
-      <video class="w-100" data-qrcode-target="video"></video>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-    <%# <div class="bg-white p-5"> %>
-      <%#= opponent_user_game.user.qrcode.html_safe %>
-    <%# </div> %>
-  <%# </div> %>

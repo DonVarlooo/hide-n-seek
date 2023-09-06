@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import QrScanner from 'qr-scanner';
 
 export default class extends Controller {
-  static targets = [ "video", "start", "stop" ]
+  static targets = [ "video", "start", "stop", 'divSaMere' ]
   static values = {
     scanUrl: String
   }
@@ -15,12 +15,18 @@ export default class extends Controller {
     this.qrScanner.start()
     this.startTarget.classList.toggle("d-none")
     this.stopTarget.classList.remove("d-none")
+    this.videoTarget.classList.remove("d-none")
+    this.divSaMereTarget.style.height = '90vh'
+    // this.videoTarget.style.height = "100vh"
   }
 
   stopScanning() {
     this.qrScanner.stop()
     this.stopTarget.classList.toggle("d-none")
     this.startTarget.classList.remove("d-none")
+    this.videoTarget.classList.add("d-none")
+    this.divSaMereTarget.style.height = 'inherit'
+    // this.videoTarget.offsetHeight = "100vh"
   }
 
   #initScanner() {
