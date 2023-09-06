@@ -17,11 +17,16 @@
       <%= simple_form_for Game.new do |f| %>
         <%= f.hidden_field :lat, data: { game_selection_target: "latitude" } %>
         <%= f.hidden_field :lng, data: { game_selection_target: "longitude" } %>
-        <% f.hidden_field :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
+        <%# f.hidden_field :mode, collection: Game::MODE, prompt: "Selectionner le mode de", label: "mode de jeu"%>
         <%= f.input :name, label: 'Name of the war' %>
         <%= f.input :duration, collection: Game::DURATION, prompt: "Choose game duration", label: "Duration"%>
         <%= f.input :photo, as: :file, label: render("upload_photo_label"), input_html: { class: "d-none " } %>
-        <%= f.submit class: 'btn-create-game'%>
+        <%# if @game.lat && @game.lng == nil %>
+        <button class="btn btn-primary" disabled>Submit</button>
+          <%#= f.submit class: 'btn-create-game', disabled: :true %>
+        <%# else %>
+          <%#= f.submit class: 'btn-create-game'%>
+        <%# end %>
       <% end %>
     </div>
   </div>
