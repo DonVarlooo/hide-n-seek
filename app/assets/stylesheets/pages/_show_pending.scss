@@ -20,8 +20,8 @@
 .container-settings {
   background-color: #cfc143;
   text-align: center;
-  height: 320px;
-  border: 2px solid;
+  height: 400px;
+  border: 1px solid;
   border-color: #243E36;
   border-radius: 10px;
   margin-left: 16px;
@@ -61,7 +61,7 @@
     border: 2px solid;
     border-color: #F1F7ED;
     border-radius: 10px;
-    height: 100px;
+    height: 150px;
     width: 180px;
 
     .fa-camera {
@@ -120,18 +120,64 @@
   border-color: #F1F7ED;
   border-radius: 10px;
 
+
 }
 
-.container-avatar-players {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 20px;
+.avatar-players-bis {
+  height: 100px;
+  width: 150px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px;
 }
+
+.shape {
+  width: 180px;
+  height: 200px;
+  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px;
+  margin-left: 0px;
+}
+
+.shape2 {
+  width: 180px;
+  height: 200px;
+  transform: scale(-1);
+  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  margin-left: -28px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+// .container-avatar-players {
+//   display: flex;
+//   justify-content: space-around;
+//   width: 100%;
+//   margin-top: 20px;
+// }
 
 .border-dotted {
   border-style: dotted !important; /* You can adjust the color and width as needed */
   margin-left: 16px;
   margin-right: 16px;
   border-radius: 10px;
+}
+
+.photo-size {
+  background-color: #7CA982;
+  border: 2px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px;
+  height: 100px;
+  width: 150px;
 }
