@@ -119,9 +119,9 @@ end
 puts "seed completed, merci Thibault le boss de la log"
 
 # radius = 15*duration
-duration_v2 = { 15 => "225",
-                30 => "450",
-                45 => "675",
-                60 => "900",
-                90 => "1350",
-                120 => "1800" }
+# duration_v2 = { 15 => "225",
+#                 30 => "450",
+#                 45 => "675",
+#                 60 => "900",
+#                 90 => "1350",
+#                 120 => "1800" }

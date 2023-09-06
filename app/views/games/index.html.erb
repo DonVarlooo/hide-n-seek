@@ -3,6 +3,9 @@
       <%= image_tag "logo-home.png", height: 80, class: "logo-index"%>
   </div>
   <div class="container-select" data-game-selection-target="items">
+          <% link_to games_path do %>
+          <i class="fa-solid fa-rotate-right fa-spin fa-2xl" style="color: #243e36;"></i>
+        <% end %>
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
