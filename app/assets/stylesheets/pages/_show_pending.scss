@@ -4,23 +4,23 @@
   font-size: 30px;
   text-align: center;
   margin-top: 8px;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #243E36;
   border-radius: 10px;
   margin-left: 16px;
   margin-right: 16px;
   overflow: hidden;
 
-
   p {
     margin-bottom: 0px;
+    color: #243E36;
   }
 }
 
 .container-settings {
   background-color: #cfc143;
   text-align: center;
-  height: 320px;
+  height: 400px;
   border: 1px solid;
   border-color: #243E36;
   border-radius: 10px;
@@ -29,25 +29,25 @@
   margin-top: 8px;
 
   p {
-  font-weight: 600;
-  font-size: 30px;
-  background-color: #7CA982;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+    color: #243E36;
+    font-weight: 600;
+    font-size: 30px;
+    background-color: #7CA982;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   h4 {
-  font-weight: 400;
-  font-size: 20px;
+    font-weight: 400;
+    font-size: 20px;
   }
 
-  .upload-photo{
+  .upload-photo {
     background-color: #7CA982;
     border: 2px solid;
     border-color: #F1F7ED;
     border-radius: 10px;
     height: 100px;
-
 
     .fa-camera {
       margin-top: 5px;
@@ -56,12 +56,12 @@
 }
 
 .container-avatar-players {
-  .upload-photo{
+  .upload-photo {
     background-color: #7CA982;
     border: 2px solid;
     border-color: #F1F7ED;
     border-radius: 10px;
-    height: 100px;
+    height: 150px;
     width: 180px;
 
     .fa-camera {
@@ -83,15 +83,15 @@
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border: 2px solid;
   border-color: #F1F7ED;
 }
 
 .btn-update-user-name {
   text-decoration: none;
   text-align: center;
-  color:  #243E36;
+  color: #243E36;
   border-radius: 10px;
   font-weight: 500;
   font-size: 18px;
@@ -101,8 +101,8 @@
   padding-right: 10px;
   padding-left: 10px;
   margin-bottom: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  border: 1px solid;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border: 2px solid;
   border-color: #F1F7ED;
 }
 
@@ -116,22 +116,70 @@
   width: 150px;
   object-fit: cover;
   object-position: center;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #F1F7ED;
   border-radius: 10px;
 
+
 }
 
-.container-avatar-players {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 20px;
+.avatar-players-bis {
+  height: 100px;
+  width: 150px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px;
 }
+
+.shape {
+  width: 180px;
+  height: 200px;
+  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 10px 0 0 10px;
+  margin-left: 0px;
+}
+
+.shape2 {
+  width: 180px;
+  height: 200px;
+  clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
+  margin-left: -28px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid;
+  border-color: #F1F7ED;
+  border-radius: 0 10px 10px 0;
+  margin-right: 5px;
+}
+
+// .container-avatar-players {
+//   display: flex;
+//   justify-content: space-around;
+//   width: 100%;
+//   margin-top: 20px;
+// }
 
 .border-dotted {
-  border-style: dotted !important; /* You can adjust the color and width as needed */
+  border-style: dotted !important;
+  /* You can adjust the color and width as needed */
   margin-left: 16px;
   margin-right: 16px;
   border-radius: 10px;
+}
+
+.photo-size {
+  background-color: #7CA982;
+  border: 2px solid;
+  border-color: #F1F7ED;
+  width: 180px;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
 }

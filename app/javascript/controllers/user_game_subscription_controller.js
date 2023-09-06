@@ -3,7 +3,9 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="user-game-subscription"
 export default class extends Controller {
-  static values = {userGameId: Number}
+  static values = {
+    userGameId: Number
+  }
   static targets = ["game"]
 
   connect() {
