@@ -23,7 +23,7 @@ export default class extends Controller {
     this.longitudeTarget.value = crd.longitude
 
     // Enable submit submit button
-    this.btnSubmitTarget.disabled = false
+    this.btnSubmitTarget.removeAttribute("disabled")
 
     console.log(pos.coords)
     this.addCoord()
