@@ -24,11 +24,11 @@
     <%# On affiche la photo du createur %>
     <div class="container-avatar-players">
       <% if creator_user_game.photo.attached? %>
-        <%= cl_image_tag creator_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
+        <%= cl_image_tag creator_user_game.photo.key, crop: :thumb, class: 'avatar-players', gravity: :face %>
       <% end %>
       <%# # Si opponent existe et photo.attached? afficher la photo %>
       <% if challenger_user_game && challenger_user_game.photo.attached? %>
-          <%= cl_image_tag challenger_user_game.photo.key, crop: :fill, class: 'avatar-players', focus: :face %>
+          <%= cl_image_tag challenger_user_game.photo.key, crop: :thumb, class: 'avatar-players', gravity: :face %>
     <%# # Sinon Upload la photo %>
     <% else %>
         <%= simple_form_for user.find_user_game(game) do |f| %>
