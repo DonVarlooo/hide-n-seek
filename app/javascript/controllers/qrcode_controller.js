@@ -17,7 +17,6 @@ export default class extends Controller {
     this.stopTarget.classList.remove("d-none")
     this.videoTarget.classList.remove("d-none")
     this.divSaMereTarget.style.height = '90vh'
-    // this.videoTarget.style.height = "100vh"
   }
 
   stopScanning() {
@@ -26,7 +25,6 @@ export default class extends Controller {
     this.startTarget.classList.remove("d-none")
     this.videoTarget.classList.add("d-none")
     this.divSaMereTarget.style.height = 'inherit'
-    // this.videoTarget.offsetHeight = "100vh"
   }
 
   #initScanner() {
