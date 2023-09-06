@@ -40,10 +40,34 @@
   font-weight: 400;
   font-size: 20px;
   }
+
+  .upload-photo{
+    background-color: #7CA982;
+    border: 2px solid;
+    border-color: #F1F7ED;
+    border-radius: 10px;
+    height: 100px;
+
+
+    .fa-camera {
+      margin-top: 5px;
+    }
+  }
 }
 
-.picture-form {
-  margin-top: 10px;
+.container-avatar-players {
+  .upload-photo{
+    background-color: #7CA982;
+    border: 2px solid;
+    border-color: #F1F7ED;
+    border-radius: 10px;
+    height: 100px;
+    width: 180px;
+
+    .fa-camera {
+      margin-top: 10px;
+    }
+  }
 }
 
 .btn-return-show {
