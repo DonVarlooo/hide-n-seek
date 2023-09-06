@@ -29,20 +29,20 @@
   margin-top: 8px;
 
   p {
-  color: #243E36;
-  font-weight: 600;
-  font-size: 30px;
-  background-color: #7CA982;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+    color: #243E36;
+    font-weight: 600;
+    font-size: 30px;
+    background-color: #7CA982;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   h4 {
-  font-weight: 400;
-  font-size: 20px;
+    font-weight: 400;
+    font-size: 20px;
   }
 
-  .upload-photo{
+  .upload-photo {
     background-color: #7CA982;
     border: 2px solid;
     border-color: #F1F7ED;
@@ -56,7 +56,7 @@
 }
 
 .container-avatar-players {
-  .upload-photo{
+  .upload-photo {
     background-color: #7CA982;
     border: 2px solid;
     border-color: #F1F7ED;
@@ -83,7 +83,7 @@
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border: 2px solid;
   border-color: #F1F7ED;
 }
@@ -91,7 +91,7 @@
 .btn-update-user-name {
   text-decoration: none;
   text-align: center;
-  color:  #243E36;
+  color: #243E36;
   border-radius: 10px;
   font-weight: 500;
   font-size: 18px;
@@ -101,7 +101,7 @@
   padding-right: 10px;
   padding-left: 10px;
   margin-bottom: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border: 2px solid;
   border-color: #F1F7ED;
 }
@@ -141,21 +141,20 @@
   object-position: center;
   border: 1px solid;
   border-color: #F1F7ED;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   margin-left: 0px;
 }
 
 .shape2 {
   width: 180px;
   height: 200px;
-  transform: scale(-1);
-  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
   margin-left: -28px;
   object-fit: cover;
   object-position: center;
   border: 1px solid;
   border-color: #F1F7ED;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   margin-right: 5px;
 }
 
@@ -167,7 +166,8 @@
 // }
 
 .border-dotted {
-  border-style: dotted !important; /* You can adjust the color and width as needed */
+  border-style: dotted !important;
+  /* You can adjust the color and width as needed */
   margin-left: 16px;
   margin-right: 16px;
   border-radius: 10px;
@@ -177,7 +177,9 @@
   background-color: #7CA982;
   border: 2px solid;
   border-color: #F1F7ED;
-  border-radius: 10px;
-  height: 100px;
-  width: 150px;
+  width: 180px;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
 }
