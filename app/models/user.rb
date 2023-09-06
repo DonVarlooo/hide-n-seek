@@ -7,6 +7,11 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :games
   has_many :user_games
+  has_many :games_as_opponent, through: :user_games, source: :game
+
+  def all_games
+    games + games_as_opponent
+  end
 
   def qrcode
     qrcode = RQRCode::QRCode.new(id.to_s)
@@ -39,10 +44,14 @@ class User < ApplicationRecord
   def face_to_face(opponent_user)
     win = 0
     loose = 0
-    games_with_opponent_user = games.select do |game|
+
+    # On doit récuperer nos games et aussi celle que l'opponent à creer !
+    # On ne récupère pas la seconde partie des games ce qui fait que nos stats sont fausses !
+    games_with_opponent_user = all_games.select do |game|
       game.user_games.map(&:user).flatten.include?(opponent_user.user)
     end
-    face_to_face_user_games = UserGame.where('user_id = ? AND game_id = ANY(ARRAY[?]::int[])', id, games_with_opponent_user.pluck(:id) )
+
+    face_to_face_user_games = UserGame.where('user_id = ? AND game_id = ANY(ARRAY[?]::int[])', id, games_with_opponent_user.pluck(:id))
     face_to_face_user_games.each do |game|
       if game.win
         win += 1
