@@ -106,6 +106,8 @@ export default class extends Controller {
     const crd = pos.coords;
 
     this.#handleGetUserPosition(crd.latitude, crd.longitude)
+    console.log(position.latitude)
+    console.log(position.longitude)
   }
 
   #error(err) {
