@@ -1,5 +1,5 @@
 <div class="Area" >
-  <p>Battle Area</p>
+  <p><%= game.name %></p>
   <%# Emplacement de la map area de la game %>
     <div
       data-controller="location"
@@ -10,61 +10,71 @@
       data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
     >
       <div data-location-target="startTracking">
-        <div id="map-home" class="" style="height: 300px" data-location-target="map"></div>
+        <div id="map-home" class="" style="height: 200px" data-location-target="map"></div>
       </div>
     </div>
 </div>
 
 <div class="container-settings" data-controller="rematch" data-rematch-target="items">
-  <p>Settings</p>
-  <%# Div dans laquelle on met les deux utilisateurs et leur photo
-  La photo doit être cliquable pour qu'on puisse la voir en entier %>
+  <p><%= game.name%>'s settings</p>
   <h4>Game duration: <%= game.duration %>min</h4>
-  <div class="d-flex">
-    <%# On affiche la photo du createur %>
-    <div class="container-avatar-players">
-      <% if creator_user_game.photo.attached? %>
-        <%= cl_image_tag creator_user_game.photo.key, crop: :thumb, class: 'avatar-players', gravity: :face %>
-      <% end %>
-      <%# # Si opponent existe et photo.attached? afficher la photo %>
-      <% if challenger_user_game && challenger_user_game.photo.attached? %>
-          <%= cl_image_tag challenger_user_game.photo.key, crop: :thumb, class: 'avatar-players', gravity: :face %>
-    <%# # Sinon Upload la photo %>
-    <% else %>
-        <%= simple_form_for user.find_user_game(game) do |f| %>
-          <%= f.input :photo,
-                    as: :file,
-                    label: render("upload_photo_label"),
-                    wrapper_html: {
-                      data: {
-                        controller: 'preview-photo'
-                      }
-                    },
-                    input_html: {
-                      class: "d-none",
-                      data: {
-                        preview_photo_target: :input,
-                        action:"change->preview-photo#displayPreview"
-                      }
-                    } %>
-          <%= f.submit class: 'btn-update-user-name' %>
-        <% end %>
-    <% end %>
+
+  <%= simple_form_for user.find_user_game(game) do |f| %>
+    <div class="container container-avatar-players">
+      <div class="row">
+        <div class="col-6">
+          <%= cl_image_tag creator_user_game.photo.key, crop: :thumb, class: 'avatar-players shape', gravity: :face %>
+        </div>
+
+        <div class="col-6">
+          <% if challenger_user_game && challenger_user_game.photo.attached? %>
+            <%= cl_image_tag challenger_user_game.photo.key, crop: :thumb, class: 'avatar-players shape2', gravity: :face %>
+          <% elsif challenger_user_game && user == challenger_user_game.user && !challenger_user_game.photo.attached? %>
+            <%= f.input :photo,
+                        as: :file,
+                        label: render("games/upload_photo_label_2"),
+                        wrapper_html: {
+                          data: {
+                            controller: 'preview-photo'
+                          }
+                        },
+                        input_html: {
+                          class: "d-none",
+                          data: {
+                            preview_photo_target: :input,
+                            action:"change->preview-photo#displayPreview"
+                          }
+                        } %>
+          <% else %>
+            <%= image_tag('waiting.gif', alt: 'Waiting opponent', class:"avatar-players shape2") %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <%# AS CREATOR %>
+          <% if user == creator_user_game.user && challenger_user_game.nil? %>
+            Waiting for an opponent to join in
+          <% elsif user == creator_user_game.user && challenger_user_game && !challenger_user_game.photo.attached? %>
+            Waiting for your opponent to show his face
+          <% elsif user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
+            Your target is ready to go!
+          <%# AS CHALLENGER %>
+          <% elsif user == challenger_user_game.user && challenger_user_game.photo.attached? %>
+            Your opponent is about to start the game.
+          <% elsif user == challenger_user_game.user && !challenger_user_game.photo.attached? %>
+            <%= f.submit "Upload my selfie", class: 'btn-return-show' %>
+          <% end %>
+        </div>
+      </div>
+
     </div>
-  </div>
+  <% end %>
 </div>
 
 <div class="container-return d-flex justify-content-center">
-  <%# # Si je suis le createur du jeu et que l'opponent a sa photo.attached? alors je peux cliquer sur le bouton
-  # Si opponent nil alors on affiche la photo du createur (user_game) et un "?" en face
-  # Si opponent.photo.attached ? false alors on affiche la photo du createur (user_game) et un "?" en face
-  # Sinon on affiche les deux photos des usergames et le play game devient clicable chez le user_game %>
-  <% if !challenger_user_game.nil? %>
-
-    <% if user == creator_user_game.user && challenger_user_game.photo.attached? && creator_user_game.photo.attached?%>
-
-      <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show'%>
-    <% end %>
+  <% if user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
+    <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show'%>
   <% end %>
 </div>
 
