@@ -7,7 +7,8 @@ class Game < ApplicationRecord
   belongs_to :user
   has_many :users, through: :user_game
   has_many :user_games
-
+  has_many :messages, dependent: :destroy
+  
   private
 
   DURATION = ["10 minutes", "15 minutes", "20 minutes", "30 minutes"]

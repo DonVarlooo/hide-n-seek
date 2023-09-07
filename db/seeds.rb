@@ -94,29 +94,63 @@ addresses = [
   "1 Arcades des Champs-Élysées ,Paris"
 ]
 
-User.create(name: 'Bapt', user_name: 'Babou', email: 'bapt@gmail.com', password: 'azerty')
-User.create(name: 'Jer', user_name: 'Jerome', email: 'jerome@gmail.com', password: 'jerome')
-User.create(name: 'Adrien', user_name: 'Adri', email: 'adrien@gmail.com', password: 'adrien')
-User.create(name: 'Hugo', user_name: 'Mr Hide', email: 'hugo@gmail.com', password: 'azerty')
+puts "Creating users"
+User.create!(name: 'Bapt', user_name: 'Babou', email: 'bapt@gmail.com', password: 'azerty')
+User.create!(name: 'Jer', user_name: 'Jerome', email: 'jerome@gmail.com', password: 'azerty')
+User.create!(name: 'Adrien', user_name: 'Adri', email: 'adrien@gmail.com', password: 'azerty')
+User.create!(name: 'Hugo', user_name: 'Mr Hide', email: 'hugo@gmail.com', password: 'azerty')
+User.create!(name: 'Paul', user_name: 'Polo', email: 'paul@gmail.com', password: 'azerty')
+User.create!(name: 'Cécile', user_name: 'C_Queen', email: 'cecile@gmail.com', password: 'azerty')
+User.create!(name: 'Thibault', user_name: 'la_machina', email: 'thibault@gmail.com', password: 'azerty')
+User.create!(name: 'Romain', user_name: 'El_professor', email: 'romain@gmail.com', password: 'azerty')
+puts "Users created"
 
-duration = [15, 30, 45, 60, 90, 120]
-mode = ["1v1", "Multiplayer", "Royal Rumble", "Zombie"]
+puts "Attaching photos to #{User.count} users"
+User.find_each.with_index do |user, i|
+  puts "attaching photo to user n°#{i + 1}"
+  filepath = File.join(Rails.root, 'public', 'seed_medias', "#{user.email.match(/.+(?=@)/)}.jpg")
+  next unless File.exist? filepath
+
+  photo_file = File.open(filepath)
+  user.photo.attach(io: photo_file, filename: 'pouet.jpg')
+end
+puts "Photos attached"
+
+duration = [10, 15, 20, 30]
 
 addresses.first(4).each do |address|
   cord = Geocoder.search(address).first&.coordinates
   next unless cord
 
-  Game.create!(
+  users = User.all.sample(2)
+
+  winner = users.sample
+
+  game = Game.create!(
     lat: cord[0],
     lng: cord[1],
     duration: duration.sample,
     name: "#{Faker::Name.first_name}War",
-    mode: mode.sample,
-    user: User.all.sample
+    mode: "1v1",
+    user: users.first,
+    status: :finished
   )
+
+  UserGame.create!(
+    game: game,
+    user: users.first,
+    win: users.first == winner
+  )
+
+  UserGame.create!(
+    game: game,
+    user: users.last,
+    win: users.last == winner
+  )
+
   puts "Nous venons de créer la partie numéro: #{Game.count}"
 end
-puts "seed completed, merci Thibault le boss de la log"
+puts "seed completed, merci Paul et un peu Thibault le boss de la log"
 
 # radius = 15*duration
 # duration_v2 = { 15 => "225",
