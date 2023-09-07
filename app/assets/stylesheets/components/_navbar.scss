@@ -4,6 +4,7 @@
   border-color: #7CA982;
   background-color: #243E36;
   font-family: Mali;
+  position: relative;
   h1 {
     color: white;
     font-weight: 400;
@@ -15,6 +16,8 @@
     text-align: center;
     margin-top: 7px;
     margin-left: -5px;
+    position: relative;
+    right: 100px;
   }
 }
 
@@ -42,4 +45,10 @@
   border-radius: 10px;
   background-color: #243E36;
 
+}
+
+.btn-power-off{
+  position: absolute;
+  right: 6px;
+  top: 22px;
 }
