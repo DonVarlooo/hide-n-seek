@@ -1,0 +1,13 @@
+<h1>Ranking</h1>
+<ol>
+<% @users.each do |player| %>
+  <% count = 0 %>
+  <% player.games.finished.each do |game| %>
+    <% if game.user_games.where(user: player).first.win %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
+  <span><%= "#{player.name} => #{@count}" %></span>
+<% end %>
+</ol>
+<%= console %>
