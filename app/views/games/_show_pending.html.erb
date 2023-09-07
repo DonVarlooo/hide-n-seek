@@ -17,7 +17,7 @@
 
 <div class="container-settings" data-controller="rematch" data-rematch-target="items">
   <p><%= game.name%>'s settings</p>
-  <h4>Game duration: <%= game.duration %>min</h4>
+  <h4><strong>Game duration: <%= game.duration %>min</strong></h4>
 
   <%= simple_form_for user.find_user_game(game) do |f| %>
     <div class="container container-avatar-players">
@@ -51,17 +51,22 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col waiting-tag">
           <%# AS CREATOR %>
           <% if user == creator_user_game.user && challenger_user_game.nil? %>
-            Waiting for an opponent to join in
+            <h5>Looking for an opponent: </h5>
+            <div class="loaderctnr d-flex mt-2">
+              <span class="circle first"></span>
+              <span class="circle second"></span>
+              <span class="circle third"></span>
+            </div>
           <% elsif user == creator_user_game.user && challenger_user_game && !challenger_user_game.photo.attached? %>
-            Waiting for your opponent to show his face
+            <h5>Waiting for your opponent to show his face</h5>
           <% elsif user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
-            Your target is ready to go!
+            <h5>Your target is ready to go!<%= image_tag "swords.png", height: 80, class: "mb-1"%></h5>
           <%# AS CHALLENGER %>
           <% elsif user == challenger_user_game.user && challenger_user_game.photo.attached? %>
-            Your opponent is about to start the game.
+            <h5>Your opponent is about to start the game.</h5>
           <% elsif user == challenger_user_game.user && !challenger_user_game.photo.attached? %>
             <%= f.submit "Upload my selfie", class: 'btn-return-show' %>
           <% end %>
