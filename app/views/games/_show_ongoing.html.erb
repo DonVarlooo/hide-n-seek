@@ -8,15 +8,9 @@
   data-location-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
   class="bg-image">
   <div data-controller="toggle-chat">
-    <div class="d-flex justify-content-between chat">
-      <h1 class="battle-area border-0 ms-2 mt-2 p-1 rounded-3"><%= game.name %></h1>
-      <button data-action="click->toggle-chat#DisplayChat"
-              class="btn-chat border-0 me-2 mt-2 p-3 rounded-3 rounded-lg">
-      <i class="fa-solid fa-comment fa-2xl" style="color: #c2a83e;"></i>
-      </button>
-      <div data-toggle-chat-target="togglableElementChat" class="d-none">
-      <%= render "chat" %>
-      </div>
+    <div class="d-flex justify-content-center chat">
+      <h1 class="battle-area border-0 ms-2 mt-2 p-2 rounded-3"><%= game.name %></h1>
+
       <div class="bottom-0 p-2 position-fixed rounded-top-3 w-100 bottom-container">
         <div class="container">
           <div class="row">
