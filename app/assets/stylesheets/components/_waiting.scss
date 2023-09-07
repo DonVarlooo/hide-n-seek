@@ -1,0 +1,45 @@
+
+.loaderctnr{
+  display:flex;
+  width:20%;
+  justify-content: space-around;
+  align-items:center;
+  margin-left: 37%;
+  padding-top: 4%;
+}
+
+.waiting-tag{
+  padding-top: 4%;
+}
+
+.circle{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background:black;
+}
+.first{
+  animation: 2.5s loader infinite;
+}
+.second{
+  animation: 2.5s .5s loader infinite;
+}
+.third{
+  animation: 2.5s 1s loader infinite;
+}
+
+
+@keyframes loader {
+  0%{
+    opacity:100%;
+    transform:translateY(0);
+  }
+  50%{
+    opacity:40%;
+    transform:translateY(-50%);
+  }
+  100%{
+    opacity:100%;
+    transform:translateY(0);
+  }
+}
