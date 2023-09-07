@@ -3,11 +3,19 @@
   position: relative;
 }
 
+.battle-area{
+  background-color: #cfc143;
+}
+
+.btn-chat{
+  background-color: #243E36;
+}
+
 .chat{
   position: absolute;
   z-index: 10;
   width: 100%;
-  color: #243E36;
+  color: black;
 }
 
 .Qrcode{
@@ -21,11 +29,21 @@
   height: inherit;
 }
 
+.bottom-container{
+  background-color: #cfc143;
+  height: 25%;
+}
+
 .btn-start-qrcode{
   position: absolute;
   bottom: 70px;
-  right: 10px; z-index: 100;
-  bottom: 60px;
+  right: 10px;
+  z-index: 100;
+  bottom: 111px;
+  background-color: #243E36;
+  border: 1px solid;
+  border-color: #243E36;
+  color: #C2A83E;
 }
 
 .btn-qrcode-stop{
@@ -40,9 +58,13 @@
   background-color: #243E36;
 }
 
+.target{
+  text-align: center;
+}
+
 .photo-player-show{
   border: 2px solid;
-  border-color: #cfc143;
+  border-color: #243E36;
 }
 
 .video-style {
