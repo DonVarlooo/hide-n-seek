@@ -1,0 +1,139 @@
+.icon-finish {
+  background-color: #7CA982;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 3px solid;
+  border-color: #cfc143;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+  margin-left: 95px;
+  margin-right: 95px;
+  overflow: hidden;
+
+  p {
+    color: #F1F7ED;
+    font-size: 25px;
+    font-weight: 500;
+    padding-bottom: 0px;
+    padding-top: 10px;
+    margin-bottom: 0;
+  }
+  .symbol-end-game {
+    transform: none;
+  }
+}
+
+
+.statistics {
+  text-decoration: none;
+  text-align: center;
+  color: #F1F7ED;
+  font-weight: 500;
+  font-size: 28px;
+  background-color: #243E36;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 2px solid;
+  border-color: #F1F7ED;
+  margin-left: 16px;
+  margin-right: 16px;
+  overflow: hidden;
+
+  h2 {
+    background-color: #cfc143;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #243E36;
+    font-size: 35px;
+    font-weight: 600;
+  }
+
+  .duration {
+    font-size: 23px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    h4 {
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
+
+  .win {
+    font-size: 23px;
+    font-weight: 600;
+    color: #243E36;
+    background-color: #7CA982;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    h4 {
+      font-size: 25px;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+  }
+  .faceoff {
+    font-size: 23px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    h4 {
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.container-finish {
+  .btn-quit {
+    text-decoration: none;
+    text-align: center;
+    color: #243E36;
+    font-weight: 500;
+    font-size: 23px;
+    background-color: #7CA982;
+    border-radius: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border: 2px solid;
+    border-color: #243E36;
+    margin-top: 6px;
+    margin-left: 40px;
+  }
+  .btn-rematch {
+    text-decoration: none;
+    text-align: center;
+    color: #243E36;
+    font-weight: 600;
+    font-size: 28px;
+    background-color: #cfc143;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border: 2px solid;
+    border-color: #F1F7ED;
+    margin-left: 20px;
+  }
+}
+
+#trophee {
+  position: relative;
+  // display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.confettis {
+  position: absolute;
+  z-index: 10;
+  top: -24px;
+}

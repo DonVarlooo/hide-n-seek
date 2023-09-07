@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users, only: :show
+  resources :users, only: %i[index show]
 
   resources :games, only: %i[index new create show] do
     member do
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :user_games, only: %i[create]
   end
 
-  resources :user_games, only: :update
+  resources :user_games, only: %i[update]
 
   resources :pages, only: [:index]
 end

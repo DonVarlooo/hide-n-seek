@@ -54,21 +54,31 @@
         <div class="col waiting-tag">
           <%# AS CREATOR %>
           <% if user == creator_user_game.user && challenger_user_game.nil? %>
-            <h5>Looking for an opponent: </h5>
+            <h5>Looking for an opponent</h5>
             <div class="loaderctnr d-flex mt-2">
               <span class="circle first"></span>
               <span class="circle second"></span>
               <span class="circle third"></span>
             </div>
           <% elsif user == creator_user_game.user && challenger_user_game && !challenger_user_game.photo.attached? %>
-            <h5>Waiting for your opponent to show his face</h5>
+            <h5>Waiting for your opponent to show his face </h5>
+            <div class="loaderctnr d-flex mt-2">
+              <span class="circle first"></span>
+              <span class="circle second"></span>
+              <span class="circle third"></span>
+            </div>
           <% elsif user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
             <h5>Your target is ready to go!<%= image_tag "swords.png", height: 80, class: "mb-1"%></h5>
           <%# AS CHALLENGER %>
           <% elsif user == challenger_user_game.user && challenger_user_game.photo.attached? %>
             <h5>Your opponent is about to start the game.</h5>
+            <div class="loaderctnr d-flex mt-2">
+              <span class="circle first"></span>
+              <span class="circle second"></span>
+              <span class="circle third"></span>
+            </div>
           <% elsif user == challenger_user_game.user && !challenger_user_game.photo.attached? %>
-            <%= f.submit "Upload my selfie", class: 'btn-return-show' %>
+            <%= f.submit "Upload my selfie", class: 'btn-upload-my-selfie'%>
           <% end %>
         </div>
       </div>
@@ -79,6 +89,6 @@
 
 <div class="container-return d-flex justify-content-center">
   <% if user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
-    <%= link_to "Let's go !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show_creator'%>
+    <%= link_to "Let's Go !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-lets-go'%>
   <% end %>
 </div>
