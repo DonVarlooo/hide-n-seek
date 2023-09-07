@@ -14,7 +14,7 @@
       <i class="fa-regular fa-comment fa-2xl" style="color: #243e2d;"></i>
       </button>
       <div data-toggle-chat-target="togglableElementChat" class="d-none">
-      <%= render "chat" %>
+      <%= render "chat", user: current_user, game: game, message: message %>
       </div>
       <div class="bg-info bottom-0 p-2 position-fixed rounded-top-3 w-100">
         <div class="container">

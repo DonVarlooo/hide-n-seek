@@ -1,5 +1,18 @@
 class GamesController < ApplicationController
   def index
+       # TODO: ME RETIRER !!!!
+   @games = [Game.last]
+   lat = 48.856614
+   lng = 2.3522219
+
+  respond_to do |format|
+    format.json {
+      partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+      render json: { partial: partial}
+    }
+    format.html
+  end
+  return
     if params[:lat] && params[:lng]
       lat = params[:lat].to_f
       lng = params[:lng].to_f
@@ -23,6 +36,8 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @messages = Message.all
+    @message = Message.new
 
     if @game.ongoing?
       expected_end_time = @game.started_at + @game.duration.minutes
@@ -96,6 +111,7 @@ class GamesController < ApplicationController
   end
 
   def start
+    @message = Message.new
     @game = Game.find(params[:id])
     @game.update(status: :ongoing, started_at: Time.current)
     # redirect_to game_path(@game)
@@ -108,7 +124,8 @@ class GamesController < ApplicationController
         game: @game,
         opponent_user_game: @opponent_user_game,
         markers: @markers,
-        remaining_time_in_seconds: @remaining_time_in_seconds
+        remaining_time_in_seconds: @remaining_time_in_seconds,
+        message: @message
       }
     )
     html2 = render_to_string(
@@ -117,7 +134,8 @@ class GamesController < ApplicationController
         game: @game,
         opponent_user_game: @current_user_game,
         markers: @markers,
-        remaining_time_in_seconds: @remaining_time_in_seconds
+        remaining_time_in_seconds: @remaining_time_in_seconds,
+        message: @message
       }
     )
 
