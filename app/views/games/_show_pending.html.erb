@@ -74,8 +74,6 @@
 
 <div class="container-return d-flex justify-content-center">
   <% if user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
-    <%= link_to "Let's GO !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show'%>
+    <%= link_to "Let's go !!", start_game_path(game), data: {turbo_method: "PATCH"}, class: 'btn-return-show_creator'%>
   <% end %>
 </div>
-
-
