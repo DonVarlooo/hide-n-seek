@@ -1,107 +1,107 @@
-body {
-  background: black;
-  color: #cfc143;
-  font-family: Mali;
-  font-size: 6vw;
-  line-height: 1.3;
-  overflow: hidden;
-}
+// .container-last {
+//   background: black;
+//   color: #cfc143;
+//   font-family: Mali;
+//   font-size: 6vw;
+//   line-height: 1.3;
+//   overflow: hidden;
+// }
 
-p {
-  padding: 0.5em 0;
-}
+// p {
+//   padding: 0.5em 0;
+// }
 
-.star-scroll {
-  margin: 0 auto;
-  perspective: 700px;
-  perspective-origin: bottom;
-  position: absolute;
-  top: 0%;
-  bottom: 0; left: 0; right: 0;
-  overflow: visible;
-  transform: scaleY(0.9);
+// .star-scroll {
+//   margin: 0 auto;
+//   perspective: 700px;
+//   perspective-origin: bottom;
+//   position: absolute;
+//   top: 0%;
+//   bottom: 0; left: 0; right: 0;
+//   overflow: visible;
+//   transform: scaleY(0.9);
 
-  hgroup {
-    text-align: center;
-    h1 {
-      font-size: 2.5rem;
-    }
-    h2 {
-      font-size: 3rem;
-      text-transform: uppercase;
-    }
-  }
-}
+//   hgroup {
+//     text-align: center;
+//     h1 {
+//       font-size: 2.5rem;
+//     }
+//     h2 {
+//       font-size: 3rem;
+//       text-transform: uppercase;
+//     }
+//   }
+// }
 
-.star-scroll__shadow {
-    position: absolute;
-    top: 0%; width: 100%; height: 10%;
-    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%);
-}
+// .star-scroll__shadow {
+//     position: absolute;
+//     top: 0%; width: 100%; height: 10%;
+//     background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%);
+// }
 
-.star-scroll__text {
-  position: absolute;
-  top: 0; left: 13%; right: 13%;
-  height: 100%;
-  transform: rotateX(21deg) translate3d(0, 300px,0);
-  transition: none;
+// .star-scroll__text {
+//   position: absolute;
+//   top: 0; left: 13%; right: 13%;
+//   height: 100%;
+//   transform: rotateX(21deg) translate3d(0, 300px,0);
+//   transition: none;
 
-  &:hover {
-    transition: transform 40s linear;
-    transform: rotateX(21deg) translate3d(0,-3000px,0);
-  }
-}
+//   &:hover {
+//     transition: transform 40s linear;
+//     transform: rotateX(21deg) translate3d(0,-3000px,0);
+//   }
+// }
 
-.star-scroll__stars {
-  width: 100%; height: 100%;
-  position: absolute;
+// .star-scroll__stars {
+//   width: 100%; height: 100%;
+//   position: absolute;
 
-  span {
-    background: white;
-    width: 1px; height: 1px;
-    border-radius: 50%;
-    position: absolute;
-    top: 100px; left: 100px
-  }
-}
+//   span {
+//     background: white;
+//     width: 1px; height: 1px;
+//     border-radius: 50%;
+//     position: absolute;
+//     top: 100px; left: 100px
+//   }
+// }
 
-body {
-  margin: 0;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
-  background-size: cover;
-  backdrop-filter:  brightness(50%);
-}
+// .container-last {
+//   margin: 0;
+//   overflow: hidden;
+//   width: 100vw;
+//   height: 100vh;
+//   background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
+//   background-size: cover;
+//   backdrop-filter:  brightness(50%);
+// }
 
-canvas {
-  display: block;
-}
+// canvas {
+//   display: block;
+// }
 
-#canvas_container {
-  width: 100%;
-  height: 100vh;
-}
+// #canvas_container {
+//   width: 100%;
+//   height: 100vh;
+// }
 
-button {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  padding: 0.5rem 0.9em;
-  background: #000000;
-  color: white;
-  -webkit-font-smoothing: antialiased;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all .3s;
-}
+// button {
+//   position: absolute;
+//   bottom: 5%;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   border: 1px solid white;
+//   border-radius: 5px;
+//   font-size: 0.9rem;
+//   padding: 0.5rem 0.9em;
+//   background: #000000;
+//   color: white;
+//   -webkit-font-smoothing: antialiased;
+//   font-weight: bold;
+//   cursor: pointer;
+//   transition: all .3s;
+// }
 
-button:hover {
-  background: #ffffff;
-  color: #000000;
-}
+// button:hover {
+//   background: #ffffff;
+//   color: #000000;
+// }
