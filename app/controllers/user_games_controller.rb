@@ -46,8 +46,6 @@ class UserGamesController < ApplicationController
 
     head :ok
     # redirect_to game_path(@user_game.game)
-
-
   end
 
   private

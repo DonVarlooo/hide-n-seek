@@ -4,6 +4,7 @@
   border-color: #7CA982;
   background-color: #243E36;
   font-family: Mali;
+  position: relative;
   h1 {
     color: white;
     font-weight: 400;
@@ -17,6 +18,24 @@
     margin-left: -5px;
   }
 }
+
+.image-navbar{
+  position: absolute;
+  top: 13px;
+}
+
+.title-navbar{
+  position: absolute;
+  top: 8px;
+  right: 114px;
+}
+
+.btn-power-navbar{
+  position: absolute;
+  top: 21px;
+  right: 12px;
+}
+
 
 #navbarDropdown {
   margin-bottom: 5px;
