@@ -8,43 +8,49 @@
   class="bg-image">
   <div data-controller="toggle-chat">
     <div class="d-flex justify-content-between chat">
-      <h1 class="bg-info border-0 ms-2 mt-2 p-3 rounded-3">Battle Area</h1>
+      <h1 class="battle-area border-0 ms-2 mt-2 p-3 rounded-3">Battle Area</h1>
       <button data-action="click->toggle-chat#DisplayChat"
-              class="bg-info border-0 me-2 mt-2 p-3 rounded-3 rounded-lg">
-      <i class="fa-regular fa-comment fa-2xl" style="color: #243e2d;"></i>
+              class="btn-chat border-0 me-2 mt-2 p-3 rounded-3 rounded-lg">
+      <i class="fa-solid fa-comment fa-2xl" style="color: #c2a83e;"></i>
       </button>
       <div data-toggle-chat-target="togglableElementChat" class="d-none">
       <%= render "chat" %>
       </div>
-      <div class="bg-info bottom-0 p-2 position-fixed rounded-top-3 w-100">
+      <div class="bottom-0 p-2 position-fixed rounded-top-3 w-100 bottom-container">
         <div class="container">
           <div class="row">
-            <div class="col-9">
+            <div class="col-12">
               <div data-controller="timer"
                    data-timer-duration-in-seconds-value="<%= remaining_time_in_seconds %>">
-                    <h6>Time remaining: <span data-timer-target="counter"></span></h6>
+                    <h4>Time remaining: <span data-timer-target="counter"></span></h4>
               </div>
             </div>
             <div class="Qrcode"  data-controller="qrcode" data-qrcode-scan-url-value="<%= scan_game_path(@game) %>" data-qrcode-target='divSaMere'>
               <div class="Qrcode-enfant">
-                <button data-action="click->qrcode#startScanning"
-                        data-qrcode-target="start"
-                        class="bg-info border-1 me-2 mt-2 p-3 rounded-3 rounded-lg btn-start-qrcode">
-                  <i class="fa-solid fa-qrcode fa-2xl" style="color: #243e36;"></i>
+                <div class="zone-qrcode text-align-center">
+                  <button data-action="click->qrcode#startScanning"
+                          data-qrcode-target="start"
+                          class="border-1 pt-3 ps-3 pe-3 rounded-3 rounded-lg btn-start-qrcode">
+                    <i class="fa-solid fa-camera fa-beat fa-2xl" style="color: #c2a83e;"></i>
+                    <h6 class="pt-2">Scan</h6>
                 </button>
+                </div>
                 <button data-action="click->qrcode#stopScanning"
                         data-qrcode-target="stop"
                         class="btn-show d-none btn-qrcode-stop">
-                  <i class="fa-solid fa-xmark fa-xl" style="color: #f1f7ed;"></i>
+                  <i class="fa-solid fa-xmark fa-2xl" style="color: #c2a83e;"></i>
                 </button>
                 <video class="d-none video-style" data-qrcode-target="video"></video>
               </div>
             </div>
-            <div class="col-4">
-              <%= cl_image_tag opponent_user_game.photo.key, height: 100, width: 100, crop: :fill, gravity: :face, class: "photo-player-show rounded-circle" %>
+            <div class="col-5">
+              <%= cl_image_tag opponent_user_game.photo.key, height: 150, width: 150, crop: :fill, gravity: :face, class: "photo-player-show rounded-circle" %>
             </div>
-            <div class="col-8 pt-5">
-              <h3><%= opponent_user_game.user.user_name %></h3>
+            <div class="col-7 pt-5 target">
+              <h2 class="ms-3 pt-4">Your target</h2>
+              <h3><i class="fa-solid fa-bullseye fa-lg" style="color: #000000;"></i>
+              <%= opponent_user_game.user.name %>  <i class="fa-solid fa-bullseye fa-lg" style="color: #000000;"></i>
+              </h3>
             </div>
           </div>
         </div>
