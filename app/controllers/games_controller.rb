@@ -1,5 +1,18 @@
 class GamesController < ApplicationController
   def index
+       # TODO: ME RETIRER !!!!
+   @games = [Game.last]
+   lat = 48.856614
+   lng = 2.3522219
+
+  respond_to do |format|
+    format.json {
+      partial = render_to_string(partial: 'games/game_list', locals: { games: @games, user_lat: lat, user_lng: lng }, formats: :html)
+      render json: { partial: partial}
+    }
+    format.html
+  end
+  return
     if params[:lat] && params[:lng]
       lat = params[:lat].to_f
       lng = params[:lng].to_f
@@ -101,6 +114,9 @@ class GamesController < ApplicationController
     # redirect_to game_path(@game)
     @current_user_game = @game.user_games.find_by(user: current_user) # Current user
     @opponent_user_game = @game.user_games.where.not(user: current_user).first # Son opposant
+
+    expected_end_time = @game.started_at + @game.duration.minutes
+    @remaining_time_in_seconds = expected_end_time - Time.current
 
     html1 = render_to_string(
       partial: "show_ongoing",
