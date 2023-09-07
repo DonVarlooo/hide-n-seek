@@ -20,8 +20,8 @@
 .container-settings {
   background-color: #cfc143;
   text-align: center;
-  height: 445px;
-  border: 1px solid;
+  height: 420px;
+  border: 2px solid;
   border-color: #243E36;
   border-radius: 10px;
   margin-left: 16px;
@@ -70,13 +70,13 @@
   }
 }
 
-.btn-return-show {
+.btn-upload-my-selfie {
   text-decoration: none;
   text-align: center;
-  color: #243E36;
+  color: #7CA982;
   font-weight: 500;
   font-size: 28px;
-  background-color: #cfc143;
+  background-color: #243E36;
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -88,22 +88,22 @@
   border-color: #F1F7ED;
 }
 
-.btn-return-show_creator {
+.btn-lets-go {
   text-decoration: none;
   text-align: center;
-  color: #243E36;
+  color: #F1F7ED;
   font-weight: 500;
   font-size: 28px;
-  background-color: #cfc143;
+  background-color: #243E36;
   border-radius: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border: 2px solid;
-  border-color: #F1F7ED;
+  border-color: #cfc143;
 }
 
 .btn-update-user-name {
@@ -126,7 +126,7 @@
 
 .container-return {
   text-align: center;
-  margin-top: 13px;
+  margin-top: 10px;
 }
 
 .avatar-players {
@@ -137,8 +137,6 @@
   border: 2px solid;
   border-color: #F1F7ED;
   border-radius: 10px;
-
-
 }
 
 .avatar-players-bis {
