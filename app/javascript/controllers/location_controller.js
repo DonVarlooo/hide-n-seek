@@ -14,6 +14,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log('jfdsklkjflsdm');
     this.markers = []
     this.#buildMap()
   }
