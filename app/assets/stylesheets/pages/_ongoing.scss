@@ -5,6 +5,9 @@
 
 .battle-area{
   background-color: #cfc143;
+  border: 2px solid;
+  border-color: #243E36;
+  color: #243E36;
 }
 
 .btn-chat{
@@ -32,6 +35,8 @@
 .bottom-container{
   background-color: #cfc143;
   height: 25%;
+  border: 2px solid;
+  border-color: #F1F7ED;
 }
 
 .btn-start-qrcode{
@@ -41,9 +46,9 @@
   z-index: 100;
   bottom: 111px;
   background-color: #243E36;
-  border: 1px solid;
-  border-color: #243E36;
-  color: #C2A83E;
+  border: 3px solid;
+  border-color: #7CA982;
+  color: #cfc143;
 }
 
 .btn-qrcode-stop{
@@ -63,7 +68,7 @@
 }
 
 .photo-player-show{
-  border: 2px solid;
+  border: 3px solid;
   border-color: #243E36;
 }
 
