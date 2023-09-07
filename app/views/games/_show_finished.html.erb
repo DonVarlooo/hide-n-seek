@@ -2,17 +2,17 @@
   <div class="icon-finish">
     <%# 1 le current user gagne Victoire et l'opponent perd%>
     <% if current_user_game.win %>
-    <div id="trophee" class="visible text-center position-relative" data-controller="confettis">
-      <i class="fas fa-trophy position-absolute" style="color: #edc602; font-size: 6rem"></i>
-      <canvas data-confettis-target="items" class="confettis" width="300" height="110"></canvas>
-        <p>Victory!</p>
+    <div id="trophee" class="visible text-center d-flex" data-controller="confettis">
+      <i class="fas fa-trophy trophy symbol-end-game " style="color: #edc602; font-size: 6rem"></i>
+      <canvas data-confettis-target="items" class="confettis" width="194" height="190"></canvas>
+      <p>Victory!</p>
     </div>
 
     <%# 2 le current user perd et l'opponent gagne %>
     <% elsif !current_user_game.win %>
       <div id="trophee" class="visible text-center">
-        <i class="fa-solid fa-skull" style="font-size: 6rem"></i>
-          <p>Defeat!</p>
+        <i class="fa-solid fa-skull trophy symbol-end-game" style="font-size: 6rem"></i>
+        <p>Defeat!</p>
       </div>
     <% end %>
   </div>
