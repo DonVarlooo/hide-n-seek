@@ -14,11 +14,11 @@
     </div>
     <p class="title-navbar">Hide N'Seek</p>
     <% if user_signed_in? %>
-      <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none me-1 btn-power-off" do %>
+      <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none me-1 btn-power-navbar" do %>
         <i class="fa-solid fa-power-off fa-xl" style="color: #7CA982;"></i>
       <% end %>
     <% else %>
-      <%= link_to new_user_session_path, class: "text-decoration-none me-1 btn-power-off" do %>
+      <%= link_to new_user_session_path, class: "text-decoration-none me-1 btn-power-navbar" do %>
         <i class="fa-solid fa-power-off fa-xl" style="color: #7CA982;"></i>
       <% end %>
     <% end %>
