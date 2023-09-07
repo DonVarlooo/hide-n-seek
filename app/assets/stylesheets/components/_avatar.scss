@@ -3,19 +3,15 @@
   height: 40px;
   border-radius: 50%;
   border: 2px solid;
-  border-color: #cfc143;;
+  border-color: #CFC143;;
   object-fit: cover;
-  top: 14px;
-  position: absolute;
 }
-
 .avatar-large {
   object-fit: cover;
   width: 56px;
   height: 56px;
   border-radius: 50%;
 }
-
 .avatar-bordered {
   object-fit: cover;
   width: 40px;
@@ -24,7 +20,6 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border: white 2px solid;
 }
-
 .avatar-square {
   width: 40px;
   height: 40px;

@@ -16,57 +16,40 @@
     text-align: center;
     margin-top: 7px;
     margin-left: -5px;
-    position: relative;
-    right: 100px;
   }
 }
-
 .image-navbar{
   position: absolute;
   top: 13px;
 }
-
 .title-navbar{
   position: absolute;
   top: 8px;
   right: 114px;
 }
-
 .btn-power-navbar{
   position: absolute;
   top: 21px;
   right: 12px;
 }
-
-
 #navbarDropdown {
   margin-bottom: 5px;
   margin-left: 2px;
   border: 2px solid;
   border-color: #7CA982;
 }
-
 .btn-home {
   margin-bottom: 5px;
   border: 2px solid;
   text-decoration: none;
 }
-
 .dropdown-style {
   padding-left: 16px;
   color: white;
   text-decoration: none;
   font-size: 24px;
 }
-
 .dropdown-menu-bg {
   border-radius: 10px;
   background-color: #243E36;
-
-}
-
-.btn-power-off{
-  position: absolute;
-  right: 6px;
-  top: 22px;
 }
