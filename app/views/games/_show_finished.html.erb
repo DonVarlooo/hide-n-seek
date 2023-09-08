@@ -28,16 +28,16 @@
       <h4>Win streak:</h4>
       <%= current_user.winstreak %>
     </div>
-    <div class="faceoff">
+    <%# <div class="faceoff">
       <h4>Face off:</h4>
       <%= current_user.face_to_face(opponent_user_game) %>
-    </div>
+    <%# </div>  %>
   </div>
 
   <div class="row fixed-bottom d-flex mb-5" data-controller="rematch">
 
     <div class="col-4">
-      <%= button_to "QUIT", pages_path, class: "btn-quit", method: :get%>
+      <%= button_to "QUIT",  thanks_page_path, class: "btn-quit", method: :get%>
     </div>
   <div class="col-1"></div>
     <div class="col-5">
