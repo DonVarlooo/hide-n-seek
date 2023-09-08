@@ -21,5 +21,9 @@ Rails.application.routes.draw do
 
   resources :user_games, only: %i[update]
 
-  resources :pages, only: [:index]
+  resources :pages, only: [:index] do
+    member do
+      get :thanks
+    end
+  end
 end

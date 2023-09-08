@@ -6,4 +6,7 @@ class PagesController < ApplicationController
 
   def index
   end
+
+  def thanks
+  end
 end
