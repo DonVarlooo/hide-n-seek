@@ -181,7 +181,7 @@ class GamesController < ApplicationController
     @opponent_user_game = @current_game.user_games.where.not(user: current_user).first
     # Comment on garde les photos dans les users_games
     @game = Game.new(duration: @current_game.duration,
-                     name: "#{@current_game.name} - rematch",
+                     name: "#{@current_game.name}",
                      lat: params[:rematch][:latitude].to_f,
                      lng: params[:rematch][:longitude].to_f,
                      mode: @current_game.mode,
