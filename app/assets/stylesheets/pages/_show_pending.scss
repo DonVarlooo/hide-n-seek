@@ -20,13 +20,14 @@
 .container-settings {
   background-color: #cfc143;
   text-align: center;
-  height: 420px;
+  height: auto;
   border: 2px solid;
   border-color: #243E36;
   border-radius: 10px;
   margin-left: 16px;
   margin-right: 16px;
   margin-top: 8px;
+  padding-bottom: 16px;
 
   p {
     color: #243E36;
@@ -104,6 +105,7 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border: 2px solid;
   border-color: #cfc143;
+  margin-top: 24px;
 }
 
 .btn-update-user-name {
@@ -198,4 +200,11 @@
 
   display: flex;
   align-items: center;
+}
+
+.sword {
+  position: absolute;
+  top: 449px;
+  right: 122px;
+  height:150px
 }
