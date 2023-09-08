@@ -68,7 +68,7 @@
               <span class="circle third"></span>
             </div>
           <% elsif user == creator_user_game.user && challenger_user_game && challenger_user_game.photo.attached? %>
-            <h5>Your target is ready to go!<%= image_tag "swords.png", height: 80, class: "mb-1"%></h5>
+            <h5>Your target is ready to go!<%= image_tag "swords.png", height: 80, class: "mb-1 sword"%></h5>
           <%# AS CHALLENGER %>
           <% elsif user == challenger_user_game.user && challenger_user_game.photo.attached? %>
             <h5>Your opponent is about to start the game.</h5>
